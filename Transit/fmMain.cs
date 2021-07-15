@@ -113,8 +113,8 @@ namespace Transit
         }
         public void GetList()
         {
-            //lbList.Items.Clear();
-            //lbList.Items.Add("Loading");
+            //rtxtList.Items.Clear();
+            //rtxtList.Items.Add("Loading");
 
             String StartB = Start;
 
@@ -125,9 +125,9 @@ namespace Transit
             String LastNameB = "";
 
 
-            String[] List = new string[701];
-            double[] ListTime = new double[701];
-            double[] ListSchTime = new double[701];
+            String[] List = new string[1001];
+            double[] ListTime = new double[1001];
+            double[] ListSchTime = new double[1001];
             String Temp = "";
             double TempTime = 0;
             int Count = 0;
@@ -143,6 +143,7 @@ namespace Transit
             String Cancelled = "";
 
             int RtDash;
+            int X; int X2;
 
             XmlTextReader reader = new XmlTextReader(URLString);
 
@@ -199,7 +200,7 @@ namespace Transit
                             RtDash = reader.Value.IndexOf("-");
                             if (reader.Value.Substring(0, RtDash) == "101" | reader.Value.Substring(0, RtDash) == "102" | reader.Value.Substring(0, RtDash) == "110")
                             {
-                                RouteNm = "";
+                                RouteNm = reader.Value.Substring(0, RtDash) + " DART";
                             }
                             else
                             {
@@ -222,13 +223,21 @@ namespace Transit
                         }
                         else if (LastName == "keyDest")
                         {
-                            RouteNm += " " + reader.Value;
+                            if (RouteNm == "101 DART" | RouteNm == "102 DART" | RouteNm == "110 DART")
+                            {
+                                RouteNm += "";
+                            }
+                            else
+                            {
+                                RouteNm += " " + reader.Value;
+                            }
                             //Console.WriteLine("Time: " + reader.Value);
                         }
                         else if (LastName == "keyStop")
                         {
                             StopName = StopNum + " " + reader.Value;
-                            lblStopName.Text = StopNum + " " + reader.Value;
+                            //lblStopName.Text = StopNum + " " + reader.Value;
+                            this.Text = "Stop Schedule - " + StopNum + " " + reader.Value;
                         }
                         else if (LastName == "bike-rack")
                         {
@@ -370,13 +379,15 @@ namespace Transit
                                     if (MinsETA == false) { List[Count] = Time.Substring(0, 5); }
                                     else { List[Count] = Math.Round((ListTime[Count] - TimeSec) / 60).ToString() + " Mins"; }
 
-                                    List[Count] += Bus + Bike + " - " + RouteNm + Cancelled;
+                                    List[Count] += Bus + Bike + " - " + RouteNm;
 
                                     if (ListTime[Count] - ListSchTime[Count] >= 60) { List[Count] += " (" + Math.Round((ListTime[Count] - ListSchTime[Count]) / 60).ToString() + "m L, " + SchTime.Substring(0, 5) + ")"; }
                                     if (ListSchTime[Count] - ListTime[Count] >= 60) { List[Count] += " (" + Math.Round((ListSchTime[Count] - ListTime[Count]) / 60).ToString() + "m E, " + SchTime.Substring(0, 5) + ")"; }
 
+                                    List[Count] += Cancelled;
+
                                     //Console.WriteLine(ListTime[Count]);
-                                    //lbList.Items.Add(Time + Bus + Bike + " - " + RouteNm );
+                                    //rtxtList.Items.Add(Time + Bus + Bike + " - " + RouteNm );
                                 }
                             }
                             Bus = ", Bus 000";
@@ -405,11 +416,84 @@ namespace Transit
             }
 
 
-            lbList.Items.Clear();
+            rtxtList.Text = "";
+            //rtxtList.Focus();
             for (int i = 1; i <= Count; i++)
             {
-                lbList.Items.Add(List[i]);
+                if (List[i].IndexOf(" - ❌❌❌") != -1) { rtxtList.SelectionFont = new Font("Microsoft Sans Serif", 16, FontStyle.Strikeout); rtxtList.SelectionColor = Color.Red; } else { rtxtList.SelectionFont = new Font("Microsoft Sans Serif", 16, FontStyle.Regular); }
+                X = List[i].IndexOf(" - ");
+                X += 3;
+                rtxtList.AppendText(List[i].Substring(0, X));
+                
+                if (List[i].Substring(X, 5) == "BLUE ")
+                {
+                    if (List[i].IndexOf(" - ❌❌❌") != -1) { rtxtList.SelectionColor = Color.Red; } else { rtxtList.SelectionColor = Color.White; }
+                    rtxtList.SelectionBackColor = Color.Blue;
+                    rtxtList.AppendText(List[i].Substring(X, 4));
+                    X += 4;
+                }
+                else if (List[i].Substring(X, 3) == "21 " | List[i].Substring(X, 3) == "22 " | List[i].Substring(X, 3) == "24 " | List[i].Substring(X, 3) == "25 " | List[i].Substring(X, 3) == "28 " | List[i].Substring(X, 3) == "30 " | List[i].Substring(X, 3) == "31 " | List[i].Substring(X, 3) == "32 " | List[i].Substring(X, 3) == "34 " | List[i].Substring(X, 3) == "35 " | List[i].Substring(X, 3) == "36 " | List[i].Substring(X, 3) == "40 " | List[i].Substring(X, 3) == "41 " | List[i].Substring(X, 3) == "42 " | List[i].Substring(X, 3) == "46 " | List[i].Substring(X, 3) == "48 " | List[i].Substring(X, 3) == "54 " | List[i].Substring(X, 3) == "57 " | List[i].Substring(X, 3) == "58 " | List[i].Substring(X, 3) == "59 " | List[i].Substring(X, 3) == "65 " | List[i].Substring(X, 3) == "67 ")
+                {
+                    if (List[i].IndexOf(" - ❌❌❌") != -1) { rtxtList.SelectionColor = Color.Red; } else { rtxtList.SelectionColor = Color.Black; }
+                    rtxtList.SelectionBackColor = Color.Yellow;
+                    rtxtList.AppendText(List[i].Substring(X, 2));
+                    X += 2;
+                }
+                else if (List[i].Substring(X, 4) == "690 " | List[i].Substring(X, 4) == "691 " | List[i].Substring(X, 4) == "693 " | List[i].Substring(X, 4) == "694 ")
+                {
+                    if (List[i].IndexOf(" - ❌❌❌") != -1) { rtxtList.SelectionColor = Color.Red; } else { rtxtList.SelectionColor = Color.White; }
+                    rtxtList.SelectionBackColor = Color.Black;
+                    rtxtList.AppendText(List[i].Substring(X, 3));
+                    X += 3;
+                }
+                else 
+                {
+                    if (List[i].IndexOf(" - ❌❌❌") != -1) { rtxtList.SelectionColor = Color.Red; } else { rtxtList.SelectionColor = Color.Black; }
+                    rtxtList.SelectionBackColor = Color.White; rtxtList.AppendText(List[i].Substring(X, 3));
+                    X += 3;
+                }
+
+                rtxtList.SelectionColor = Color.Black;
+                rtxtList.SelectionBackColor = Color.White;
+
+                X2 = List[i].IndexOf(" (");
+                if (X2 == -1) {
+                    if (List[i].IndexOf(" - ❌❌❌") != -1)
+                    {
+                        rtxtList.SelectionColor = Color.Red;
+                        rtxtList.AppendText(List[i].Substring(X, List[i].IndexOf(" - ❌❌❌") - X) + (char)10);
+                    }
+                    else
+                    {
+                        rtxtList.AppendText(List[i].Substring(X) + (char)10);
+                    }
+                }
+                else
+                {
+                    if (List[i].IndexOf(" - ❌❌❌") != -1) { rtxtList.SelectionColor = Color.Red; }
+
+                    rtxtList.AppendText(List[i].Substring(X, X2 - X + 2));
+                    if (List[i].IndexOf(" L, ") != -1)
+                    {
+                        rtxtList.SelectionColor = Color.Red;
+                    }
+                    else if (List[i].IndexOf(" E, ") != -1)
+                    {
+                        rtxtList.SelectionColor = Color.Blue;
+                    }
+
+                    X = List[i].IndexOf(")");
+                    rtxtList.AppendText(List[i].Substring(X2 + 2, X - X2 - 2));
+                    if (List[i].IndexOf(" - ❌❌❌") != -1) { rtxtList.SelectionColor = Color.Red; } else { rtxtList.SelectionColor = Color.Black; }
+                    rtxtList.AppendText(List[i].Substring(X,1) + (char)10);
+                }
             }
+            rtxtList.SelectionStart = 0;
+            rtxtList.ScrollToCaret();
+            rtxtList.SelectionColor = Color.Black;
+            rtxtList.SelectionBackColor = Color.White;
+
+            if (rtxtList.Text == "") { rtxtList.Text = "Nothing to Show"; }
         }
 
         private void timAutoGet_Tick(object sender, EventArgs e)
@@ -424,7 +508,7 @@ namespace Transit
             btnStop.Enabled = false;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void fmMain_Load(object sender, EventArgs e)
         {
             CheckStat();
             cmbBusType.SelectedIndex = 0;
@@ -506,7 +590,7 @@ namespace Transit
                                 if (reader.Value != LastMessage)
                                 {
                                     LastMessage = reader.Value;
-                                    MessageBox.Show(reader.Value + (char)10 + "(" + DateTime.Now.ToString("HH:mm:ss") + ")", StatType, MessageBoxButtons.OK);
+                                    if (reader.Value != "") { MessageBox.Show(reader.Value + (char)10 + "(" + DateTime.Now.ToString("HH:mm:ss") + ")", StatType, MessageBoxButtons.OK); }
                                 }
                             }
                             else if (LastName == "type")
@@ -521,6 +605,13 @@ namespace Transit
             }
 
             lblMessage.Text = Message;
+            if (Message == "") { 
+                this.Size = new Size(971, 581);
+            } 
+            else 
+            {
+                this.Size = new Size(971, 601);
+            }
         }
 
         private void btnOpenAdv_Click(object sender, EventArgs e)
@@ -597,12 +688,13 @@ namespace Transit
         private void btnAbout_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About", MessageBoxButtons.OK);
+            //MessageBox.Show("This program is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About", MessageBoxButtons.OK);
         }
 
         private void timGoBtn_Tick(object sender, EventArgs e)
         {
             btnGo.Enabled = true;
-            if (lblStopName.Text != "Stop Name") { btnNearby.Enabled = true; }
+            if (this.Text != "Stop Schedule") { btnNearby.Enabled = true; }
             btnRoute.Enabled = true;
             btnOpenAdv.Enabled = true;
 
@@ -645,12 +737,14 @@ namespace Transit
             txtRoute.Text = "10";
             txtMaxDist.Text = "2";
 
-            lbList.Items.Clear();
+            rtxtList.Text = "";
             lbFeatures.Items.Clear();
             lblStopName.Text = "Stop Name";
 
             btnNearby.Enabled = false;
             btnWebsite.Enabled = false;
+
+            this.Text = "Stop Schedule";
         }
     }
 }

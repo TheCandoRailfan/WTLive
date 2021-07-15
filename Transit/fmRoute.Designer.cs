@@ -30,42 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmRoute));
             this.lblRoute = new System.Windows.Forms.Label();
-            this.lbVariants = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lbDest = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.rtxtVariants = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // lblRoute
             // 
             this.lblRoute.AutoSize = true;
             this.lblRoute.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoute.Location = new System.Drawing.Point(5, 6);
+            this.lblRoute.Location = new System.Drawing.Point(0, 4);
             this.lblRoute.Name = "lblRoute";
             this.lblRoute.Size = new System.Drawing.Size(74, 25);
             this.lblRoute.TabIndex = 0;
             this.lblRoute.Text = "Route";
-            // 
-            // lbVariants
-            // 
-            this.lbVariants.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVariants.FormattingEnabled = true;
-            this.lbVariants.ItemHeight = 25;
-            this.lbVariants.Location = new System.Drawing.Point(10, 34);
-            this.lbVariants.Name = "lbVariants";
-            this.lbVariants.Size = new System.Drawing.Size(610, 354);
-            this.lbVariants.TabIndex = 1;
-            this.lbVariants.SelectedIndexChanged += new System.EventHandler(this.lbVariants_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 392);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 16);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "(Outbound above Inbound)";
             // 
             // lbDest
             // 
@@ -89,19 +67,29 @@
             this.label2.Text = "Places";
             this.label2.Visible = false;
             // 
+            // rtxtVariants
+            // 
+            this.rtxtVariants.BackColor = System.Drawing.SystemColors.Window;
+            this.rtxtVariants.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxtVariants.Location = new System.Drawing.Point(5, 32);
+            this.rtxtVariants.Name = "rtxtVariants";
+            this.rtxtVariants.ReadOnly = true;
+            this.rtxtVariants.Size = new System.Drawing.Size(575, 279);
+            this.rtxtVariants.TabIndex = 5;
+            this.rtxtVariants.Text = "";
+            // 
             // fmRoute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 412);
+            this.ClientSize = new System.Drawing.Size(585, 317);
+            this.Controls.Add(this.rtxtVariants);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbDest);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lbVariants);
             this.Controls.Add(this.lblRoute);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmRoute";
-            this.Text = "Route Destinations";
+            this.Text = "Route Destinations (Outbound above Inbound)";
             this.Load += new System.EventHandler(this.fmRoute_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -111,9 +99,8 @@
         #endregion
 
         private System.Windows.Forms.Label lblRoute;
-        private System.Windows.Forms.ListBox lbVariants;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbDest;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RichTextBox rtxtVariants;
     }
 }

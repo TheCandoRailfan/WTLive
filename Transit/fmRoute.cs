@@ -99,11 +99,12 @@ namespace Transit
 
             for (int i = 1; i <= Num; i++)
             {
-                if (i > 1) { if(List2[i - 1].IndexOf("Outbound") != -1 && List2[i].IndexOf("Inbound") != -1) { lbVariants.Items.Add(""); Blank = i; } }
+                if (i > 1) { if(List2[i - 1].IndexOf("Outbound") != -1 && List2[i].IndexOf("Inbound") != -1) { rtxtVariants.Text += (char)10; Blank = i; } }
                 X1 = List2[i].IndexOf(" - Outbound");
                 if (X1 == -1) { X1 = List2[i].IndexOf(" - Inbound"); }
 
-                lbVariants.Items.Add(List2[i].Substring(0,X1));
+                //lbVariants.Items.Add(List2[i].Substring(0,X1));
+                rtxtVariants.Text += List2[i].Substring(0, X1) + (char) 10;
             }
             //lbVariants.SelectedIndex = 0;
         }
@@ -152,16 +153,6 @@ namespace Transit
             else
             {
                 List2[i] += " - Outbound";
-            }
-        }
-
-        private void lbVariants_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //lbDest.Items.Clear();
-
-            if (lbVariants.SelectedIndex + 1 != Blank) 
-            { 
-                //if (lbVariants.SelectedIndex + 1 < Blank) { GetDest(List[lbVariants.SelectedIndex + 1]); } else { GetDest(List[lbVariants.SelectedIndex]); }
             }
         }
 

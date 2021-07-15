@@ -36,19 +36,19 @@
             // 
             // lbNBList
             // 
-            this.lbNBList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNBList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNBList.FormattingEnabled = true;
-            this.lbNBList.ItemHeight = 25;
-            this.lbNBList.Location = new System.Drawing.Point(12, 68);
+            this.lbNBList.ItemHeight = 20;
+            this.lbNBList.Location = new System.Drawing.Point(8, 60);
             this.lbNBList.Name = "lbNBList";
-            this.lbNBList.Size = new System.Drawing.Size(1108, 454);
+            this.lbNBList.Size = new System.Drawing.Size(778, 364);
             this.lbNBList.TabIndex = 0;
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(12, 9);
+            this.lblTitle.Location = new System.Drawing.Point(4, 7);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(58, 25);
             this.lblTitle.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             this.lblStop.AutoSize = true;
             this.lblStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStop.Location = new System.Drawing.Point(12, 34);
+            this.lblStop.Location = new System.Drawing.Point(4, 32);
             this.lblStop.Name = "lblStop";
             this.lblStop.Size = new System.Drawing.Size(127, 25);
             this.lblStop.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 531);
+            this.ClientSize = new System.Drawing.Size(794, 432);
             this.Controls.Add(this.lblStop);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lbNBList);
