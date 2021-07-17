@@ -88,6 +88,9 @@
             this.timGoBtn = new System.Windows.Forms.Timer(this.components);
             this.btnReset = new System.Windows.Forms.Button();
             this.rtxtList = new System.Windows.Forms.RichTextBox();
+            this.btnFullScreen = new System.Windows.Forms.Button();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.timUpdateTime = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -97,7 +100,7 @@
             this.btnGo.Location = new System.Drawing.Point(49, 386);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(35, 23);
-            this.btnGo.TabIndex = 13;
+            this.btnGo.TabIndex = 18;
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
@@ -165,7 +168,7 @@
             this.btnStop.Location = new System.Drawing.Point(86, 386);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(78, 23);
-            this.btnStop.TabIndex = 27;
+            this.btnStop.TabIndex = 18;
             this.btnStop.Text = "Stop Refresh";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -176,7 +179,7 @@
             this.chkAuto.Location = new System.Drawing.Point(8, 330);
             this.chkAuto.Name = "chkAuto";
             this.chkAuto.Size = new System.Drawing.Size(88, 17);
-            this.chkAuto.TabIndex = 12;
+            this.chkAuto.TabIndex = 16;
             this.chkAuto.Text = "Auto Refresh";
             this.chkAuto.UseVisualStyleBackColor = true;
             // 
@@ -186,7 +189,7 @@
             this.txtInterval.MaxLength = 3;
             this.txtInterval.Name = "txtInterval";
             this.txtInterval.Size = new System.Drawing.Size(34, 20);
-            this.txtInterval.TabIndex = 47;
+            this.txtInterval.TabIndex = 17;
             this.txtInterval.Text = "30";
             // 
             // label3
@@ -209,11 +212,12 @@
             // 
             // lblStopName
             // 
-            this.lblStopName.AutoSize = true;
-            this.lblStopName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStopName.Location = new System.Drawing.Point(293, 3);
+            this.lblStopName.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblStopName.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStopName.ForeColor = System.Drawing.Color.White;
+            this.lblStopName.Location = new System.Drawing.Point(0, 0);
             this.lblStopName.Name = "lblStopName";
-            this.lblStopName.Size = new System.Drawing.Size(127, 25);
+            this.lblStopName.Size = new System.Drawing.Size(127, 22);
             this.lblStopName.TabIndex = 51;
             this.lblStopName.Text = "Stop Name";
             this.lblStopName.UseMnemonic = false;
@@ -221,7 +225,7 @@
             // 
             // calCalendar
             // 
-            this.calCalendar.Location = new System.Drawing.Point(240, 373);
+            this.calCalendar.Location = new System.Drawing.Point(239, 375);
             this.calCalendar.Name = "calCalendar";
             this.calCalendar.TabIndex = 52;
             this.calCalendar.Visible = false;
@@ -229,7 +233,7 @@
             // chkDate
             // 
             this.chkDate.AutoSize = true;
-            this.chkDate.Location = new System.Drawing.Point(242, 354);
+            this.chkDate.Location = new System.Drawing.Point(252, 353);
             this.chkDate.Name = "chkDate";
             this.chkDate.Size = new System.Drawing.Size(103, 17);
             this.chkDate.TabIndex = 53;
@@ -243,7 +247,7 @@
             this.chkRev.Location = new System.Drawing.Point(97, 330);
             this.chkRev.Name = "chkRev";
             this.chkRev.Size = new System.Drawing.Size(95, 17);
-            this.chkRev.TabIndex = 11;
+            this.chkRev.TabIndex = 80;
             this.chkRev.Text = "Reverse Order";
             this.chkRev.UseVisualStyleBackColor = true;
             this.chkRev.Visible = false;
@@ -263,7 +267,7 @@
             this.txtSearch.Location = new System.Drawing.Point(7, 287);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(100, 20);
-            this.txtSearch.TabIndex = 9;
+            this.txtSearch.TabIndex = 14;
             // 
             // label6
             // 
@@ -297,7 +301,7 @@
             this.rdoBike.Location = new System.Drawing.Point(6, 16);
             this.rdoBike.Name = "rdoBike";
             this.rdoBike.Size = new System.Drawing.Size(43, 17);
-            this.rdoBike.TabIndex = 50;
+            this.rdoBike.TabIndex = 8;
             this.rdoBike.Text = "Yes";
             this.rdoBike.UseVisualStyleBackColor = true;
             // 
@@ -307,7 +311,7 @@
             this.rdoNoBike.Location = new System.Drawing.Point(6, 39);
             this.rdoNoBike.Name = "rdoNoBike";
             this.rdoNoBike.Size = new System.Drawing.Size(39, 17);
-            this.rdoNoBike.TabIndex = 51;
+            this.rdoNoBike.TabIndex = 9;
             this.rdoNoBike.Text = "No";
             this.rdoNoBike.UseVisualStyleBackColor = true;
             // 
@@ -318,7 +322,7 @@
             this.rdoBikeorNoBike.Location = new System.Drawing.Point(6, 62);
             this.rdoBikeorNoBike.Name = "rdoBikeorNoBike";
             this.rdoBikeorNoBike.Size = new System.Drawing.Size(52, 17);
-            this.rdoBikeorNoBike.TabIndex = 52;
+            this.rdoBikeorNoBike.TabIndex = 10;
             this.rdoBikeorNoBike.TabStop = true;
             this.rdoBikeorNoBike.Text = "Either";
             this.rdoBikeorNoBike.UseVisualStyleBackColor = true;
@@ -397,7 +401,7 @@
             this.btnOpenAdv.Location = new System.Drawing.Point(6, 514);
             this.btnOpenAdv.Name = "btnOpenAdv";
             this.btnOpenAdv.Size = new System.Drawing.Size(105, 23);
-            this.btnOpenAdv.TabIndex = 69;
+            this.btnOpenAdv.TabIndex = 25;
             this.btnOpenAdv.Text = "Service Advisories";
             this.btnOpenAdv.UseVisualStyleBackColor = true;
             this.btnOpenAdv.Click += new System.EventHandler(this.btnOpenAdv_Click);
@@ -408,7 +412,7 @@
             this.btnNearby.Location = new System.Drawing.Point(6, 487);
             this.btnNearby.Name = "btnNearby";
             this.btnNearby.Size = new System.Drawing.Size(105, 23);
-            this.btnNearby.TabIndex = 70;
+            this.btnNearby.TabIndex = 24;
             this.btnNearby.Text = "Nearby Stops";
             this.btnNearby.UseVisualStyleBackColor = true;
             this.btnNearby.Click += new System.EventHandler(this.button1_Click);
@@ -419,14 +423,14 @@
             this.txtMaxDist.MaxLength = 3;
             this.txtMaxDist.Name = "txtMaxDist";
             this.txtMaxDist.Size = new System.Drawing.Size(33, 20);
-            this.txtMaxDist.TabIndex = 71;
+            this.txtMaxDist.TabIndex = 23;
             this.txtMaxDist.Text = "2";
             this.txtMaxDist.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(158, 492);
+            this.label10.Location = new System.Drawing.Point(148, 492);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(21, 13);
             this.label10.TabIndex = 72;
@@ -449,7 +453,7 @@
             this.btnWebsite.Location = new System.Drawing.Point(112, 514);
             this.btnWebsite.Name = "btnWebsite";
             this.btnWebsite.Size = new System.Drawing.Size(92, 23);
-            this.btnWebsite.TabIndex = 75;
+            this.btnWebsite.TabIndex = 26;
             this.btnWebsite.Text = "Transit Website";
             this.btnWebsite.UseVisualStyleBackColor = true;
             this.btnWebsite.Click += new System.EventHandler(this.btnWebsite_Click);
@@ -525,7 +529,7 @@
             this.btnRoute.Location = new System.Drawing.Point(6, 460);
             this.btnRoute.Name = "btnRoute";
             this.btnRoute.Size = new System.Drawing.Size(105, 23);
-            this.btnRoute.TabIndex = 81;
+            this.btnRoute.TabIndex = 22;
             this.btnRoute.Text = "Route Destinations";
             this.btnRoute.UseVisualStyleBackColor = true;
             this.btnRoute.Click += new System.EventHandler(this.btnRoute_Click);
@@ -536,14 +540,14 @@
             this.txtRoute.MaxLength = 4;
             this.txtRoute.Name = "txtRoute";
             this.txtRoute.Size = new System.Drawing.Size(33, 20);
-            this.txtRoute.TabIndex = 82;
+            this.txtRoute.TabIndex = 21;
             this.txtRoute.Text = "10";
             this.txtRoute.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(156, 465);
+            this.label14.Location = new System.Drawing.Point(146, 465);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(36, 13);
             this.label14.TabIndex = 83;
@@ -554,7 +558,7 @@
             this.txtBusLk.Location = new System.Drawing.Point(113, 435);
             this.txtBusLk.Name = "txtBusLk";
             this.txtBusLk.Size = new System.Drawing.Size(33, 20);
-            this.txtBusLk.TabIndex = 84;
+            this.txtBusLk.TabIndex = 19;
             this.txtBusLk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnBus
@@ -562,7 +566,7 @@
             this.btnBus.Location = new System.Drawing.Point(6, 433);
             this.btnBus.Name = "btnBus";
             this.btnBus.Size = new System.Drawing.Size(105, 23);
-            this.btnBus.TabIndex = 85;
+            this.btnBus.TabIndex = 20;
             this.btnBus.Text = "Bus On The Go";
             this.btnBus.UseVisualStyleBackColor = true;
             this.btnBus.Click += new System.EventHandler(this.btnBus_Click);
@@ -570,7 +574,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(156, 438);
+            this.label15.Location = new System.Drawing.Point(146, 438);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(25, 13);
             this.label15.TabIndex = 86;
@@ -595,7 +599,7 @@
             this.rdoCancel.Location = new System.Drawing.Point(6, 15);
             this.rdoCancel.Name = "rdoCancel";
             this.rdoCancel.Size = new System.Drawing.Size(43, 17);
-            this.rdoCancel.TabIndex = 50;
+            this.rdoCancel.TabIndex = 11;
             this.rdoCancel.Text = "Yes";
             this.rdoCancel.UseVisualStyleBackColor = true;
             // 
@@ -606,7 +610,7 @@
             this.rdoEitherCancel.Location = new System.Drawing.Point(6, 61);
             this.rdoEitherCancel.Name = "rdoEitherCancel";
             this.rdoEitherCancel.Size = new System.Drawing.Size(52, 17);
-            this.rdoEitherCancel.TabIndex = 52;
+            this.rdoEitherCancel.TabIndex = 13;
             this.rdoEitherCancel.TabStop = true;
             this.rdoEitherCancel.Text = "Either";
             this.rdoEitherCancel.UseVisualStyleBackColor = true;
@@ -617,7 +621,7 @@
             this.rdoNoCancel.Location = new System.Drawing.Point(6, 38);
             this.rdoNoCancel.Name = "rdoNoCancel";
             this.rdoNoCancel.Size = new System.Drawing.Size(39, 17);
-            this.rdoNoCancel.TabIndex = 51;
+            this.rdoNoCancel.TabIndex = 12;
             this.rdoNoCancel.Text = "No";
             this.rdoNoCancel.UseVisualStyleBackColor = true;
             // 
@@ -626,9 +630,9 @@
             this.chkShowMins.AutoSize = true;
             this.chkShowMins.Location = new System.Drawing.Point(8, 311);
             this.chkShowMins.Name = "chkShowMins";
-            this.chkShowMins.Size = new System.Drawing.Size(122, 17);
-            this.chkShowMins.TabIndex = 87;
-            this.chkShowMins.Text = "Show Mins to Arrival";
+            this.chkShowMins.Size = new System.Drawing.Size(166, 17);
+            this.chkShowMins.TabIndex = 15;
+            this.chkShowMins.Text = "Mins to Arrival (< 60 Min Only)";
             this.chkShowMins.UseVisualStyleBackColor = true;
             // 
             // btnAbout
@@ -636,7 +640,7 @@
             this.btnAbout.Location = new System.Drawing.Point(252, 514);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(43, 23);
-            this.btnAbout.TabIndex = 88;
+            this.btnAbout.TabIndex = 29;
             this.btnAbout.Text = "About";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
@@ -651,7 +655,7 @@
             this.btnReset.Location = new System.Drawing.Point(205, 514);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(45, 23);
-            this.btnReset.TabIndex = 89;
+            this.btnReset.TabIndex = 27;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -667,6 +671,36 @@
             this.rtxtList.TabIndex = 90;
             this.rtxtList.Text = "";
             this.rtxtList.WordWrap = false;
+            this.rtxtList.DoubleClick += new System.EventHandler(this.rtxtList_DoubleClick);
+            // 
+            // btnFullScreen
+            // 
+            this.btnFullScreen.Enabled = false;
+            this.btnFullScreen.Location = new System.Drawing.Point(205, 489);
+            this.btnFullScreen.Name = "btnFullScreen";
+            this.btnFullScreen.Size = new System.Drawing.Size(90, 23);
+            this.btnFullScreen.TabIndex = 28;
+            this.btnFullScreen.Text = "Full Screen";
+            this.btnFullScreen.UseVisualStyleBackColor = true;
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
+            // 
+            // lblTime
+            // 
+            this.lblTime.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblTime.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.ForeColor = System.Drawing.Color.White;
+            this.lblTime.Location = new System.Drawing.Point(754, 2);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(200, 68);
+            this.lblTime.TabIndex = 91;
+            this.lblTime.Text = "11:00";
+            this.lblTime.UseMnemonic = false;
+            this.lblTime.Visible = false;
+            // 
+            // timUpdateTime
+            // 
+            this.timUpdateTime.Interval = 1000;
+            this.timUpdateTime.Tick += new System.EventHandler(this.timUpdateTime_Tick);
             // 
             // fmMain
             // 
@@ -674,7 +708,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 542);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.rtxtList);
+            this.Controls.Add(this.btnFullScreen);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.chkShowMins);
@@ -797,6 +833,9 @@
         private System.Windows.Forms.Timer timGoBtn;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.RichTextBox rtxtList;
+        private System.Windows.Forms.Button btnFullScreen;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Timer timUpdateTime;
     }
 }
 

@@ -117,7 +117,15 @@ namespace Transit
 
         private void timRefresh_Tick(object sender, EventArgs e)
         {
-            GetAdvs();
+            try
+            {
+                GetAdvs();
+            }
+            catch (System.Net.WebException exception)
+            {
+                if (exception.Message.IndexOf("(500) Internal Server Error") != -1) { }
+                else { MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK); }
+            }
         }
 
         private void lbAdvisories_SelectedIndexChanged(object sender, EventArgs e)
