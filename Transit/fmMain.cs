@@ -235,7 +235,7 @@ namespace Transit
                         case XmlNodeType.Text: //Display the text in each element.
                             if (LastName == "keyBus")
                             {
-                                Bus = "Bus " + reader.Value;
+                                Bus = ", Bus " + reader.Value;
                             }
                             else if (LastName == "keyRt")
                             {
@@ -438,7 +438,7 @@ namespace Transit
                                             }
                                         }
 
-                                        List[Count] += ", ";
+                                        //List[Count] += ", ";
                                         //if (MinsETA == true) { List[Count] += new String(' ', 9 - List[Count].Length); }
 
                                         List[Count] += Bus + Bike + " - "+ RouteNm;
