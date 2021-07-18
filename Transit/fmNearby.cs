@@ -14,7 +14,8 @@ namespace Transit
 {
     public partial class fmNearby : Form
     {
-        String[] List = new string[150];
+        //String[] List = new string[150];
+        String[] StopList = new string[6000];
         int[] RouteGot = new int[700];
         int Dup = 0;
 
@@ -30,6 +31,7 @@ namespace Transit
 
         private void GetNearby()
         {
+            int Num = 0;
             String URLString = "https://api.winnipegtransit.com/v3/stops?api-key=yxCT5Ca2Ep5AVLc0z6zz&lat=" + fmMain.XY[0] + "&lon=" + fmMain.XY[1] + "&distance=" + double.Parse(fmMain.Dist) * 1000 + "&walking=true&usage=long";
             XmlTextReader reader = new XmlTextReader(URLString);
             String LastName = "";
@@ -111,7 +113,8 @@ namespace Transit
                             if (reader.Name == "stop")
                             {
                                 // && Stop != PrevStop
-                                if (X.IndexOf(fmMain.StopName) == -1 && Dup == 0) { lbNBList.Items.Add(X); Dup = 0; PrevStop = Stop; }
+                                Num++;
+                                if (X.IndexOf(fmMain.StopName) == -1 && Dup == 0) { lbNBList.Items.Add(X); StopList[Num] = X; Dup = 0; PrevStop = Stop; }
                             }
                             break;
                         }
@@ -162,6 +165,15 @@ namespace Transit
                         }
                 }
                 if (Dup == 1) { break; }
+            }
+        }
+
+        private void lbNBList_DoubleClick(object sender, EventArgs e)
+        {
+            if (lbNBList.SelectedIndex >= 0)
+            {
+                fmMain.StopNum2 = StopList[lbNBList.SelectedIndex + 2].Substring(0, 5);
+                Close();
             }
         }
     }

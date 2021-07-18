@@ -24,3 +24,4 @@ C:\Users\twool\source\repos\TransitStops\Transit\obj\Release\Transit.csproj.Gene
 C:\Users\twool\source\repos\TransitStops\Transit\obj\Release\Transit.csproj.CoreCompileInputs.cache
 C:\Users\twool\source\repos\TransitStops\Transit\obj\Release\Transit.exe
 C:\Users\twool\source\repos\TransitStops\Transit\obj\Release\Transit.pdb
+C:\Users\twool\source\repos\TransitStops\Transit\obj\Release\Transit.fmSearch.resources

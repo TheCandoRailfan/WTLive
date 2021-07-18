@@ -91,6 +91,9 @@
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.timUpdateTime = new System.Windows.Forms.Timer(this.components);
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.timSetStop = new System.Windows.Forms.Timer(this.components);
+            this.btnExitFullScr = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -165,7 +168,7 @@
             // btnStop
             // 
             this.btnStop.Enabled = false;
-            this.btnStop.Location = new System.Drawing.Point(86, 386);
+            this.btnStop.Location = new System.Drawing.Point(147, 386);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(78, 23);
             this.btnStop.TabIndex = 18;
@@ -258,9 +261,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(2, 259);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 25);
+            this.label5.Size = new System.Drawing.Size(77, 25);
             this.label5.TabIndex = 56;
-            this.label5.Text = "Other";
+            this.label5.Text = "Other:";
             // 
             // txtSearch
             // 
@@ -628,11 +631,13 @@
             // chkShowMins
             // 
             this.chkShowMins.AutoSize = true;
+            this.chkShowMins.Checked = true;
+            this.chkShowMins.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowMins.Location = new System.Drawing.Point(8, 311);
             this.chkShowMins.Name = "chkShowMins";
-            this.chkShowMins.Size = new System.Drawing.Size(166, 17);
+            this.chkShowMins.Size = new System.Drawing.Size(83, 17);
             this.chkShowMins.TabIndex = 15;
-            this.chkShowMins.Text = "Mins to Arrival (< 60 Min Only)";
+            this.chkShowMins.Text = "ETA in Mins";
             this.chkShowMins.UseVisualStyleBackColor = true;
             // 
             // btnAbout
@@ -671,16 +676,14 @@
             this.rtxtList.TabIndex = 90;
             this.rtxtList.Text = "";
             this.rtxtList.WordWrap = false;
-            this.rtxtList.DoubleClick += new System.EventHandler(this.rtxtList_DoubleClick);
             // 
             // btnFullScreen
             // 
-            this.btnFullScreen.Enabled = false;
-            this.btnFullScreen.Location = new System.Drawing.Point(205, 489);
+            this.btnFullScreen.Location = new System.Drawing.Point(85, 386);
             this.btnFullScreen.Name = "btnFullScreen";
-            this.btnFullScreen.Size = new System.Drawing.Size(90, 23);
+            this.btnFullScreen.Size = new System.Drawing.Size(61, 23);
             this.btnFullScreen.TabIndex = 28;
-            this.btnFullScreen.Text = "Full Screen";
+            this.btnFullScreen.Text = "Go (FS)";
             this.btnFullScreen.UseVisualStyleBackColor = true;
             this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
@@ -694,6 +697,7 @@
             this.lblTime.Size = new System.Drawing.Size(200, 68);
             this.lblTime.TabIndex = 91;
             this.lblTime.Text = "11:00";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.lblTime.UseMnemonic = false;
             this.lblTime.Visible = false;
             // 
@@ -702,12 +706,44 @@
             this.timUpdateTime.Interval = 1000;
             this.timUpdateTime.Tick += new System.EventHandler(this.timUpdateTime_Tick);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(109, 26);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(51, 23);
+            this.btnSearch.TabIndex = 92;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // timSetStop
+            // 
+            this.timSetStop.Enabled = true;
+            this.timSetStop.Interval = 125;
+            this.timSetStop.Tick += new System.EventHandler(this.timSetStop_Tick);
+            // 
+            // btnExitFullScr
+            // 
+            this.btnExitFullScr.BackColor = System.Drawing.Color.Red;
+            this.btnExitFullScr.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExitFullScr.ForeColor = System.Drawing.Color.White;
+            this.btnExitFullScr.Location = new System.Drawing.Point(906, 2);
+            this.btnExitFullScr.Name = "btnExitFullScr";
+            this.btnExitFullScr.Size = new System.Drawing.Size(48, 81);
+            this.btnExitFullScr.TabIndex = 93;
+            this.btnExitFullScr.Text = "X";
+            this.btnExitFullScr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExitFullScr.UseVisualStyleBackColor = false;
+            this.btnExitFullScr.Visible = false;
+            this.btnExitFullScr.Click += new System.EventHandler(this.btnExitFullScr_Click);
+            // 
             // fmMain
             // 
             this.AcceptButton = this.btnGo;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 542);
+            this.Controls.Add(this.btnExitFullScr);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.rtxtList);
             this.Controls.Add(this.btnFullScreen);
@@ -759,6 +795,7 @@
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.calCalendar);
             this.Controls.Add(this.chkDate);
+            this.Controls.Add(this.btnSearch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmMain";
@@ -836,6 +873,9 @@
         private System.Windows.Forms.Button btnFullScreen;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Timer timUpdateTime;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Timer timSetStop;
+        private System.Windows.Forms.Button btnExitFullScr;
     }
 }
 

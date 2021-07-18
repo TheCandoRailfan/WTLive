@@ -23,7 +23,14 @@ namespace Transit
 
         private void fmAdvisory_Load(object sender, EventArgs e)
         {
-            GetAdvs();
+            try
+            {
+                GetAdvs();
+            }
+            catch (System.Net.WebException exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         public void GetAdvs()

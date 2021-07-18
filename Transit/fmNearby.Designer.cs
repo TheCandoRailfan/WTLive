@@ -43,6 +43,7 @@
             this.lbNBList.Name = "lbNBList";
             this.lbNBList.Size = new System.Drawing.Size(778, 364);
             this.lbNBList.TabIndex = 0;
+            this.lbNBList.DoubleClick += new System.EventHandler(this.lbNBList_DoubleClick);
             // 
             // lblTitle
             // 
