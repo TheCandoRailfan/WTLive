@@ -17,6 +17,7 @@ The list of departures shows several pieces of information about each departure.
  - Bike Rack: This indicates if the bus has a bike rack. Similar to above, if it shows "---" instead of a bike-related symbol, then it is unknown.
  - Route Number: This is the route number (or word if it is Route BLUE) the bus is operating on.
  - Destination: This the final destination the bus is operating to.
+ - Late/Early: If a bus is running late or early, it will be shown on the right. For example, if a bus is 3 minutes late, it will show "(+3)" on the right, in red. 3 Minutes early would be "(-3)", in blue. 
 
 3. Extra Options:
 As you probably noticed, the Stop Number is not the only option that you can set. There are other optional settings you can set below it. They are as follows:

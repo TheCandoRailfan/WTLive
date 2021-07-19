@@ -28,7 +28,7 @@ namespace Transit
             lbStopList.Items.Clear();
             for (int i = 1; i <= 5999; i++)
             {
-                if (fmMain.StopList[i] != null && (fmMain.StopList[i].ToUpper().IndexOf(txtSearch.Text.ToUpper()) != -1 | txtSearch.Text == "")) { Num++; lbStopList.Items.Add(fmMain.StopList[i]); StopList2[Num] = fmMain.StopList[i]; }
+                if (fmMain.StopList[i] != null && Num < 100 && (fmMain.StopList[i].ToUpper().IndexOf(txtSearch.Text.ToUpper()) != -1 | txtSearch.Text == "")) { Num++; lbStopList.Items.Add(fmMain.StopList[i]); StopList2[Num] = fmMain.StopList[i]; }
             }
         }
 
@@ -50,9 +50,7 @@ namespace Transit
                 String X2 = "";
                 int X1 = 0;
 
-                //int Num = 0;
-
-                //Num = 0;
+                Num = 0;
 
                 while (reader.Read())
                 {

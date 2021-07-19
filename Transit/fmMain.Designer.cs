@@ -44,8 +44,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblOnOff = new System.Windows.Forms.Label();
             this.lblStopName = new System.Windows.Forms.Label();
-            this.calCalendar = new System.Windows.Forms.MonthCalendar();
-            this.chkDate = new System.Windows.Forms.CheckBox();
             this.chkRev = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -55,7 +53,7 @@
             this.rdoBike = new System.Windows.Forms.RadioButton();
             this.rdoNoBike = new System.Windows.Forms.RadioButton();
             this.rdoBikeorNoBike = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpBikeRack = new System.Windows.Forms.GroupBox();
             this.txtBus2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.timCheckStat = new System.Windows.Forms.Timer(this.components);
@@ -79,7 +77,7 @@
             this.txtBusLk = new System.Windows.Forms.TextBox();
             this.btnBus = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpCancelled = new System.Windows.Forms.GroupBox();
             this.rdoCancel = new System.Windows.Forms.RadioButton();
             this.rdoEitherCancel = new System.Windows.Forms.RadioButton();
             this.rdoNoCancel = new System.Windows.Forms.RadioButton();
@@ -94,8 +92,10 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.timSetStop = new System.Windows.Forms.Timer(this.components);
             this.btnExitFullScr = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.txtETAMax = new System.Windows.Forms.TextBox();
+            this.txtDate = new System.Windows.Forms.TextBox();
+            this.grpBikeRack.SuspendLayout();
+            this.grpCancelled.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGo
@@ -226,24 +226,6 @@
             this.lblStopName.UseMnemonic = false;
             this.lblStopName.Visible = false;
             // 
-            // calCalendar
-            // 
-            this.calCalendar.Location = new System.Drawing.Point(239, 375);
-            this.calCalendar.Name = "calCalendar";
-            this.calCalendar.TabIndex = 52;
-            this.calCalendar.Visible = false;
-            // 
-            // chkDate
-            // 
-            this.chkDate.AutoSize = true;
-            this.chkDate.Location = new System.Drawing.Point(252, 353);
-            this.chkDate.Name = "chkDate";
-            this.chkDate.Size = new System.Drawing.Size(103, 17);
-            this.chkDate.TabIndex = 53;
-            this.chkDate.Text = "Use Date Below";
-            this.chkDate.UseVisualStyleBackColor = true;
-            this.chkDate.Visible = false;
-            // 
             // chkRev
             // 
             this.chkRev.AutoSize = true;
@@ -275,7 +257,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(113, 290);
+            this.label6.Location = new System.Drawing.Point(107, 290);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 57;
@@ -292,7 +274,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(113, 184);
+            this.label7.Location = new System.Drawing.Point(107, 184);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 13);
             this.label7.TabIndex = 59;
@@ -330,18 +312,18 @@
             this.rdoBikeorNoBike.Text = "Either";
             this.rdoBikeorNoBike.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // grpBikeRack
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.rdoBike);
-            this.groupBox1.Controls.Add(this.rdoBikeorNoBike);
-            this.groupBox1.Controls.Add(this.rdoNoBike);
-            this.groupBox1.Location = new System.Drawing.Point(221, 172);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(71, 83);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Bike Rack";
+            this.grpBikeRack.BackColor = System.Drawing.SystemColors.Control;
+            this.grpBikeRack.Controls.Add(this.rdoBike);
+            this.grpBikeRack.Controls.Add(this.rdoBikeorNoBike);
+            this.grpBikeRack.Controls.Add(this.rdoNoBike);
+            this.grpBikeRack.Location = new System.Drawing.Point(221, 172);
+            this.grpBikeRack.Name = "grpBikeRack";
+            this.grpBikeRack.Size = new System.Drawing.Size(71, 83);
+            this.grpBikeRack.TabIndex = 8;
+            this.grpBikeRack.TabStop = false;
+            this.grpBikeRack.Text = "Bike Rack";
             // 
             // txtBus2
             // 
@@ -418,7 +400,7 @@
             this.btnNearby.TabIndex = 24;
             this.btnNearby.Text = "Nearby Stops";
             this.btnNearby.UseVisualStyleBackColor = true;
-            this.btnNearby.Click += new System.EventHandler(this.button1_Click);
+            this.btnNearby.Click += new System.EventHandler(this.btnNearby_Click);
             // 
             // txtMaxDist
             // 
@@ -488,7 +470,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(113, 211);
+            this.label11.Location = new System.Drawing.Point(107, 211);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 13);
             this.label11.TabIndex = 77;
@@ -497,7 +479,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(113, 238);
+            this.label12.Location = new System.Drawing.Point(107, 238);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(61, 13);
             this.label12.TabIndex = 79;
@@ -583,18 +565,18 @@
             this.label15.TabIndex = 86;
             this.label15.Text = "Bus";
             // 
-            // groupBox2
+            // grpCancelled
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox2.Controls.Add(this.rdoCancel);
-            this.groupBox2.Controls.Add(this.rdoEitherCancel);
-            this.groupBox2.Controls.Add(this.rdoNoCancel);
-            this.groupBox2.Location = new System.Drawing.Point(221, 260);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(71, 84);
-            this.groupBox2.TabIndex = 53;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Cancelled";
+            this.grpCancelled.BackColor = System.Drawing.SystemColors.Control;
+            this.grpCancelled.Controls.Add(this.rdoCancel);
+            this.grpCancelled.Controls.Add(this.rdoEitherCancel);
+            this.grpCancelled.Controls.Add(this.rdoNoCancel);
+            this.grpCancelled.Location = new System.Drawing.Point(221, 260);
+            this.grpCancelled.Name = "grpCancelled";
+            this.grpCancelled.Size = new System.Drawing.Size(71, 84);
+            this.grpCancelled.TabIndex = 53;
+            this.grpCancelled.TabStop = false;
+            this.grpCancelled.Text = "Cancelled";
             // 
             // rdoCancel
             // 
@@ -635,9 +617,9 @@
             this.chkShowMins.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkShowMins.Location = new System.Drawing.Point(8, 311);
             this.chkShowMins.Name = "chkShowMins";
-            this.chkShowMins.Size = new System.Drawing.Size(83, 17);
+            this.chkShowMins.Size = new System.Drawing.Size(176, 17);
             this.chkShowMins.TabIndex = 15;
-            this.chkShowMins.Text = "ETA in Mins";
+            this.chkShowMins.Text = "Relative Time Within          Mins";
             this.chkShowMins.UseVisualStyleBackColor = true;
             // 
             // btnAbout
@@ -737,20 +719,37 @@
             this.btnExitFullScr.Visible = false;
             this.btnExitFullScr.Click += new System.EventHandler(this.btnExitFullScr_Click);
             // 
+            // txtETAMax
+            // 
+            this.txtETAMax.Location = new System.Drawing.Point(127, 309);
+            this.txtETAMax.MaxLength = 3;
+            this.txtETAMax.Name = "txtETAMax";
+            this.txtETAMax.Size = new System.Drawing.Size(25, 20);
+            this.txtETAMax.TabIndex = 94;
+            this.txtETAMax.Text = "60";
+            // 
+            // txtDate
+            // 
+            this.txtDate.Location = new System.Drawing.Point(113, 79);
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(100, 20);
+            this.txtDate.TabIndex = 96;
+            this.txtDate.Visible = false;
+            // 
             // fmMain
             // 
             this.AcceptButton = this.btnGo;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 542);
+            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.btnExitFullScr);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.rtxtList);
             this.Controls.Add(this.btnFullScreen);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.chkShowMins);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpCancelled);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.btnBus);
             this.Controls.Add(this.txtBusLk);
@@ -790,21 +789,21 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtStopNum);
             this.Controls.Add(this.btnGo);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpBikeRack);
             this.Controls.Add(this.chkRev);
             this.Controls.Add(this.lblMessage);
-            this.Controls.Add(this.calCalendar);
-            this.Controls.Add(this.chkDate);
             this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtETAMax);
+            this.Controls.Add(this.chkShowMins);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmMain";
-            this.Text = "Stop Schedule";
+            this.Text = "WTLive";
             this.Load += new System.EventHandler(this.fmMain_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grpBikeRack.ResumeLayout(false);
+            this.grpBikeRack.PerformLayout();
+            this.grpCancelled.ResumeLayout(false);
+            this.grpCancelled.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -826,8 +825,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblOnOff;
         private System.Windows.Forms.Label lblStopName;
-        private System.Windows.Forms.MonthCalendar calCalendar;
-        private System.Windows.Forms.CheckBox chkDate;
         private System.Windows.Forms.CheckBox chkRev;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtSearch;
@@ -837,7 +834,7 @@
         private System.Windows.Forms.RadioButton rdoBike;
         private System.Windows.Forms.RadioButton rdoNoBike;
         private System.Windows.Forms.RadioButton rdoBikeorNoBike;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpBikeRack;
         private System.Windows.Forms.TextBox txtBus2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Timer timCheckStat;
@@ -861,7 +858,7 @@
         private System.Windows.Forms.TextBox txtBusLk;
         private System.Windows.Forms.Button btnBus;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpCancelled;
         private System.Windows.Forms.RadioButton rdoCancel;
         private System.Windows.Forms.RadioButton rdoEitherCancel;
         private System.Windows.Forms.RadioButton rdoNoCancel;
@@ -876,6 +873,8 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Timer timSetStop;
         private System.Windows.Forms.Button btnExitFullScr;
+        private System.Windows.Forms.TextBox txtETAMax;
+        private System.Windows.Forms.TextBox txtDate;
     }
 }
 

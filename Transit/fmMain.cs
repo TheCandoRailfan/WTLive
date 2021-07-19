@@ -16,7 +16,7 @@ namespace Transit
     public partial class fmMain : Form
     {
         String StopNum; public static String StopNum2; String LastStopNum2 = "";
-        String Start;
+        String Start = "";
         String Route;
         String Date;
         String Search;
@@ -40,7 +40,7 @@ namespace Transit
         String LastMessage = "";
         String LastStat = "";
 
-        int Count = 0; int X1; int X2;
+        int Count = 0; int X1; int X2; int ETAMax;
         DateTime dt = DateTime.Now;
         String[] List = new string[1001]; String[] ListCol = new string[1001]; String[] ListBCol = new string[1001];
         String Col = ""; String BCol = "";
@@ -65,6 +65,7 @@ namespace Transit
         public void GoPress()
         {
             String X = "";
+            Start = "";
 
             DisableBtns();
 
@@ -79,6 +80,18 @@ namespace Transit
             Reverse = chkRev.Checked;
             Search = txtSearch.Text.ToUpper();
             MinsETA = chkShowMins.Checked;
+
+            ETAMax = 0;
+            if (txtETAMax.Text == "" && MinsETA == true)
+            {
+                MessageBox.Show("The max ETA in Mins times cannot be blank! 'ETA in Mins' will be disabled.", "Warning", MessageBoxButtons.OK);
+                MinsETA = false;
+            }
+            else if (MinsETA == true)
+            {
+                ETAMax = int.Parse(txtETAMax.Text);
+            }
+
             SearchBus[0] = 0;
             SearchBus[1] = 1000;
 
@@ -89,18 +102,12 @@ namespace Transit
             if (rdoNoBike.Checked == true) { BikeType = "🚳"; }
             if (rdoBikeorNoBike.Checked == true) { BikeType = ""; }
 
-            Start = txtStart.Text + ":00";
-
-            if (Start == ":00") { Start = ""; }
+            if (txtStart.Text != "") { Start = txtStart.Text + ":00"; }
             if (Start.Length == 7) { Start = "0" + Start; }
             //Console.WriteLine(Start);
 
-            calCalendar.MaxSelectionCount = 1;
-
             Route = txtRte.Text.ToUpper();
-
-            if (chkDate.Checked == true) { Date = calCalendar.SelectionRange.Start.ToString().Substring(0, 10); Start = Date + "T" + Start; } else { Date = ""; }
-
+            if (txtDate.Text != "") { Start = txtDate.Text + "T" + Start; }
             //Console.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
 
             try
@@ -137,8 +144,12 @@ namespace Transit
         public void GetList()
         {
             String StartB = Start;
+            int ExtraChars = 0;
 
-            if (StartB.Length == 11 | StartB.Length == 0) { StartB += DateTime.Now.ToString("HH:mm:ss"); }
+            if (StartB.Length == 10 | StartB.Length == 0) { StartB += DateTime.Now.ToString("HH:mm:ss"); }
+            if (StartB.IndexOf("T") != -1) { ExtraChars = 11; } else { ExtraChars = 0; }
+
+            System.Console.WriteLine(StartB);
 
             String URLString = "https://api.winnipegtransit.com/v3/stops/" + StopNum + "/schedule?api-key=yxCT5Ca2Ep5AVLc0z6zz&start=" + StartB + "&end=&route=" + Route + "&usage=long";
             String LastName = "";
@@ -235,7 +246,27 @@ namespace Transit
                         {
                             if (RouteNm == "101 DART" | RouteNm == "102 DART" | RouteNm == "110 DART")
                             {
-                                RouteNm += "";
+                                //RouteNm += "";
+                            }
+                            else if (reader.Value == "Downtown (City Hall)")
+                            {
+                                RouteNm += " " + "City Hall";
+                            }
+                            else if (reader.Value == "St. Vital Centre via River Road")
+                            {
+                                RouteNm += " " + "St. Vital Centre";
+                            }
+                            else if (reader.Value == "Centre Street via Bridgwater")
+                            {
+                                RouteNm += " " + "Bridgwater Centre";
+                            }
+                            else if (reader.Value == "Wolseley-Provencher via Provencher")
+                            {
+                                RouteNm += " " + "Wolseley via Provencher";
+                            }
+                            else if (reader.Value == "WalMart via McPhillips")
+                            {
+                                RouteNm += " " + "Templeton via McPhillips";
                             }
                             else
                             {
@@ -245,7 +276,7 @@ namespace Transit
                         else if (LastName == "keyStop")
                         {
                             StopName = StopNum + " " + reader.Value;
-                            this.Text = "Stop Schedule - " + StopNum + " " + reader.Value;
+                            this.Text = "WTLive - " + StopNum + " " + reader.Value;
                             lblStopName.Text = StopNum + " " + reader.Value;
                         }
                         else if (LastName == "bike-rack")
@@ -380,7 +411,7 @@ namespace Transit
                             //Console.WriteLine(Bus);
                             if ((Search == "" | RouteNm.ToUpper().IndexOf(Search) != -1) && (int.Parse(Bus.Substring(Bus.Length - 3, 3)) >= SearchBus[0] && int.Parse(Bus.Substring(Bus.Length - 3, 3)) <= SearchBus[1]) && (BikeType == "" | Bike.IndexOf(BikeType) != -1) && BusTypeMatch == 1 && BusLengthMatch == 1 && (Cancelled == "" | NoCancel == false) && (Cancelled == " - ❌❌❌" | Cancel == false))
                             {
-                                if (double.Parse(StartB.Substring(0, 2)) + (double.Parse(StartB.Substring(3, 2)) / 60) >= 2.8334 | Bike != ", ---")
+                                if (double.Parse(StartB.Substring(0 + ExtraChars, 2)) + (double.Parse(StartB.Substring(3 + ExtraChars, 2)) / 60) >= 2.8334 | Bike != ", ---")
                                 {
                                     if (Bus == ", Bus 000") { Bus = ", Bus -----"; }
                                     Count += 1;
@@ -393,7 +424,7 @@ namespace Transit
                                     if (ListTime[Count] < 14400) { ListTime[Count] += 86400; }
                                     if (ListSchTime[Count] < 14400) { ListSchTime[Count] += 86400; }
 
-                                    if (MinsETA == false | Math.Round((ListTime[Count] - TimeSec) / 60) >= 60 | Math.Round((ListTime[Count] - TimeSec) / 60) < 0) { List[Count] = Time.Substring(0, 5); }
+                                    if (MinsETA == false | Math.Round((ListTime[Count] - TimeSec) / 60) > ETAMax | Math.Round((ListTime[Count] - TimeSec) / 60) < 0) { List[Count] = Time.Substring(0, 5); }
                                     else
                                     {
                                         if (Math.Round((ListTime[Count] - TimeSec) / 60) == 0)
@@ -415,8 +446,8 @@ namespace Transit
 
                                     List[Count] += Bus + Bike + " - " + RouteNm;
 
-                                    if (ListTime[Count] - ListSchTime[Count] >= 60) { List[Count] += " (" + Math.Round((ListTime[Count] - ListSchTime[Count]) / 60).ToString() + "m L, " + SchTime.Substring(0, 5) + ")"; }
-                                    if (ListSchTime[Count] - ListTime[Count] >= 60) { List[Count] += " (" + Math.Round((ListSchTime[Count] - ListTime[Count]) / 60).ToString() + "m E, " + SchTime.Substring(0, 5) + ")"; }
+                                    if (ListTime[Count] - ListSchTime[Count] >= 60) { List[Count] += " (+" + Math.Round((ListTime[Count] - ListSchTime[Count]) / 60).ToString() + ")"; }
+                                    if (ListSchTime[Count] - ListTime[Count] >= 60) { List[Count] += " (-" + Math.Round((ListSchTime[Count] - ListTime[Count]) / 60).ToString() + ")"; }
 
                                     List[Count] += Cancelled;
                                 }
@@ -505,11 +536,11 @@ namespace Transit
                     if (List[i].IndexOf(" - ❌❌❌") != -1) { rtxtList.SelectionColor = Color.Red; } else { rtxtList.SelectionFont = new Font("Microsoft Sans Serif", FontSize, FontStyle.Regular); }
 
                     rtxtList.AppendText(List[i].Substring(X1, X2 - X1 + 2));
-                    if (List[i].IndexOf(" L, ") != -1)
+                    if (List[i].IndexOf("(+") != -1)
                     {
                         rtxtList.SelectionColor = Color.Red;
                     }
-                    else if (List[i].IndexOf(" E, ") != -1)
+                    else if (List[i].IndexOf("(-") != -1)
                     {
                         rtxtList.SelectionColor = Color.Blue;
                     }
@@ -639,7 +670,7 @@ namespace Transit
                                 if (reader.Value != LastMessage)
                                 {
                                     LastMessage = reader.Value;
-                                    if (reader.Value != "") { MessageBox.Show(reader.Value + (char)10 + "(" + DateTime.Now.ToString("HH:mm:ss") + ")", StatType, MessageBoxButtons.OK); }
+                                    if (reader.Value != "") { MessageBox.Show(reader.Value, StatType, MessageBoxButtons.OK); }
                                 }
                             }
                             else if (LastName == "type")
@@ -699,7 +730,7 @@ namespace Transit
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnNearby_Click(object sender, EventArgs e)
         {
             if (txtMaxDist.Text != "")
             {
@@ -748,14 +779,14 @@ namespace Transit
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit. V1.2.1 - 2021-07-17", "About", MessageBoxButtons.OK);
+            MessageBox.Show("WTLive V1.2.2 (2021-07-18)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
             //MessageBox.Show("This program is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About", MessageBoxButtons.OK);
         }
 
         private void timGoBtn_Tick(object sender, EventArgs e)
         {
             btnGo.Enabled = true;
-            if (this.Text != "Stop Schedule") { btnNearby.Enabled = true; }
+            if (this.Text != "WTLive") { btnNearby.Enabled = true; }
             btnRoute.Enabled = true;
             btnOpenAdv.Enabled = true;
             btnFullScreen.Enabled = true;
@@ -786,7 +817,7 @@ namespace Transit
             cmbBusType.SelectedIndex = 0;
             cmbBusLength.SelectedIndex = 0;
             txtSearch.Text = "";
-            chkShowMins.Checked = false;
+            chkShowMins.Checked = true;
             chkAuto.Checked = false;
             chkRev.Checked = false;
             txtInterval.Text = "30";
@@ -810,7 +841,7 @@ namespace Transit
             btnWebsite.Enabled = false;
             btnFullScreen.Enabled = false;
 
-            this.Text = "Stop Schedule";
+            this.Text = "WTLive";
         }
 
         private void btnFullScreen_Click(object sender, EventArgs e)
