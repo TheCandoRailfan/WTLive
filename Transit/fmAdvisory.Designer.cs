@@ -85,7 +85,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmAdvisory";
-            this.Text = "Service Advisories";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Service Advisories - WTLive";
             this.Load += new System.EventHandler(this.fmAdvisory_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

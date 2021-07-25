@@ -117,7 +117,7 @@ namespace Transit
                         }
                 }
             }
-            this.Text = "Service Advisories (" + Num + ")";
+            this.Text = "Service Advisories (" + Num + ") - WTLive";
             lbAdvisories.SelectedIndex = 0;
             rtxtAdvisory.Text = List[0];
         }

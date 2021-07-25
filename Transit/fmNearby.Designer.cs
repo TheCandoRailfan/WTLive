@@ -75,7 +75,8 @@
             this.Controls.Add(this.lbNBList);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmNearby";
-            this.Text = "Nearby Stops";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Nearby Stops - WTLive";
             this.Load += new System.EventHandler(this.fmNearby_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

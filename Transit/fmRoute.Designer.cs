@@ -89,7 +89,8 @@
             this.Controls.Add(this.lblRoute);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmRoute";
-            this.Text = "Route Destinations (Outbound above Inbound)";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Route Destinations (Outbound above Inbound) - WTLive";
             this.Load += new System.EventHandler(this.fmRoute_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

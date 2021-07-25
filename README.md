@@ -17,7 +17,7 @@ The list of departures shows several pieces of information about each departure.
  - Bike Rack: This indicates if the bus has a bike rack. Similar to above, if it shows "---" instead of a bike-related symbol, then it is unknown.
  - Route Number: This is the route number (or word if it is Route BLUE) the bus is operating on.
  - Destination: This the final destination the bus is operating to.
- - Late/Early: If a bus is running late or early, it will be shown on the right. For example, if a bus is 3 minutes late, it will show "(+3)" on the right, in red. 3 Minutes early would be "(-3)", in blue.
+ - Late/Early: If a bus is running late or early, it will be shown on the right. For example, if a bus is 3 minutes late, it will show "(+3)" on the right, in red. 3 Minutes early would be "(-3)", in blue. 
 
 3. Extra Options:
 As you probably noticed, the Stop Number is not the only option that you can set. There are other optional settings you can set below it. They are as follows:
@@ -32,6 +32,7 @@ As you probably noticed, the Stop Number is not the only option that you can set
  - Auto Refresh: If checked, then periodically it will automatically get updated departure info. The refresh interval can be changed with the textbox below. The refresh interval must be 5 seconds or higher. You can the Auto Refresh feature by either clicking the "Stop Refresh" button, or unchecking "Auto Refresh", and clicking the "Go" button.
  - Full Screen: If you click the "Go (FS)" button, then the departure list will be shown in full screen. You can exit full screen by clicking the "X" in the top right.
  - Reset: This will reset the program to how it was when it was opened.
+ - Mode: This allows you to switch between Light and Dark mode. Note: Dark mode currently only applies to the main window.
 
 4. Extra Features:
 In addition to the list of departures, there are also some other features. They are as follows:

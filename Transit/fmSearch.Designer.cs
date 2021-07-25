@@ -35,6 +35,7 @@ namespace Transit
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timLoad = new System.Windows.Forms.Timer(this.components);
+            this.btnGo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbStopList
@@ -72,17 +73,30 @@ namespace Transit
             this.timLoad.Interval = 200;
             this.timLoad.Tick += new System.EventHandler(this.timLoad_Tick);
             // 
+            // btnGo
+            // 
+            this.btnGo.Location = new System.Drawing.Point(261, 79);
+            this.btnGo.Name = "btnGo";
+            this.btnGo.Size = new System.Drawing.Size(29, 23);
+            this.btnGo.TabIndex = 3;
+            this.btnGo.Text = "Go";
+            this.btnGo.UseVisualStyleBackColor = true;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            // 
             // fmSearch
             // 
+            this.AcceptButton = this.btnGo;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 145);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lbStopList);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnGo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmSearch";
-            this.Text = "Stop Search";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Stop Search - WTLive";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,5 +108,6 @@ namespace Transit
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timLoad;
+        private System.Windows.Forms.Button btnGo;
     }
 }

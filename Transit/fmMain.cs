@@ -18,7 +18,6 @@ namespace Transit
         String StopNum; public static String StopNum2; String LastStopNum2 = "";
         String Start = "";
         String Route;
-        String Date;
         String Search;
         bool MinsETA;
         int[] SearchBus = new int[2];
@@ -28,7 +27,11 @@ namespace Transit
         public static int FirstSearch = 1;
         public static String[] StopList = new string[6000];
 
+        String[] ToReplace = new string[100];
+        String[] Replacement = new string[100];
+
         String ErrMessage = "";
+        String ErrMessage2 = "";
 
         String BikeType;
         public static String[] XY = new string[2];
@@ -143,13 +146,55 @@ namespace Transit
 
         public void GetList()
         {
+            ToReplace[1] = "Downtown (City Hall)"; Replacement[1] = "City Hall";
+            ToReplace[2] = "St. Vital Centre via River Road"; Replacement[2] = "St. Vital Centre";
+            ToReplace[3] = "Centre Street via Bridgwater"; Replacement[3] = "Bridgwater Centre";
+            ToReplace[4] = "Wolseley-Provencher via Provencher"; Replacement[4] = "Wolseley via Provencher";
+            ToReplace[5] = "WalMart via McPhillips"; Replacement[5] = "Templeton via McPhillips";
+            ToReplace[6] = "via Leila"; Replacement[6] = "Leila";
+            ToReplace[7] = "Whyte Ridge via Scurfield"; Replacement[7] = "Whyte Ridge";
+            ToReplace[8] = "Seel Station via Fort Garry Industrial Park"; Replacement[8] = "Seel Station";
+            ToReplace[9] = "Kenaston via Fort Garry Industrial Park"; Replacement[9] = "Kenaston";
+            ToReplace[10] = "Whyte Ridge via Chevrier"; Replacement[10] = "Whyte Ridge";
+            ToReplace[11] = "Windermere via Pembina"; Replacement[11] = "Windermere";
+            ToReplace[12] = "Beaumont station via Industrial Park"; Replacement[12] = "Beaumont Station";
+            ToReplace[13] = "Kenaston Common via Industrial Park"; Replacement[13] = "Kenaston Common";
+            ToReplace[14] = "Outlet Mall via Wilkes"; Replacement[14] = "Outlet Mall";
+            ToReplace[15] = "Logan via Sherbrook"; Replacement[15] = "Logan";
+            ToReplace[16] = "Beaumont Station via Stafford"; Replacement[16] = "Beaumont Station";
+            ToReplace[17] = "Fort and Assiniboine via Maryland"; Replacement[17] = "Fort & Assiniboine";
+            ToReplace[18] = "City Hall via Sherbrook"; Replacement[18] = "City Hall";
+            ToReplace[19] = "Maples via Health Sciences Centre"; Replacement[19] = "Maples";
+            ToReplace[20] = "U of Manitoba"; Replacement[20] = "University of Manitoba";
+            ToReplace[21] = "Westdale via Kenaston"; Replacement[21] = "Westdale";
+            ToReplace[22] = "Polo Park via Kenaston"; Replacement[22] = "Polo Park";
+            ToReplace[23] = "Portage & Tylehurst via Kenaston"; Replacement[23] = "Portage & Tylehurst";
+            ToReplace[24] = "Whyte Ridge via Kenaston Common"; Replacement[24] = "Whyte Ridge";
+            ToReplace[25] = "Markham Station via Richmond West"; Replacement[25] = "Markham Station";
+            ToReplace[26] = "University of Manitoba via Richmond West"; Replacement[26] = "University of Manitoba";
+            ToReplace[27] = "University of Manitoba via Killarney"; Replacement[27] = "U of Manitoba via Killarney";
+            ToReplace[28] = "University of Manitoba via Dalhousie"; Replacement[28] = "U of Manitoba via Dalhousie";
+            ToReplace[29] = "University of Manitoba via Downtown"; Replacement[29] = "University of Manitoba";
+            ToReplace[28] = "University of Manitoba via Dalhousie"; Replacement[28] = "U of Manitoba via Dalhousie";
+            ToReplace[29] = "University of Manitoba via Downtown"; Replacement[29] = "University of Manitoba";
+            ToReplace[30] = "Fort Garry Industrial Park via Lindenwoods East"; Replacement[30] = "Fort Garry Industrial";
+            ToReplace[31] = "Seel Station via Lindenwoods East"; Replacement[31] = "Seel Station";
+            ToReplace[32] = "Seel Station via Wildwood"; Replacement[32] = "Seel Station";
+            ToReplace[33] = "Fort Garry Industrial Park via Wildwood"; Replacement[33] = "Fort Garry Industrial";
+            ToReplace[34] = "Seel Station via Wildwood"; Replacement[34] = "Seel Station";
+            ToReplace[35] = "Fort Garry Industrial Park via Wildwood"; Replacement[35] = "Fort Garry Industrial";
+            ToReplace[36] = "Kenaston via Lindenwoods West"; Replacement[36] = "Kenaston";
+            ToReplace[37] = "Beaumont Station via Lindenwoods West"; Replacement[37] = "Beaumont Station";
+            ToReplace[38] = "St.Vital Centre via Meadowood"; Replacement[38] = "St. Vital Centre via Meadowood";
+            ToReplace[39] = "St.Vital Centre"; Replacement[39] = "St. Vital Centre";
+
             String StartB = Start;
             int ExtraChars = 0;
 
             if (StartB.Length == 10 | StartB.Length == 0) { StartB += DateTime.Now.ToString("HH:mm:ss"); }
             if (StartB.IndexOf("T") != -1) { ExtraChars = 11; } else { ExtraChars = 0; }
 
-            System.Console.WriteLine(StartB);
+            //System.Console.WriteLine(StartB);
 
             String URLString = "https://api.winnipegtransit.com/v3/stops/" + StopNum + "/schedule?api-key=yxCT5Ca2Ep5AVLc0z6zz&start=" + StartB + "&end=&route=" + Route + "&usage=long";
             String LastName = "";
@@ -244,39 +289,25 @@ namespace Transit
                         }
                         else if (LastName == "keyDest")
                         {
-                            if (RouteNm == "101 DART" | RouteNm == "102 DART" | RouteNm == "110 DART")
+                            if (RouteNm != "101 DART" && RouteNm != "102 DART" && RouteNm != "110 DART")
                             {
-                                //RouteNm += "";
-                            }
-                            else if (reader.Value == "Downtown (City Hall)")
-                            {
-                                RouteNm += " " + "City Hall";
-                            }
-                            else if (reader.Value == "St. Vital Centre via River Road")
-                            {
-                                RouteNm += " " + "St. Vital Centre";
-                            }
-                            else if (reader.Value == "Centre Street via Bridgwater")
-                            {
-                                RouteNm += " " + "Bridgwater Centre";
-                            }
-                            else if (reader.Value == "Wolseley-Provencher via Provencher")
-                            {
-                                RouteNm += " " + "Wolseley via Provencher";
-                            }
-                            else if (reader.Value == "WalMart via McPhillips")
-                            {
-                                RouteNm += " " + "Templeton via McPhillips";
-                            }
-                            else
-                            {
-                                RouteNm += " " + reader.Value;
+                                X1 = 0;
+                                for (int i = 1; i <= 99; i++)
+                                {
+                                    if (reader.Value == ToReplace[i])
+                                    {
+                                        RouteNm += " " + Replacement[i];
+                                        X1 = 1;
+                                        break;
+                                    }
+                                }
+                                if (X1 == 0) { RouteNm += " " + reader.Value; }
                             }
                         }
                         else if (LastName == "keyStop")
                         {
                             StopName = StopNum + " " + reader.Value;
-                            this.Text = "WTLive - " + StopNum + " " + reader.Value;
+                            this.Text = StopNum + " " + reader.Value + " - WTLive";
                             lblStopName.Text = StopNum + " " + reader.Value;
                         }
                         else if (LastName == "bike-rack")
@@ -515,7 +546,7 @@ namespace Transit
                 X1 += X2 - X1;
 
                 rtxtList.SelectionColor = Color.Black;
-                rtxtList.SelectionBackColor = Color.White;
+                if (rdoDark.Checked == false) { rtxtList.SelectionBackColor = Color.White; } else { rtxtList.SelectionBackColor = Color.DarkGray; }
 
                 X2 = List[i].IndexOf(" (");
                 if (X2 == -1)
@@ -779,7 +810,7 @@ namespace Transit
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("WTLive V1.2.2 (2021-07-18)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
+            MessageBox.Show("WTLive V1.3 (2021-07-25)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
             //MessageBox.Show("This program is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About", MessageBoxButtons.OK);
         }
 
@@ -919,10 +950,11 @@ namespace Transit
 
         private void timSetStop_Tick(object sender, EventArgs e)
         {
-            if (StopNum2 != LastStopNum2)
+            if (StopNum2 != txtStopNum.Text && StopNum2 != "")
             {
-                LastStopNum2 = StopNum2;
+                //LastStopNum2 = StopNum2;
                 txtStopNum.Text = StopNum2;
+                StopNum2 = "";
             }
          }
 
@@ -935,12 +967,133 @@ namespace Transit
         {
             if (ErrMessage.IndexOf("(404) Not Found") != -1)
             {
-                MessageBox.Show("Stop Number Doesn't Exist!", "Error", MessageBoxButtons.OK);
-                btnStop.Enabled = false;
-                timAutoGet.Enabled = false;
-                lblOnOff.Text = "Refresh Disabled";
+                //MessageBox.Show("Stop Number Doesn't Exist!", "Error", MessageBoxButtons.OK);
+                ErrMessage2 = (char)10 + "This may be caused by a bad stop number.";
             }
-            else { MessageBox.Show(ErrMessage, "Error", MessageBoxButtons.OK); }
+            else { ErrMessage2 = "";  }
+
+            //btnStop.Enabled = false;
+            //timAutoGet.Enabled = false;
+            //lblOnOff.Text = "Refresh Disabled";
+
+            MessageBox.Show(ErrMessage + ErrMessage2, "Error", MessageBoxButtons.OK);
+        }
+
+        private void rdoLight_CheckedChanged(object sender, EventArgs e)
+        {
+            this.BackColor = Color.WhiteSmoke;
+            grpBikeRack.BackColor = Color.WhiteSmoke;
+            grpCancelled.BackColor = Color.WhiteSmoke;
+            grpMode.BackColor = Color.WhiteSmoke;
+
+            lblStopNum.ForeColor = Color.Black;
+            lblStart.ForeColor = Color.Black;
+            lblRoutes.ForeColor = Color.Black;
+            lblBus.ForeColor = Color.Black;
+            lblOther.ForeColor = Color.Black;
+            lblStopFeat.ForeColor = Color.Black;
+
+            lblBusRange.ForeColor = Color.Black;
+            lblBusType.ForeColor = Color.Black;
+            lblBusLen.ForeColor = Color.Black;
+            lblBusTo.ForeColor = Color.Black;
+            lblDestCont.ForeColor = Color.Black;
+            chkShowMins.ForeColor = Color.Black;
+            chkAuto.ForeColor = Color.Black;
+
+            lblRefresh.ForeColor = Color.Black; 
+            lblOnOff.ForeColor = Color.Black;
+
+            grpMode.ForeColor = Color.Black;
+            rdoLight.ForeColor = Color.Black;
+            rdoDark.ForeColor = Color.Black;
+
+            grpBikeRack.ForeColor = Color.Black;
+            rdoBike.ForeColor = Color.Black;
+            rdoNoBike.ForeColor = Color.Black;
+            rdoBikeorNoBike.ForeColor = Color.Black;
+
+            grpCancelled.ForeColor = Color.Black;
+            rdoCancel.ForeColor = Color.Black;
+            rdoNoCancel.ForeColor = Color.Black;
+            rdoEitherCancel.ForeColor = Color.Black;
+
+            rtxtList.BackColor = Color.White;
+            lbFeatures.BackColor = Color.White;
+
+            txtStopNum.BackColor = Color.White;
+            txtStart.BackColor = Color.White;
+            txtDate.BackColor = Color.White;
+            txtRte.BackColor = Color.White;
+            txtBus.BackColor = Color.White;
+            txtBus2.BackColor = Color.White;
+            txtSearch.BackColor = Color.White;
+            txtETAMax.BackColor = Color.White;
+            txtInterval.BackColor = Color.White;
+            txtBusLk.BackColor = Color.White;
+            txtRoute.BackColor = Color.White;
+            txtMaxDist.BackColor = Color.White;
+
+            PrintResults();
+        }
+
+
+        private void rdoDark_CheckedChanged(object sender, EventArgs e)
+        {
+            this.BackColor = Color.Black;
+            grpBikeRack.BackColor = Color.Black;
+            grpCancelled.BackColor = Color.Black;
+            grpMode.BackColor = Color.Black;
+
+            lblStopNum.ForeColor = Color.White;
+            lblStart.ForeColor = Color.White;
+            lblRoutes.ForeColor = Color.White;
+            lblBus.ForeColor = Color.White;
+            lblOther.ForeColor = Color.White;
+            lblStopFeat.ForeColor = Color.White;
+
+            lblBusRange.ForeColor = Color.White;
+            lblBusType.ForeColor = Color.White;
+            lblBusLen.ForeColor = Color.White;
+            lblBusTo.ForeColor = Color.White;
+            lblDestCont.ForeColor = Color.White;
+            chkShowMins.ForeColor = Color.White;
+            chkAuto.ForeColor = Color.White;
+
+            lblRefresh.ForeColor = Color.White;
+            lblOnOff.ForeColor = Color.White;
+
+            grpMode.ForeColor = Color.White;
+            rdoLight.ForeColor = Color.White;
+            rdoDark.ForeColor = Color.White;
+
+            grpBikeRack.ForeColor = Color.White;
+            rdoBike.ForeColor = Color.White;
+            rdoNoBike.ForeColor = Color.White;
+            rdoBikeorNoBike.ForeColor = Color.White;
+
+            grpCancelled.ForeColor = Color.White;
+            rdoCancel.ForeColor = Color.White;
+            rdoNoCancel.ForeColor = Color.White;
+            rdoEitherCancel.ForeColor = Color.White;
+
+            rtxtList.BackColor = Color.DarkGray;
+            lbFeatures.BackColor = Color.DarkGray;
+
+            txtStopNum.BackColor = Color.DarkGray;
+            txtStart.BackColor = Color.DarkGray;
+            txtDate.BackColor = Color.DarkGray;
+            txtRte.BackColor = Color.DarkGray;
+            txtBus.BackColor = Color.DarkGray;
+            txtBus2.BackColor = Color.DarkGray;
+            txtSearch.BackColor = Color.DarkGray;
+            txtETAMax.BackColor = Color.DarkGray;
+            txtInterval.BackColor = Color.DarkGray;
+            txtBusLk.BackColor = Color.DarkGray;
+            txtRoute.BackColor = Color.DarkGray;
+            txtMaxDist.BackColor = Color.DarkGray;
+
+            PrintResults();
         }
     }
 }

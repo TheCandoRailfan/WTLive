@@ -28,7 +28,7 @@ namespace Transit
             lbStopList.Items.Clear();
             for (int i = 1; i <= 5999; i++)
             {
-                if (fmMain.StopList[i] != null && Num < 100 && (fmMain.StopList[i].ToUpper().IndexOf(txtSearch.Text.ToUpper()) != -1 | txtSearch.Text == "")) { Num++; lbStopList.Items.Add(fmMain.StopList[i]); StopList2[Num] = fmMain.StopList[i]; }
+                if (fmMain.StopList[i] != null && Num < 50 && (fmMain.StopList[i].ToUpper().IndexOf(txtSearch.Text.ToUpper()) != -1 | txtSearch.Text == "")) { Num++; lbStopList.Items.Add(fmMain.StopList[i]); StopList2[Num] = fmMain.StopList[i]; }
             }
         }
 
@@ -138,10 +138,20 @@ namespace Transit
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            PrintItems();
+            PrintItems(); //Print stops that include the search string.
         }
 
         private void lbStopList_DoubleClick(object sender, EventArgs e)
+        {
+            CloseForm(); //Close the window, if a stop is selected.
+        }
+
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+            CloseForm(); //Close the window, if a stop is selected.
+        }
+
+        private void CloseForm()
         {
             if (lbStopList.SelectedIndex >= 0)
             {
