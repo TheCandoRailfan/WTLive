@@ -13,7 +13,7 @@ How to use:
 2. List of Departures:
 The list of departures shows several pieces of information about each departure. They are as follows, from left to right:
  - ETA: This is the estimated time that the bus will arrive at. It can be shown as either "hh:mm" or "n Min(s)". If a bus is late or early, the ETA will take that into account.
- - Bus Number: This is the number of the bus. If it shows "Bus -----" insead of "Bus #####", then the bus number is unknown.
+ - Bus Number: This is the number of the bus. If it shows "Bus -----" insead of "Bus ###", then the bus number is unknown.
  - Bike Rack: This indicates if the bus has a bike rack. Similar to above, if it shows "---" instead of a bike-related symbol, then it is unknown.
  - Route Number: This is the route number (or word if it is Route BLUE) the bus is operating on.
  - Destination: This the final destination the bus is operating to.
