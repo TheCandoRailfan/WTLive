@@ -15,6 +15,7 @@ namespace Transit
     public partial class fmAdvisory : Form
     {
         String[] List = new string[50];
+        int AdvDarkMode = 0;
 
         public fmAdvisory()
         {
@@ -23,6 +24,11 @@ namespace Transit
 
         private void fmAdvisory_Load(object sender, EventArgs e)
         {
+            if (fmMain.DarkMode == 1)
+            {
+                SetDarkMode();
+            }
+
             try
             {
                 GetAdvs();
@@ -31,6 +37,22 @@ namespace Transit
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private void SetDarkMode()
+        {
+            AdvDarkMode = 1;
+            this.BackColor = Color.Black;
+            rtxtAdvisory.BackColor = Color.DarkGray;
+            lbAdvisories.BackColor = Color.DarkGray;
+        }
+
+        private void SetLightMode()
+        {
+            AdvDarkMode = 0;
+            this.BackColor = Color.WhiteSmoke;
+            rtxtAdvisory.BackColor = Color.White;
+            lbAdvisories.BackColor = Color.White;
         }
 
         public void GetAdvs()
@@ -141,6 +163,23 @@ namespace Transit
 
             rtxtAdvisory.SelectionStart = 0;
             rtxtAdvisory.ScrollToCaret();
+        }
+
+        private void timDark_Tick(object sender, EventArgs e)
+        {
+            if (fmMain.DarkMode != AdvDarkMode)
+            {
+                AdvDarkMode = fmMain.DarkMode;
+
+                if (fmMain.DarkMode == 1)
+                {
+                    SetDarkMode();
+                }
+                else if (fmMain.DarkMode == 0)
+                {
+                    SetLightMode();
+                }
+            }
         }
     }
 }

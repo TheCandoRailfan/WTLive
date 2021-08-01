@@ -18,6 +18,7 @@ namespace Transit
         String[] StopList = new string[6000];
         int[] RouteGot = new int[700];
         int Dup = 0;
+        int NearDarkMode = 0;
 
         public fmNearby()
         {
@@ -26,6 +27,10 @@ namespace Transit
 
         private void fmNearby_Load(object sender, EventArgs e)
         {
+            if (fmMain.DarkMode == 1)
+            {
+                SetDarkMode();
+            }
             GetNearby();
         }
 
@@ -174,6 +179,41 @@ namespace Transit
             {
                 fmMain.StopNum2 = StopList[lbNBList.SelectedIndex + 2].Substring(0, 5);
                 Close();
+            }
+        }
+
+        private void SetDarkMode()
+        {
+            NearDarkMode = 1;
+            this.BackColor = Color.Black;
+            lblTitle.ForeColor = Color.DarkGray;
+            lblStop.ForeColor = Color.DarkGray;
+            lbNBList.BackColor = Color.DarkGray;
+        }
+
+        private void SetLightMode()
+        {
+            NearDarkMode = 0;
+            this.BackColor = Color.WhiteSmoke;
+            lblTitle.ForeColor = Color.Black;
+            lblStop.ForeColor = Color.Black;
+            lbNBList.BackColor = Color.White;
+        }
+
+        private void timDark_Tick(object sender, EventArgs e)
+        {
+            if (fmMain.DarkMode != NearDarkMode)
+            {
+                NearDarkMode = fmMain.DarkMode;
+
+                if (fmMain.DarkMode == 1)
+                {
+                    SetDarkMode();
+                }
+                else if (fmMain.DarkMode == 0)
+                {
+                    SetLightMode();
+                }
             }
         }
     }

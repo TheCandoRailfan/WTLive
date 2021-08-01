@@ -33,9 +33,10 @@ namespace Transit
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmSearch));
             this.lbStopList = new System.Windows.Forms.ListBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblLoading = new System.Windows.Forms.Label();
             this.timLoad = new System.Windows.Forms.Timer(this.components);
             this.btnGo = new System.Windows.Forms.Button();
+            this.timDark = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lbStopList
@@ -57,15 +58,15 @@ namespace Transit
             this.txtSearch.TabIndex = 1;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // label1
+            // lblLoading
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(160, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(264, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Loading - May Take a Few Moments";
+            this.lblLoading.AutoSize = true;
+            this.lblLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblLoading.Location = new System.Drawing.Point(160, 8);
+            this.lblLoading.Name = "lblLoading";
+            this.lblLoading.Size = new System.Drawing.Size(264, 20);
+            this.lblLoading.TabIndex = 2;
+            this.lblLoading.Text = "Loading - May Take a Few Moments";
             // 
             // timLoad
             // 
@@ -83,20 +84,28 @@ namespace Transit
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
+            // timDark
+            // 
+            this.timDark.Enabled = true;
+            this.timDark.Interval = 250;
+            this.timDark.Tick += new System.EventHandler(this.timDark_Tick);
+            // 
             // fmSearch
             // 
             this.AcceptButton = this.btnGo;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(574, 145);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lbStopList);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblLoading);
             this.Controls.Add(this.btnGo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmSearch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stop Search - WTLive";
+            this.Load += new System.EventHandler(this.fmSearch_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,8 +115,9 @@ namespace Transit
 
         private System.Windows.Forms.ListBox lbStopList;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLoading;
         private System.Windows.Forms.Timer timLoad;
         private System.Windows.Forms.Button btnGo;
+        private System.Windows.Forms.Timer timDark;
     }
 }

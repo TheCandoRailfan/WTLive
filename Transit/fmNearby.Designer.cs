@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmNearby));
             this.lbNBList = new System.Windows.Forms.ListBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblStop = new System.Windows.Forms.Label();
+            this.timDark = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lbNBList
@@ -65,10 +67,17 @@
             this.lblStop.TabIndex = 2;
             this.lblStop.Text = "Stop Name";
             // 
+            // timDark
+            // 
+            this.timDark.Enabled = true;
+            this.timDark.Interval = 250;
+            this.timDark.Tick += new System.EventHandler(this.timDark_Tick);
+            // 
             // fmNearby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(794, 432);
             this.Controls.Add(this.lblStop);
             this.Controls.Add(this.lblTitle);
@@ -88,5 +97,6 @@
         private System.Windows.Forms.ListBox lbNBList;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblStop;
+        private System.Windows.Forms.Timer timDark;
     }
 }

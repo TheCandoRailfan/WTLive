@@ -34,6 +34,7 @@
             this.lblAdvisory = new System.Windows.Forms.Label();
             this.timRefresh = new System.Windows.Forms.Timer(this.components);
             this.rtxtAdvisory = new System.Windows.Forms.RichTextBox();
+            this.timDark = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lbAdvisories
@@ -73,6 +74,12 @@
             this.rtxtAdvisory.TabIndex = 3;
             this.rtxtAdvisory.Text = "";
             // 
+            // timDark
+            // 
+            this.timDark.Enabled = true;
+            this.timDark.Interval = 250;
+            this.timDark.Tick += new System.EventHandler(this.timDark_Tick);
+            // 
             // fmAdvisory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,5 +106,6 @@
         private System.Windows.Forms.Label lblAdvisory;
         private System.Windows.Forms.Timer timRefresh;
         private System.Windows.Forms.RichTextBox rtxtAdvisory;
+        private System.Windows.Forms.Timer timDark;
     }
 }

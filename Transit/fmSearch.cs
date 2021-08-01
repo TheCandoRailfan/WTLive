@@ -15,6 +15,7 @@ namespace Transit
     public partial class fmSearch : Form
     {
         String[] StopList2 = new string[6000];
+        int SearchDarkMode = 0;
 
         public fmSearch()
         {
@@ -168,7 +169,7 @@ namespace Transit
             {
                 GetStops();
                 PrintItems();
-                label1.Text = "Stop to Search For. To Select Stop, Double Click on it.";
+                lblLoading.Text = "Stop to Search For. To Select Stop, Double Click on it.";
                 fmMain.FirstSearch = 0;
             }
             catch (System.Net.WebException exception)
@@ -176,6 +177,49 @@ namespace Transit
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK);
                 fmMain.FirstSearch = 1;
                 Close();
+            }
+        }
+
+        private void fmSearch_Load(object sender, EventArgs e)
+        {
+            if (fmMain.DarkMode == 1)
+            {
+                SetDarkMode();
+            }
+        }
+
+        private void SetDarkMode()
+        {
+            SearchDarkMode = 1;
+            this.BackColor = Color.Black;
+            lblLoading.ForeColor = Color.DarkGray;
+            txtSearch.BackColor = Color.DarkGray;
+            lbStopList.BackColor = Color.DarkGray;
+        }
+
+        private void SetLightMode()
+        {
+            SearchDarkMode = 0;
+            this.BackColor = Color.WhiteSmoke;
+            lblLoading.ForeColor = Color.Black;
+            txtSearch.BackColor = Color.White;
+            lbStopList.BackColor = Color.White;
+        }
+
+        private void timDark_Tick(object sender, EventArgs e)
+        {
+            if (fmMain.DarkMode != SearchDarkMode)
+            {
+                SearchDarkMode = fmMain.DarkMode;
+
+                if (fmMain.DarkMode == 1)
+                {
+                    SetDarkMode();
+                }
+                else if (fmMain.DarkMode == 0)
+                {
+                    SetLightMode();
+                }
             }
         }
     }

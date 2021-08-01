@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmRoute));
             this.lblRoute = new System.Windows.Forms.Label();
             this.lbDest = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.rtxtVariants = new System.Windows.Forms.RichTextBox();
+            this.timDark = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblRoute
@@ -78,10 +80,17 @@
             this.rtxtVariants.TabIndex = 5;
             this.rtxtVariants.Text = "";
             // 
+            // timDark
+            // 
+            this.timDark.Enabled = true;
+            this.timDark.Interval = 250;
+            this.timDark.Tick += new System.EventHandler(this.timDark_Tick);
+            // 
             // fmRoute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(585, 317);
             this.Controls.Add(this.rtxtVariants);
             this.Controls.Add(this.label2);
@@ -103,5 +112,6 @@
         private System.Windows.Forms.ListBox lbDest;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox rtxtVariants;
+        private System.Windows.Forms.Timer timDark;
     }
 }

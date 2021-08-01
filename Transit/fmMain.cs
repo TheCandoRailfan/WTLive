@@ -27,6 +27,8 @@ namespace Transit
         public static int FirstSearch = 1;
         public static String[] StopList = new string[6000];
 
+        public static int DarkMode = 0;
+
         String[] ToReplace = new string[100];
         String[] Replacement = new string[100];
 
@@ -546,7 +548,7 @@ namespace Transit
                 X1 += X2 - X1;
 
                 rtxtList.SelectionColor = Color.Black;
-                if (rdoDark.Checked == false) { rtxtList.SelectionBackColor = Color.White; } else { rtxtList.SelectionBackColor = Color.DarkGray; }
+                if (DarkMode == 0) { rtxtList.SelectionBackColor = Color.White; } else { rtxtList.SelectionBackColor = Color.DarkGray; }
 
                 X2 = List[i].IndexOf(" (");
                 if (X2 == -1)
@@ -810,7 +812,7 @@ namespace Transit
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("WTLive V1.3 (2021-07-25)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
+            MessageBox.Show("WTLive V1.3.1 (2021-07-31)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
             //MessageBox.Show("This program is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About", MessageBoxButtons.OK);
         }
 
@@ -979,12 +981,11 @@ namespace Transit
             MessageBox.Show(ErrMessage + ErrMessage2, "Error", MessageBoxButtons.OK);
         }
 
-        private void rdoLight_CheckedChanged(object sender, EventArgs e)
+        private void SetLightMode()
         {
             this.BackColor = Color.WhiteSmoke;
             grpBikeRack.BackColor = Color.WhiteSmoke;
             grpCancelled.BackColor = Color.WhiteSmoke;
-            grpMode.BackColor = Color.WhiteSmoke;
 
             lblStopNum.ForeColor = Color.Black;
             lblStart.ForeColor = Color.Black;
@@ -1001,12 +1002,8 @@ namespace Transit
             chkShowMins.ForeColor = Color.Black;
             chkAuto.ForeColor = Color.Black;
 
-            lblRefresh.ForeColor = Color.Black; 
+            lblRefresh.ForeColor = Color.Black;
             lblOnOff.ForeColor = Color.Black;
-
-            grpMode.ForeColor = Color.Black;
-            rdoLight.ForeColor = Color.Black;
-            rdoDark.ForeColor = Color.Black;
 
             grpBikeRack.ForeColor = Color.Black;
             rdoBike.ForeColor = Color.Black;
@@ -1034,48 +1031,47 @@ namespace Transit
             txtRoute.BackColor = Color.White;
             txtMaxDist.BackColor = Color.White;
 
+            lblOTGBus.ForeColor = Color.Black;
+            lblRtDest.ForeColor = Color.Black;
+            lblKm.ForeColor = Color.Black;
+
             PrintResults();
+            btnModeChange.Text = "Dark Mode";
         }
 
-
-        private void rdoDark_CheckedChanged(object sender, EventArgs e)
+        private void SetDarkMode()
         {
             this.BackColor = Color.Black;
             grpBikeRack.BackColor = Color.Black;
             grpCancelled.BackColor = Color.Black;
-            grpMode.BackColor = Color.Black;
 
-            lblStopNum.ForeColor = Color.White;
-            lblStart.ForeColor = Color.White;
-            lblRoutes.ForeColor = Color.White;
-            lblBus.ForeColor = Color.White;
-            lblOther.ForeColor = Color.White;
-            lblStopFeat.ForeColor = Color.White;
+            lblStopNum.ForeColor = Color.DarkGray;
+            lblStart.ForeColor = Color.DarkGray;
+            lblRoutes.ForeColor = Color.DarkGray;
+            lblBus.ForeColor = Color.DarkGray;
+            lblOther.ForeColor = Color.DarkGray;
+            lblStopFeat.ForeColor = Color.DarkGray;
 
-            lblBusRange.ForeColor = Color.White;
-            lblBusType.ForeColor = Color.White;
-            lblBusLen.ForeColor = Color.White;
-            lblBusTo.ForeColor = Color.White;
-            lblDestCont.ForeColor = Color.White;
-            chkShowMins.ForeColor = Color.White;
-            chkAuto.ForeColor = Color.White;
+            lblBusRange.ForeColor = Color.DarkGray;
+            lblBusType.ForeColor = Color.DarkGray;
+            lblBusLen.ForeColor = Color.DarkGray;
+            lblBusTo.ForeColor = Color.DarkGray;
+            lblDestCont.ForeColor = Color.DarkGray;
+            chkShowMins.ForeColor = Color.DarkGray;
+            chkAuto.ForeColor = Color.DarkGray;
 
-            lblRefresh.ForeColor = Color.White;
-            lblOnOff.ForeColor = Color.White;
+            lblRefresh.ForeColor = Color.DarkGray;
+            lblOnOff.ForeColor = Color.DarkGray;
 
-            grpMode.ForeColor = Color.White;
-            rdoLight.ForeColor = Color.White;
-            rdoDark.ForeColor = Color.White;
+            grpBikeRack.ForeColor = Color.DarkGray;
+            rdoBike.ForeColor = Color.DarkGray;
+            rdoNoBike.ForeColor = Color.DarkGray;
+            rdoBikeorNoBike.ForeColor = Color.DarkGray;
 
-            grpBikeRack.ForeColor = Color.White;
-            rdoBike.ForeColor = Color.White;
-            rdoNoBike.ForeColor = Color.White;
-            rdoBikeorNoBike.ForeColor = Color.White;
-
-            grpCancelled.ForeColor = Color.White;
-            rdoCancel.ForeColor = Color.White;
-            rdoNoCancel.ForeColor = Color.White;
-            rdoEitherCancel.ForeColor = Color.White;
+            grpCancelled.ForeColor = Color.DarkGray;
+            rdoCancel.ForeColor = Color.DarkGray;
+            rdoNoCancel.ForeColor = Color.DarkGray;
+            rdoEitherCancel.ForeColor = Color.DarkGray;
 
             rtxtList.BackColor = Color.DarkGray;
             lbFeatures.BackColor = Color.DarkGray;
@@ -1093,7 +1089,26 @@ namespace Transit
             txtRoute.BackColor = Color.DarkGray;
             txtMaxDist.BackColor = Color.DarkGray;
 
+            lblOTGBus.ForeColor = Color.DarkGray;
+            lblRtDest.ForeColor = Color.DarkGray;
+            lblKm.ForeColor = Color.DarkGray;
+
             PrintResults();
+            btnModeChange.Text = "Light Mode";
+        }
+
+        private void btnModeChange_Click(object sender, EventArgs e)
+        {
+            if (DarkMode == 0)
+            {
+                DarkMode = 1;
+                SetDarkMode();
+            }
+            else
+            {
+                DarkMode = 0;
+                SetLightMode();
+            }
         }
     }
 }

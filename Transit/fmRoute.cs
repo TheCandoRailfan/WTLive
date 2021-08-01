@@ -17,6 +17,7 @@ namespace Transit
         string[] List = new string[20];
         string[] List2 = new string[20];
         int Blank = 0;
+        int RouteDarkMode;
 
         public fmRoute()
         {
@@ -25,6 +26,10 @@ namespace Transit
 
         private void fmRoute_Load(object sender, EventArgs e)
         {
+            if (fmMain.DarkMode == 1)
+            {
+                SetDarkMode();
+            }
             GetInfo();
         }
 
@@ -156,6 +161,22 @@ namespace Transit
             }
         }
 
+        private void SetDarkMode()
+        {
+            RouteDarkMode = 1;
+            this.BackColor = Color.Black;
+            lblRoute.ForeColor = Color.DarkGray;
+            rtxtVariants.BackColor = Color.DarkGray;
+        }
+
+        private void SetLightMode()
+        {
+            RouteDarkMode = 0;
+            this.BackColor = Color.WhiteSmoke;
+            lblRoute.ForeColor = Color.Black;
+            rtxtVariants.BackColor = Color.White;
+        }
+
         private void GetDest(String Var)
         {
             String URLString = "https://api.winnipegtransit.com/v3/" + Var + "/destinations?api-key=yxCT5Ca2Ep5AVLc0z6zz&usage=long";
@@ -185,6 +206,23 @@ namespace Transit
                         {
                             break;
                         }
+                }
+            }
+        }
+
+        private void timDark_Tick(object sender, EventArgs e)
+        {
+            if (fmMain.DarkMode != RouteDarkMode)
+            {
+                RouteDarkMode = fmMain.DarkMode;
+
+                if (fmMain.DarkMode == 1)
+                {
+                    SetDarkMode();
+                }
+                else if (fmMain.DarkMode == 0)
+                {
+                    SetLightMode();
                 }
             }
         }

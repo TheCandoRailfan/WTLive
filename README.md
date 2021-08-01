@@ -26,13 +26,13 @@ As you probably noticed, the Stop Number is not the only option that you can set
  - Bus Range: This is the range of bus numbers you want to see. If they are blank, all bus numbers can be shown.
  - Bus Type: This is the type of bus want to see. If it is set to any, then any bus type can be shown.
  - Bus Length: This is the length of bus you want to see. If it is set to any, then any bus length can be shown.
- - Bike Rack: You can choose to only show buses that have bike racks, don't have bike racks, or either.
- - Cancelled: You can choose to only show buses that have been cancelled, hasn't been cancelled, or either.
+ - Bike Rack: You can choose to only buses that have bike racks, don't have bike racks, or either.
+ - Cancelled: You can choose to only buses that have been cancelled, hasn't been cancelled, or either.
  - Relative Time: If checked, it will change how the ETA is shown. For example, if it is 9:24 and a bus is coming at 9:27, it'll show "3 Mins" instead of "09:27". It will only do this for future departures less than the number of minutes specified.
  - Auto Refresh: If checked, then periodically it will automatically get updated departure info. The refresh interval can be changed with the textbox below. The refresh interval must be 5 seconds or higher. You can the Auto Refresh feature by either clicking the "Stop Refresh" button, or unchecking "Auto Refresh", and clicking the "Go" button.
  - Full Screen: If you click the "Go (FS)" button, then the departure list will be shown in full screen. You can exit full screen by clicking the "X" in the top right.
  - Reset: This will reset the program to how it was when it was opened.
- - Mode: This allows you to switch between Light and Dark mode. Note: Dark mode currently only applies to the main window.
+ - Dark/Light Mode: This allows you to switch between Light and Dark mode.
 
 4. Extra Features:
 In addition to the list of departures, there are also some other features. They are as follows:

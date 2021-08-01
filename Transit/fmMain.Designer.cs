@@ -63,7 +63,7 @@
             this.btnOpenAdv = new System.Windows.Forms.Button();
             this.btnNearby = new System.Windows.Forms.Button();
             this.txtMaxDist = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblKm = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
             this.btnWebsite = new System.Windows.Forms.Button();
             this.cmbBusType = new System.Windows.Forms.ComboBox();
@@ -73,10 +73,10 @@
             this.lblBus = new System.Windows.Forms.Label();
             this.btnRoute = new System.Windows.Forms.Button();
             this.txtRoute = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblRtDest = new System.Windows.Forms.Label();
             this.txtBusLk = new System.Windows.Forms.TextBox();
             this.btnBus = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblOTGBus = new System.Windows.Forms.Label();
             this.grpCancelled = new System.Windows.Forms.GroupBox();
             this.rdoCancel = new System.Windows.Forms.RadioButton();
             this.rdoEitherCancel = new System.Windows.Forms.RadioButton();
@@ -94,12 +94,9 @@
             this.btnExitFullScr = new System.Windows.Forms.Button();
             this.txtETAMax = new System.Windows.Forms.TextBox();
             this.txtDate = new System.Windows.Forms.TextBox();
-            this.grpMode = new System.Windows.Forms.GroupBox();
-            this.rdoDark = new System.Windows.Forms.RadioButton();
-            this.rdoLight = new System.Windows.Forms.RadioButton();
+            this.btnModeChange = new System.Windows.Forms.Button();
             this.grpBikeRack.SuspendLayout();
             this.grpCancelled.SuspendLayout();
-            this.grpMode.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGo
@@ -416,14 +413,14 @@
             this.txtMaxDist.Text = "2";
             this.txtMaxDist.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label10
+            // lblKm
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(148, 491);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(21, 13);
-            this.label10.TabIndex = 72;
-            this.label10.Text = "km";
+            this.lblKm.AutoSize = true;
+            this.lblKm.Location = new System.Drawing.Point(148, 491);
+            this.lblKm.Name = "lblKm";
+            this.lblKm.Size = new System.Drawing.Size(21, 13);
+            this.lblKm.TabIndex = 72;
+            this.lblKm.Text = "km";
             // 
             // lblMessage
             // 
@@ -533,14 +530,14 @@
             this.txtRoute.Text = "10";
             this.txtRoute.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label14
+            // lblRtDest
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(146, 464);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(36, 13);
-            this.label14.TabIndex = 83;
-            this.label14.Text = "Route";
+            this.lblRtDest.AutoSize = true;
+            this.lblRtDest.Location = new System.Drawing.Point(146, 464);
+            this.lblRtDest.Name = "lblRtDest";
+            this.lblRtDest.Size = new System.Drawing.Size(36, 13);
+            this.lblRtDest.TabIndex = 83;
+            this.lblRtDest.Text = "Route";
             // 
             // txtBusLk
             // 
@@ -560,14 +557,14 @@
             this.btnBus.UseVisualStyleBackColor = true;
             this.btnBus.Click += new System.EventHandler(this.btnBus_Click);
             // 
-            // label15
+            // lblOTGBus
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(146, 437);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(25, 13);
-            this.label15.TabIndex = 86;
-            this.label15.Text = "Bus";
+            this.lblOTGBus.AutoSize = true;
+            this.lblOTGBus.Location = new System.Drawing.Point(146, 437);
+            this.lblOTGBus.Name = "lblOTGBus";
+            this.lblOTGBus.Size = new System.Drawing.Size(25, 13);
+            this.lblOTGBus.TabIndex = 86;
+            this.lblOTGBus.Text = "Bus";
             // 
             // grpCancelled
             // 
@@ -740,41 +737,15 @@
             this.txtDate.TabIndex = 96;
             this.txtDate.Visible = false;
             // 
-            // grpMode
+            // btnModeChange
             // 
-            this.grpMode.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.grpMode.Controls.Add(this.rdoDark);
-            this.grpMode.Controls.Add(this.rdoLight);
-            this.grpMode.Location = new System.Drawing.Point(205, 447);
-            this.grpMode.Name = "grpMode";
-            this.grpMode.Size = new System.Drawing.Size(87, 62);
-            this.grpMode.TabIndex = 97;
-            this.grpMode.TabStop = false;
-            this.grpMode.Text = "Mode";
-            // 
-            // rdoDark
-            // 
-            this.rdoDark.AutoSize = true;
-            this.rdoDark.Location = new System.Drawing.Point(6, 40);
-            this.rdoDark.Name = "rdoDark";
-            this.rdoDark.Size = new System.Drawing.Size(48, 17);
-            this.rdoDark.TabIndex = 1;
-            this.rdoDark.Text = "Dark";
-            this.rdoDark.UseVisualStyleBackColor = true;
-            this.rdoDark.CheckedChanged += new System.EventHandler(this.rdoDark_CheckedChanged);
-            // 
-            // rdoLight
-            // 
-            this.rdoLight.AutoSize = true;
-            this.rdoLight.Checked = true;
-            this.rdoLight.Location = new System.Drawing.Point(6, 16);
-            this.rdoLight.Name = "rdoLight";
-            this.rdoLight.Size = new System.Drawing.Size(48, 17);
-            this.rdoLight.TabIndex = 0;
-            this.rdoLight.TabStop = true;
-            this.rdoLight.Text = "Light";
-            this.rdoLight.UseVisualStyleBackColor = true;
-            this.rdoLight.CheckedChanged += new System.EventHandler(this.rdoLight_CheckedChanged);
+            this.btnModeChange.Location = new System.Drawing.Point(205, 487);
+            this.btnModeChange.Name = "btnModeChange";
+            this.btnModeChange.Size = new System.Drawing.Size(90, 23);
+            this.btnModeChange.TabIndex = 98;
+            this.btnModeChange.Text = "Dark Mode";
+            this.btnModeChange.UseVisualStyleBackColor = true;
+            this.btnModeChange.Click += new System.EventHandler(this.btnModeChange_Click);
             // 
             // fmMain
             // 
@@ -791,10 +762,10 @@
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.grpCancelled);
-            this.Controls.Add(this.label15);
+            this.Controls.Add(this.lblOTGBus);
             this.Controls.Add(this.btnBus);
             this.Controls.Add(this.txtBusLk);
-            this.Controls.Add(this.label14);
+            this.Controls.Add(this.lblRtDest);
             this.Controls.Add(this.txtRoute);
             this.Controls.Add(this.btnRoute);
             this.Controls.Add(this.lblBus);
@@ -803,7 +774,7 @@
             this.Controls.Add(this.lblBusType);
             this.Controls.Add(this.cmbBusType);
             this.Controls.Add(this.btnWebsite);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lblKm);
             this.Controls.Add(this.txtMaxDist);
             this.Controls.Add(this.btnNearby);
             this.Controls.Add(this.btnOpenAdv);
@@ -836,7 +807,7 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtETAMax);
             this.Controls.Add(this.chkShowMins);
-            this.Controls.Add(this.grpMode);
+            this.Controls.Add(this.btnModeChange);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmMain";
@@ -847,8 +818,6 @@
             this.grpBikeRack.PerformLayout();
             this.grpCancelled.ResumeLayout(false);
             this.grpCancelled.PerformLayout();
-            this.grpMode.ResumeLayout(false);
-            this.grpMode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -889,7 +858,7 @@
         private System.Windows.Forms.Button btnOpenAdv;
         private System.Windows.Forms.Button btnNearby;
         private System.Windows.Forms.TextBox txtMaxDist;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblKm;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Button btnWebsite;
         private System.Windows.Forms.ComboBox cmbBusType;
@@ -899,10 +868,10 @@
         private System.Windows.Forms.Label lblBus;
         private System.Windows.Forms.Button btnRoute;
         private System.Windows.Forms.TextBox txtRoute;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblRtDest;
         private System.Windows.Forms.TextBox txtBusLk;
         private System.Windows.Forms.Button btnBus;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblOTGBus;
         private System.Windows.Forms.GroupBox grpCancelled;
         private System.Windows.Forms.RadioButton rdoCancel;
         private System.Windows.Forms.RadioButton rdoEitherCancel;
@@ -920,9 +889,7 @@
         private System.Windows.Forms.Button btnExitFullScr;
         private System.Windows.Forms.TextBox txtETAMax;
         private System.Windows.Forms.TextBox txtDate;
-        private System.Windows.Forms.GroupBox grpMode;
-        private System.Windows.Forms.RadioButton rdoDark;
-        private System.Windows.Forms.RadioButton rdoLight;
+        private System.Windows.Forms.Button btnModeChange;
     }
 }
 
