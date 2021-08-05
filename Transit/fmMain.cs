@@ -25,7 +25,7 @@ namespace Transit
         String BusLength = ""; int BusLengthMatch = 0;
         int FontSize = 16;
         public static int FirstSearch = 1;
-        public static String[] StopList = new string[6000];
+        public static String[] StopList; // = new string[6000];
 
         public static int DarkMode = 0;
 
@@ -765,7 +765,15 @@ namespace Transit
 
         private void btnNearby_Click(object sender, EventArgs e)
         {
-            if (txtMaxDist.Text != "")
+            if (txtMaxDist.Text == "")
+            {
+                MessageBox.Show("The distance textbox cannot be blank!", "Error", MessageBoxButtons.OK);
+            }
+            else if (Convert.ToDouble(txtMaxDist.Text) > 3)
+            {
+                MessageBox.Show("The distance must be no more than 3 km!", "Error", MessageBoxButtons.OK);
+            }
+            else 
             {
                 DisableBtns();
                 timSetStop.Enabled = true;
@@ -773,7 +781,6 @@ namespace Transit
                 fmNearby Nb = new fmNearby();
                 Nb.Show();
             }
-            else { MessageBox.Show("The distance textbox cannot be blank!", "Error", MessageBoxButtons.OK); }
         }
 
         private void btnWebsite_Click(object sender, EventArgs e)
@@ -812,7 +819,7 @@ namespace Transit
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("WTLive V1.3.1 (2021-07-31)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
+            MessageBox.Show("WTLive V1.3.2 (2021-08-05)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
             //MessageBox.Show("This program is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About", MessageBoxButtons.OK);
         }
 
@@ -835,7 +842,6 @@ namespace Transit
             btnRoute.Enabled = false;
             btnOpenAdv.Enabled = false;
             btnFullScreen.Enabled = false;
-            btnSearch.Enabled = false;
 
             timGoBtn.Enabled = true;
         }
@@ -943,7 +949,6 @@ namespace Transit
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            DisableBtns();
             timSetStop.Enabled = true;
             Dist = txtMaxDist.Text;
             fmSearch Sch = new fmSearch();

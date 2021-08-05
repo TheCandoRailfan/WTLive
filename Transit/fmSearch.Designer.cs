@@ -64,9 +64,9 @@ namespace Transit
             this.lblLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblLoading.Location = new System.Drawing.Point(160, 8);
             this.lblLoading.Name = "lblLoading";
-            this.lblLoading.Size = new System.Drawing.Size(264, 20);
+            this.lblLoading.Size = new System.Drawing.Size(391, 20);
             this.lblLoading.TabIndex = 2;
-            this.lblLoading.Text = "Loading - May Take a Few Moments";
+            this.lblLoading.Text = "Stop to Search For. To Select Stop, Double Click on it.";
             // 
             // timLoad
             // 
