@@ -61,7 +61,7 @@ namespace Transit
         {
             timLoad.Enabled = false;
 
-            if (fmMain.FirstSearch == 1) { fmMain.StopList = System.IO.File.ReadAllLines(@"stops.txt"); }
+            //if (fmMain.FirstSearch == 1) { fmMain.StopList = System.IO.File.ReadAllLines(@"stops.txt"); }
             PrintItems();
             fmMain.FirstSearch = 0;
         }

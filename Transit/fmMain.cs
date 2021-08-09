@@ -25,7 +25,7 @@ namespace Transit
         String BusLength = ""; int BusLengthMatch = 0;
         int FontSize = 16;
         public static int FirstSearch = 1;
-        public static String[] StopList; // = new string[6000];
+        public static String[] StopList = System.IO.File.ReadAllLines(@"stops.txt"); // = new string[6000];
 
         public static int DarkMode = 0;
 
@@ -272,7 +272,7 @@ namespace Transit
                             RtDash = reader.Value.IndexOf("-");
                             if (reader.Value.Substring(0, RtDash) == "101" | reader.Value.Substring(0, RtDash) == "102" | reader.Value.Substring(0, RtDash) == "110")
                             {
-                                RouteNm = reader.Value.Substring(0, RtDash) + " DART";
+                                RouteNm = reader.Value.Substring(0, RtDash) + " On-Request";
                             }
                             else
                             {
@@ -291,7 +291,7 @@ namespace Transit
                         }
                         else if (LastName == "keyDest")
                         {
-                            if (RouteNm != "101 DART" && RouteNm != "102 DART" && RouteNm != "110 DART")
+                            if (RouteNm != "101 DART" && RouteNm != "102 DART" && RouteNm != "110 DART" & RouteNm != "101 On-Request" && RouteNm != "102 On-Request" && RouteNm != "110 On-Request")
                             {
                                 X1 = 0;
                                 for (int i = 1; i <= 99; i++)
@@ -309,8 +309,14 @@ namespace Transit
                         else if (LastName == "keyStop")
                         {
                             StopName = StopNum + " " + reader.Value;
-                            this.Text = StopNum + " " + reader.Value + " - WTLive";
-                            lblStopName.Text = StopNum + " " + reader.Value;
+
+                            foreach (string line in StopList)
+                            {
+                                if (line.Substring(0,5) == StopNum) { StopName = line; break; }
+                            }
+
+                            this.Text = StopName + " - WTLive";
+                            lblStopName.Text = StopName;
                         }
                         else if (LastName == "bike-rack")
                         {
@@ -352,7 +358,7 @@ namespace Transit
                                 if (int.Parse(Bus.Substring(Bus.Length - 3, 3)) >= 510 && int.Parse(Bus.Substring(Bus.Length - 3, 3)) <= 599) { BusTypeMatch = 1; }
                                 if (int.Parse(Bus.Substring(Bus.Length - 3, 3)) >= 641 && int.Parse(Bus.Substring(Bus.Length - 3, 3)) <= 664) { BusTypeMatch = 1; }
                             }
-                            else if (BusType == "D40LF (Reg)")
+                            else if (BusType == "D40LF (Regular)")
                             {
                                 if (int.Parse(Bus.Substring(Bus.Length - 3, 3)) >= 201 && int.Parse(Bus.Substring(Bus.Length - 3, 3)) <= 281) { BusTypeMatch = 1; }
                                 if (int.Parse(Bus.Substring(Bus.Length - 3, 3)) >= 510 && int.Parse(Bus.Substring(Bus.Length - 3, 3)) <= 599) { BusTypeMatch = 1; }
@@ -729,6 +735,7 @@ namespace Transit
 
         private void btnOpenAdv_Click(object sender, EventArgs e)
         {
+            DisableBtns();
             fmAdvisory Adv = new fmAdvisory();
             Adv.Show();
         }
@@ -819,7 +826,7 @@ namespace Transit
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("WTLive V1.3.2 (2021-08-05)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
+            MessageBox.Show("WTLive V1.3.3 (2021-08-09)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
             //MessageBox.Show("This program is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About", MessageBoxButtons.OK);
         }
 
@@ -891,27 +898,32 @@ namespace Transit
             else if (StopNum.Length != 5) { MessageBox.Show("The stop number must be 5 digits long!", "Error", MessageBoxButtons.OK); }
             else
             {
+                FontSize = (int)(Screen.PrimaryScreen.Bounds.Width / 40);
+
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
                 UpdateTime();
 
-                rtxtList.Size = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height - 80);
-                rtxtList.Location = new Point(0, 80);
+                rtxtList.Size = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height - (Screen.PrimaryScreen.Bounds.Width / 24));
+                rtxtList.Location = new Point(0, Screen.PrimaryScreen.Bounds.Width / 24);
 
-                lblStopName.Size = new Size(Screen.PrimaryScreen.Bounds.Width, 80);
+                lblStopName.Font = new Font("Calibri", FontSize, FontStyle.Bold);
+                lblStopName.Size = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Width / 24);
                 lblStopName.Visible = true;
 
-                lblTime.Location = new Point(Screen.PrimaryScreen.Bounds.Width - 235, 0);
-                lblTime.Size = new Size(200, 68);
+                lblTime.Font = new Font("Calibri", FontSize, FontStyle.Bold);
+                lblTime.Location = new Point(Screen.PrimaryScreen.Bounds.Width - (int)(Screen.PrimaryScreen.Bounds.Width / 8.1702127659574), 0);
+                lblTime.Size = new Size((int)(Screen.PrimaryScreen.Bounds.Width / 9.6), Screen.PrimaryScreen.Bounds.Width / 24);
                 lblTime.Visible = true;
+                lblTime.BringToFront();
 
-                btnExitFullScr.Location = new Point(Screen.PrimaryScreen.Bounds.Width - 48, 0);
+                btnExitFullScr.Location = new Point(Screen.PrimaryScreen.Bounds.Width - (Screen.PrimaryScreen.Bounds.Width / 40), 0);
                 btnExitFullScr.Visible = true;
+                btnExitFullScr.Size = new Size(Screen.PrimaryScreen.Bounds.Width / 40, (Screen.PrimaryScreen.Bounds.Width / 24) + 1);
                 btnExitFullScr.BringToFront();
 
-                FontSize = 48;
                 timUpdateTime.Enabled = true;
-                GoPress();
+                GoPress(); 
             }
         }
 

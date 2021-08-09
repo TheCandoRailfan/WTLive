@@ -30,7 +30,7 @@ As you probably noticed, the Stop Number is not the only option that you can set
  - Cancelled: You can choose to only buses that have been cancelled, hasn't been cancelled, or either.
  - Relative Time: If checked, it will change how the ETA is shown. For example, if it is 9:24 and a bus is coming at 9:27, it'll show "3 Mins" instead of "09:27". It will only do this for future departures less than the number of minutes specified.
  - Auto Refresh: If checked, then periodically it will automatically get updated departure info. The refresh interval can be changed with the textbox below. The refresh interval must be 5 seconds or higher. You can the Auto Refresh feature by either clicking the "Stop Refresh" button, or unchecking "Auto Refresh", and clicking the "Go" button.
- - Full Screen: If you click the "Go (FS)" button, then the departure list will be shown in full screen. You can exit full screen by clicking the "X" in the top right.
+ - Full Screen: If you click the "Go (FS)" button, then the departure list will be shown in full screen. You can exit full screen by clicking the button in the top right.
  - Reset: This will reset the program to how it was when it was opened.
  - Dark/Light Mode: This allows you to switch between Light and Dark mode.
 

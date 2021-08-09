@@ -715,7 +715,6 @@
             this.btnExitFullScr.Size = new System.Drawing.Size(48, 81);
             this.btnExitFullScr.TabIndex = 93;
             this.btnExitFullScr.Text = "X";
-            this.btnExitFullScr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExitFullScr.UseVisualStyleBackColor = false;
             this.btnExitFullScr.Visible = false;
             this.btnExitFullScr.Click += new System.EventHandler(this.btnExitFullScr_Click);
@@ -754,9 +753,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(955, 542);
-            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.btnExitFullScr);
             this.Controls.Add(this.lblTime);
+            this.Controls.Add(this.lblStopName);
+            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.rtxtList);
             this.Controls.Add(this.btnFullScreen);
             this.Controls.Add(this.btnReset);
@@ -788,7 +788,6 @@
             this.Controls.Add(this.lblDestCont);
             this.Controls.Add(this.lblOther);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.lblStopName);
             this.Controls.Add(this.lblOnOff);
             this.Controls.Add(this.lblRefresh);
             this.Controls.Add(this.txtInterval);
