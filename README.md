@@ -8,7 +8,8 @@ How to use:
  - Firstly, you'll need a 64-Bit Windows PC and an internet connection to use this program.
  - When the program opens, enter a valid stop number into the appropriate textbox, or use the search button to find a stop. Stop numbers can also be found on the Winnipeg Transit (WT) website, and on WT bus stop signs.
  - Click the "Go" button. You should see a list of departures on the right side of the window. However, depending on the stop you chose, and the time and day you are doing it at, you might see a message saying "Nothing to Show" instead. This indicates there are no departures to show with the given options.
- - In addition, some bus stops have extra features to them (such as BusWatch displays). If the bus stop you selected has any, they will show up in the bottom right, under "Stop Features".
+ - Below the departures to the left, the routes that observe the stop will be shown, under "Routes". 
+ - Some bus stops have extra features to them (like BusWatch displays). If the stop has any, they will show up in the bottom right, under "Stop Features".
 
 2. List of Departures:
 The list of departures shows several pieces of information about each departure. They are as follows, from left to right:
