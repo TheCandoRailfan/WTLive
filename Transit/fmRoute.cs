@@ -17,6 +17,7 @@ namespace Transit
         string[] List = new string[20];
         string[] List2 = new string[20];
         int Blank = 0;
+        int RouteDarkMode;
 
         public fmRoute()
         {
@@ -25,6 +26,10 @@ namespace Transit
 
         private void fmRoute_Load(object sender, EventArgs e)
         {
+            if (fmMain.DarkMode == 1)
+            {
+                SetDarkMode();
+            }
             GetInfo();
         }
 
@@ -99,11 +104,12 @@ namespace Transit
 
             for (int i = 1; i <= Num; i++)
             {
-                if (i > 1) { if(List2[i - 1].IndexOf("Outbound") != -1 && List2[i].IndexOf("Inbound") != -1) { lbVariants.Items.Add(""); Blank = i; } }
+                if (i > 1) { if(List2[i - 1].IndexOf("Outbound") != -1 && List2[i].IndexOf("Inbound") != -1) { rtxtVariants.Text += (char)10; Blank = i; } }
                 X1 = List2[i].IndexOf(" - Outbound");
                 if (X1 == -1) { X1 = List2[i].IndexOf(" - Inbound"); }
 
-                lbVariants.Items.Add(List2[i].Substring(0,X1));
+                //lbVariants.Items.Add(List2[i].Substring(0,X1));
+                rtxtVariants.Text += List2[i].Substring(0, X1) + (char) 10;
             }
             //lbVariants.SelectedIndex = 0;
         }
@@ -155,14 +161,20 @@ namespace Transit
             }
         }
 
-        private void lbVariants_SelectedIndexChanged(object sender, EventArgs e)
+        private void SetDarkMode()
         {
-            //lbDest.Items.Clear();
+            RouteDarkMode = 1;
+            this.BackColor = Color.Black;
+            lblRoute.ForeColor = Color.DarkGray;
+            rtxtVariants.BackColor = Color.DarkGray;
+        }
 
-            if (lbVariants.SelectedIndex + 1 != Blank) 
-            { 
-                //if (lbVariants.SelectedIndex + 1 < Blank) { GetDest(List[lbVariants.SelectedIndex + 1]); } else { GetDest(List[lbVariants.SelectedIndex]); }
-            }
+        private void SetLightMode()
+        {
+            RouteDarkMode = 0;
+            this.BackColor = Color.WhiteSmoke;
+            lblRoute.ForeColor = Color.Black;
+            rtxtVariants.BackColor = Color.White;
         }
 
         private void GetDest(String Var)
@@ -194,6 +206,23 @@ namespace Transit
                         {
                             break;
                         }
+                }
+            }
+        }
+
+        private void timDark_Tick(object sender, EventArgs e)
+        {
+            if (fmMain.DarkMode != RouteDarkMode)
+            {
+                RouteDarkMode = fmMain.DarkMode;
+
+                if (fmMain.DarkMode == 1)
+                {
+                    SetDarkMode();
+                }
+                else if (fmMain.DarkMode == 0)
+                {
+                    SetLightMode();
                 }
             }
         }

@@ -32,55 +32,52 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fmMain));
             this.btnGo = new System.Windows.Forms.Button();
             this.txtStopNum = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblStopNum = new System.Windows.Forms.Label();
+            this.lblStart = new System.Windows.Forms.Label();
             this.txtStart = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblRoutes = new System.Windows.Forms.Label();
             this.txtRte = new System.Windows.Forms.TextBox();
             this.timAutoGet = new System.Windows.Forms.Timer(this.components);
             this.btnStop = new System.Windows.Forms.Button();
             this.chkAuto = new System.Windows.Forms.CheckBox();
             this.txtInterval = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbList = new System.Windows.Forms.ListBox();
+            this.lblRefresh = new System.Windows.Forms.Label();
             this.lblOnOff = new System.Windows.Forms.Label();
             this.lblStopName = new System.Windows.Forms.Label();
-            this.calCalendar = new System.Windows.Forms.MonthCalendar();
-            this.chkDate = new System.Windows.Forms.CheckBox();
             this.chkRev = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblOther = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblDestCont = new System.Windows.Forms.Label();
             this.txtBus = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblBusRange = new System.Windows.Forms.Label();
             this.rdoBike = new System.Windows.Forms.RadioButton();
             this.rdoNoBike = new System.Windows.Forms.RadioButton();
             this.rdoBikeorNoBike = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpBikeRack = new System.Windows.Forms.GroupBox();
             this.txtBus2 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblBusTo = new System.Windows.Forms.Label();
             this.timCheckStat = new System.Windows.Forms.Timer(this.components);
             this.lblStatus = new System.Windows.Forms.Label();
             this.lbFeatures = new System.Windows.Forms.ListBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblStopFeat = new System.Windows.Forms.Label();
             this.btnOpenAdv = new System.Windows.Forms.Button();
             this.btnNearby = new System.Windows.Forms.Button();
             this.txtMaxDist = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblKm = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
             this.btnWebsite = new System.Windows.Forms.Button();
             this.cmbBusType = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblBusType = new System.Windows.Forms.Label();
+            this.lblBusLen = new System.Windows.Forms.Label();
             this.cmbBusLength = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblBus = new System.Windows.Forms.Label();
             this.btnRoute = new System.Windows.Forms.Button();
             this.txtRoute = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblRtDest = new System.Windows.Forms.Label();
             this.txtBusLk = new System.Windows.Forms.TextBox();
             this.btnBus = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblOTGBus = new System.Windows.Forms.Label();
+            this.grpCancelled = new System.Windows.Forms.GroupBox();
             this.rdoCancel = new System.Windows.Forms.RadioButton();
             this.rdoEitherCancel = new System.Windows.Forms.RadioButton();
             this.rdoNoCancel = new System.Windows.Forms.RadioButton();
@@ -88,68 +85,80 @@
             this.btnAbout = new System.Windows.Forms.Button();
             this.timGoBtn = new System.Windows.Forms.Timer(this.components);
             this.btnReset = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.rtxtList = new System.Windows.Forms.RichTextBox();
+            this.btnFullScreen = new System.Windows.Forms.Button();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.timUpdateTime = new System.Windows.Forms.Timer(this.components);
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.timSetStop = new System.Windows.Forms.Timer(this.components);
+            this.btnExitFullScr = new System.Windows.Forms.Button();
+            this.txtETAMax = new System.Windows.Forms.TextBox();
+            this.txtDate = new System.Windows.Forms.TextBox();
+            this.btnModeChange = new System.Windows.Forms.Button();
+            this.lblRtList = new System.Windows.Forms.Label();
+            this.rtxtRtList = new System.Windows.Forms.RichTextBox();
+            this.grpBikeRack.SuspendLayout();
+            this.grpCancelled.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGo
             // 
-            this.btnGo.Location = new System.Drawing.Point(55, 411);
+            this.btnGo.Location = new System.Drawing.Point(49, 386);
             this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(75, 23);
-            this.btnGo.TabIndex = 13;
+            this.btnGo.Size = new System.Drawing.Size(35, 23);
+            this.btnGo.TabIndex = 18;
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // txtStopNum
             // 
-            this.txtStopNum.Location = new System.Drawing.Point(15, 28);
+            this.txtStopNum.Location = new System.Drawing.Point(7, 28);
             this.txtStopNum.MaxLength = 5;
             this.txtStopNum.Name = "txtStopNum";
             this.txtStopNum.Size = new System.Drawing.Size(100, 20);
             this.txtStopNum.TabIndex = 1;
             // 
-            // label1
+            // lblStopNum
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 2);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 25);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Stop Number:";
+            this.lblStopNum.AutoSize = true;
+            this.lblStopNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStopNum.Location = new System.Drawing.Point(1, 2);
+            this.lblStopNum.Name = "lblStopNum";
+            this.lblStopNum.Size = new System.Drawing.Size(155, 25);
+            this.lblStopNum.TabIndex = 2;
+            this.lblStopNum.Text = "Stop Number:";
             // 
-            // label2
+            // lblStart
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(287, 25);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Start Time (24h, optional):";
+            this.lblStart.AutoSize = true;
+            this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStart.Location = new System.Drawing.Point(1, 51);
+            this.lblStart.Name = "lblStart";
+            this.lblStart.Size = new System.Drawing.Size(287, 25);
+            this.lblStart.TabIndex = 4;
+            this.lblStart.Text = "Start Time (24h, optional):";
             // 
             // txtStart
             // 
-            this.txtStart.Location = new System.Drawing.Point(15, 79);
+            this.txtStart.Location = new System.Drawing.Point(7, 79);
             this.txtStart.Name = "txtStart";
             this.txtStart.Size = new System.Drawing.Size(100, 20);
             this.txtStart.TabIndex = 2;
             // 
-            // label4
+            // lblRoutes
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 102);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(240, 25);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Routes (blank for all):";
+            this.lblRoutes.AutoSize = true;
+            this.lblRoutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoutes.Location = new System.Drawing.Point(2, 102);
+            this.lblRoutes.Name = "lblRoutes";
+            this.lblRoutes.Size = new System.Drawing.Size(240, 25);
+            this.lblRoutes.TabIndex = 14;
+            this.lblRoutes.Text = "Routes (blank for all):";
             // 
             // txtRte
             // 
-            this.txtRte.Location = new System.Drawing.Point(15, 130);
+            this.txtRte.Location = new System.Drawing.Point(7, 130);
             this.txtRte.Name = "txtRte";
             this.txtRte.Size = new System.Drawing.Size(100, 20);
             this.txtRte.TabIndex = 3;
@@ -162,10 +171,10 @@
             // btnStop
             // 
             this.btnStop.Enabled = false;
-            this.btnStop.Location = new System.Drawing.Point(55, 386);
+            this.btnStop.Location = new System.Drawing.Point(147, 386);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(102, 23);
-            this.btnStop.TabIndex = 27;
+            this.btnStop.Size = new System.Drawing.Size(78, 23);
+            this.btnStop.TabIndex = 18;
             this.btnStop.Text = "Stop Refresh";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -173,46 +182,35 @@
             // chkAuto
             // 
             this.chkAuto.AutoSize = true;
-            this.chkAuto.Location = new System.Drawing.Point(16, 330);
+            this.chkAuto.Location = new System.Drawing.Point(8, 330);
             this.chkAuto.Name = "chkAuto";
             this.chkAuto.Size = new System.Drawing.Size(88, 17);
-            this.chkAuto.TabIndex = 12;
+            this.chkAuto.TabIndex = 16;
             this.chkAuto.Text = "Auto Refresh";
             this.chkAuto.UseVisualStyleBackColor = true;
             // 
             // txtInterval
             // 
-            this.txtInterval.Location = new System.Drawing.Point(15, 350);
+            this.txtInterval.Location = new System.Drawing.Point(7, 350);
             this.txtInterval.MaxLength = 3;
             this.txtInterval.Name = "txtInterval";
             this.txtInterval.Size = new System.Drawing.Size(34, 20);
-            this.txtInterval.TabIndex = 47;
+            this.txtInterval.TabIndex = 17;
             this.txtInterval.Text = "30";
             // 
-            // label3
+            // lblRefresh
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(54, 353);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 13);
-            this.label3.TabIndex = 48;
-            this.label3.Text = "Refresh Interval (5+ seconds)";
-            // 
-            // lbList
-            // 
-            this.lbList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbList.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbList.FormattingEnabled = true;
-            this.lbList.ItemHeight = 25;
-            this.lbList.Location = new System.Drawing.Point(312, 31);
-            this.lbList.Name = "lbList";
-            this.lbList.Size = new System.Drawing.Size(777, 404);
-            this.lbList.TabIndex = 49;
+            this.lblRefresh.AutoSize = true;
+            this.lblRefresh.Location = new System.Drawing.Point(46, 353);
+            this.lblRefresh.Name = "lblRefresh";
+            this.lblRefresh.Size = new System.Drawing.Size(146, 13);
+            this.lblRefresh.TabIndex = 48;
+            this.lblRefresh.Text = "Refresh Interval (5+ seconds)";
             // 
             // lblOnOff
             // 
             this.lblOnOff.AutoSize = true;
-            this.lblOnOff.Location = new System.Drawing.Point(54, 370);
+            this.lblOnOff.Location = new System.Drawing.Point(46, 370);
             this.lblOnOff.Name = "lblOnOff";
             this.lblOnOff.Size = new System.Drawing.Size(88, 13);
             this.lblOnOff.TabIndex = 50;
@@ -220,95 +218,79 @@
             // 
             // lblStopName
             // 
-            this.lblStopName.AutoSize = true;
-            this.lblStopName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStopName.Location = new System.Drawing.Point(307, 2);
+            this.lblStopName.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblStopName.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStopName.ForeColor = System.Drawing.Color.White;
+            this.lblStopName.Location = new System.Drawing.Point(0, 0);
             this.lblStopName.Name = "lblStopName";
-            this.lblStopName.Size = new System.Drawing.Size(127, 25);
+            this.lblStopName.Size = new System.Drawing.Size(127, 22);
             this.lblStopName.TabIndex = 51;
             this.lblStopName.Text = "Stop Name";
             this.lblStopName.UseMnemonic = false;
-            // 
-            // calCalendar
-            // 
-            this.calCalendar.Location = new System.Drawing.Point(240, 385);
-            this.calCalendar.Name = "calCalendar";
-            this.calCalendar.TabIndex = 52;
-            this.calCalendar.Visible = false;
-            // 
-            // chkDate
-            // 
-            this.chkDate.AutoSize = true;
-            this.chkDate.Location = new System.Drawing.Point(242, 366);
-            this.chkDate.Name = "chkDate";
-            this.chkDate.Size = new System.Drawing.Size(103, 17);
-            this.chkDate.TabIndex = 53;
-            this.chkDate.Text = "Use Date Below";
-            this.chkDate.UseVisualStyleBackColor = true;
-            this.chkDate.Visible = false;
+            this.lblStopName.Visible = false;
             // 
             // chkRev
             // 
             this.chkRev.AutoSize = true;
-            this.chkRev.Location = new System.Drawing.Point(105, 330);
+            this.chkRev.Location = new System.Drawing.Point(97, 330);
             this.chkRev.Name = "chkRev";
             this.chkRev.Size = new System.Drawing.Size(95, 17);
-            this.chkRev.TabIndex = 11;
+            this.chkRev.TabIndex = 80;
             this.chkRev.Text = "Reverse Order";
             this.chkRev.UseVisualStyleBackColor = true;
             this.chkRev.Visible = false;
             // 
-            // label5
+            // lblOther
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(10, 259);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 25);
-            this.label5.TabIndex = 56;
-            this.label5.Text = "Other";
+            this.lblOther.AutoSize = true;
+            this.lblOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOther.Location = new System.Drawing.Point(2, 259);
+            this.lblOther.Name = "lblOther";
+            this.lblOther.Size = new System.Drawing.Size(77, 25);
+            this.lblOther.TabIndex = 56;
+            this.lblOther.Text = "Other:";
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(15, 287);
+            this.txtSearch.Location = new System.Drawing.Point(7, 287);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(100, 20);
-            this.txtSearch.TabIndex = 9;
+            this.txtSearch.TabIndex = 14;
             // 
-            // label6
+            // lblDestCont
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(121, 290);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 13);
-            this.label6.TabIndex = 57;
-            this.label6.Text = "Dest Contains";
+            this.lblDestCont.AutoSize = true;
+            this.lblDestCont.Location = new System.Drawing.Point(107, 290);
+            this.lblDestCont.Name = "lblDestCont";
+            this.lblDestCont.Size = new System.Drawing.Size(73, 13);
+            this.lblDestCont.TabIndex = 57;
+            this.lblDestCont.Text = "Dest Contains";
             // 
             // txtBus
             // 
-            this.txtBus.Location = new System.Drawing.Point(15, 181);
+            this.txtBus.Location = new System.Drawing.Point(7, 181);
             this.txtBus.MaxLength = 3;
             this.txtBus.Name = "txtBus";
             this.txtBus.Size = new System.Drawing.Size(36, 20);
             this.txtBus.TabIndex = 4;
             // 
-            // label7
+            // lblBusRange
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(121, 184);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 13);
-            this.label7.TabIndex = 59;
-            this.label7.Text = "Bus Range";
+            this.lblBusRange.AutoSize = true;
+            this.lblBusRange.Location = new System.Drawing.Point(107, 184);
+            this.lblBusRange.Name = "lblBusRange";
+            this.lblBusRange.Size = new System.Drawing.Size(60, 13);
+            this.lblBusRange.TabIndex = 59;
+            this.lblBusRange.Text = "Bus Range";
             // 
             // rdoBike
             // 
             this.rdoBike.AutoSize = true;
             this.rdoBike.Location = new System.Drawing.Point(6, 16);
             this.rdoBike.Name = "rdoBike";
-            this.rdoBike.Size = new System.Drawing.Size(75, 17);
-            this.rdoBike.TabIndex = 50;
-            this.rdoBike.Text = "Bike Rack";
+            this.rdoBike.Size = new System.Drawing.Size(43, 17);
+            this.rdoBike.TabIndex = 8;
+            this.rdoBike.Text = "Yes";
             this.rdoBike.UseVisualStyleBackColor = true;
             // 
             // rdoNoBike
@@ -316,9 +298,9 @@
             this.rdoNoBike.AutoSize = true;
             this.rdoNoBike.Location = new System.Drawing.Point(6, 39);
             this.rdoNoBike.Name = "rdoNoBike";
-            this.rdoNoBike.Size = new System.Drawing.Size(92, 17);
-            this.rdoNoBike.TabIndex = 51;
-            this.rdoNoBike.Text = "No Bike Rack";
+            this.rdoNoBike.Size = new System.Drawing.Size(39, 17);
+            this.rdoNoBike.TabIndex = 9;
+            this.rdoNoBike.Text = "No";
             this.rdoNoBike.UseVisualStyleBackColor = true;
             // 
             // rdoBikeorNoBike
@@ -328,40 +310,40 @@
             this.rdoBikeorNoBike.Location = new System.Drawing.Point(6, 62);
             this.rdoBikeorNoBike.Name = "rdoBikeorNoBike";
             this.rdoBikeorNoBike.Size = new System.Drawing.Size(52, 17);
-            this.rdoBikeorNoBike.TabIndex = 52;
+            this.rdoBikeorNoBike.TabIndex = 10;
             this.rdoBikeorNoBike.TabStop = true;
             this.rdoBikeorNoBike.Text = "Either";
             this.rdoBikeorNoBike.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // grpBikeRack
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.rdoBike);
-            this.groupBox1.Controls.Add(this.rdoBikeorNoBike);
-            this.groupBox1.Controls.Add(this.rdoNoBike);
-            this.groupBox1.Location = new System.Drawing.Point(201, 172);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(106, 83);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Bike Rack";
+            this.grpBikeRack.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.grpBikeRack.Controls.Add(this.rdoBike);
+            this.grpBikeRack.Controls.Add(this.rdoBikeorNoBike);
+            this.grpBikeRack.Controls.Add(this.rdoNoBike);
+            this.grpBikeRack.Location = new System.Drawing.Point(221, 172);
+            this.grpBikeRack.Name = "grpBikeRack";
+            this.grpBikeRack.Size = new System.Drawing.Size(71, 83);
+            this.grpBikeRack.TabIndex = 8;
+            this.grpBikeRack.TabStop = false;
+            this.grpBikeRack.Text = "Bike Rack";
             // 
             // txtBus2
             // 
-            this.txtBus2.Location = new System.Drawing.Point(79, 181);
+            this.txtBus2.Location = new System.Drawing.Point(71, 181);
             this.txtBus2.MaxLength = 3;
             this.txtBus2.Name = "txtBus2";
             this.txtBus2.Size = new System.Drawing.Size(36, 20);
             this.txtBus2.TabIndex = 5;
             // 
-            // label8
+            // lblBusTo
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(57, 184);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(16, 13);
-            this.label8.TabIndex = 65;
-            this.label8.Text = "to";
+            this.lblBusTo.AutoSize = true;
+            this.lblBusTo.Location = new System.Drawing.Point(49, 184);
+            this.lblBusTo.Name = "lblBusTo";
+            this.lblBusTo.Size = new System.Drawing.Size(16, 13);
+            this.lblBusTo.TabIndex = 65;
+            this.lblBusTo.Text = "to";
             // 
             // timCheckStat
             // 
@@ -374,7 +356,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Red;
-            this.lblStatus.Location = new System.Drawing.Point(465, 441);
+            this.lblStatus.Location = new System.Drawing.Point(459, 412);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(122, 20);
             this.lblStatus.TabIndex = 66;
@@ -383,31 +365,31 @@
             // 
             // lbFeatures
             // 
-            this.lbFeatures.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFeatures.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbFeatures.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFeatures.FormattingEnabled = true;
-            this.lbFeatures.ItemHeight = 25;
-            this.lbFeatures.Location = new System.Drawing.Point(308, 469);
+            this.lbFeatures.ItemHeight = 24;
+            this.lbFeatures.Location = new System.Drawing.Point(713, 437);
             this.lbFeatures.Name = "lbFeatures";
-            this.lbFeatures.Size = new System.Drawing.Size(781, 104);
+            this.lbFeatures.Size = new System.Drawing.Size(230, 100);
             this.lbFeatures.TabIndex = 67;
             // 
-            // label9
+            // lblStopFeat
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(307, 439);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(160, 25);
-            this.label9.TabIndex = 68;
-            this.label9.Text = "Stop Features";
+            this.lblStopFeat.AutoSize = true;
+            this.lblStopFeat.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStopFeat.Location = new System.Drawing.Point(708, 410);
+            this.lblStopFeat.Name = "lblStopFeat";
+            this.lblStopFeat.Size = new System.Drawing.Size(160, 25);
+            this.lblStopFeat.TabIndex = 68;
+            this.lblStopFeat.Text = "Stop Features";
             // 
             // btnOpenAdv
             // 
-            this.btnOpenAdv.Location = new System.Drawing.Point(14, 547);
+            this.btnOpenAdv.Location = new System.Drawing.Point(6, 513);
             this.btnOpenAdv.Name = "btnOpenAdv";
             this.btnOpenAdv.Size = new System.Drawing.Size(105, 23);
-            this.btnOpenAdv.TabIndex = 69;
+            this.btnOpenAdv.TabIndex = 25;
             this.btnOpenAdv.Text = "Service Advisories";
             this.btnOpenAdv.UseVisualStyleBackColor = true;
             this.btnOpenAdv.Click += new System.EventHandler(this.btnOpenAdv_Click);
@@ -415,40 +397,40 @@
             // btnNearby
             // 
             this.btnNearby.Enabled = false;
-            this.btnNearby.Location = new System.Drawing.Point(14, 520);
+            this.btnNearby.Location = new System.Drawing.Point(6, 486);
             this.btnNearby.Name = "btnNearby";
             this.btnNearby.Size = new System.Drawing.Size(105, 23);
-            this.btnNearby.TabIndex = 70;
+            this.btnNearby.TabIndex = 24;
             this.btnNearby.Text = "Nearby Stops";
             this.btnNearby.UseVisualStyleBackColor = true;
-            this.btnNearby.Click += new System.EventHandler(this.button1_Click);
+            this.btnNearby.Click += new System.EventHandler(this.btnNearby_Click);
             // 
             // txtMaxDist
             // 
-            this.txtMaxDist.Location = new System.Drawing.Point(121, 521);
+            this.txtMaxDist.Location = new System.Drawing.Point(113, 487);
             this.txtMaxDist.MaxLength = 3;
             this.txtMaxDist.Name = "txtMaxDist";
             this.txtMaxDist.Size = new System.Drawing.Size(33, 20);
-            this.txtMaxDist.TabIndex = 71;
+            this.txtMaxDist.TabIndex = 23;
             this.txtMaxDist.Text = "2";
             this.txtMaxDist.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label10
+            // lblKm
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(158, 525);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(21, 13);
-            this.label10.TabIndex = 72;
-            this.label10.Text = "km";
+            this.lblKm.AutoSize = true;
+            this.lblKm.Location = new System.Drawing.Point(148, 491);
+            this.lblKm.Name = "lblKm";
+            this.lblKm.Size = new System.Drawing.Size(21, 13);
+            this.lblKm.TabIndex = 72;
+            this.lblKm.Text = "km";
             // 
             // lblMessage
             // 
-            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(12, 576);
+            this.lblMessage.Location = new System.Drawing.Point(12, 539);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(1074, 20);
+            this.lblMessage.Size = new System.Drawing.Size(931, 20);
             this.lblMessage.TabIndex = 73;
             this.lblMessage.Text = "System Message";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -456,10 +438,10 @@
             // btnWebsite
             // 
             this.btnWebsite.Enabled = false;
-            this.btnWebsite.Location = new System.Drawing.Point(120, 547);
+            this.btnWebsite.Location = new System.Drawing.Point(112, 513);
             this.btnWebsite.Name = "btnWebsite";
             this.btnWebsite.Size = new System.Drawing.Size(92, 23);
-            this.btnWebsite.TabIndex = 75;
+            this.btnWebsite.TabIndex = 26;
             this.btnWebsite.Text = "Transit Website";
             this.btnWebsite.UseVisualStyleBackColor = true;
             this.btnWebsite.Click += new System.EventHandler(this.btnWebsite_Click);
@@ -483,28 +465,28 @@
             "Xcelsior",
             "Orange Sign",
             "White Sign"});
-            this.cmbBusType.Location = new System.Drawing.Point(15, 207);
+            this.cmbBusType.Location = new System.Drawing.Point(7, 207);
             this.cmbBusType.Name = "cmbBusType";
             this.cmbBusType.Size = new System.Drawing.Size(100, 21);
             this.cmbBusType.TabIndex = 6;
             // 
-            // label11
+            // lblBusType
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(121, 211);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 13);
-            this.label11.TabIndex = 77;
-            this.label11.Text = "Bus Type";
+            this.lblBusType.AutoSize = true;
+            this.lblBusType.Location = new System.Drawing.Point(107, 211);
+            this.lblBusType.Name = "lblBusType";
+            this.lblBusType.Size = new System.Drawing.Size(52, 13);
+            this.lblBusType.TabIndex = 77;
+            this.lblBusType.Text = "Bus Type";
             // 
-            // label12
+            // lblBusLen
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(121, 238);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(61, 13);
-            this.label12.TabIndex = 79;
-            this.label12.Text = "Bus Length";
+            this.lblBusLen.AutoSize = true;
+            this.lblBusLen.Location = new System.Drawing.Point(107, 238);
+            this.lblBusLen.Name = "lblBusLen";
+            this.lblBusLen.Size = new System.Drawing.Size(61, 13);
+            this.lblBusLen.TabIndex = 79;
+            this.lblBusLen.Text = "Bus Length";
             // 
             // cmbBusLength
             // 
@@ -515,98 +497,98 @@
             "30 Feet",
             "40 Feet",
             "60 Feet"});
-            this.cmbBusLength.Location = new System.Drawing.Point(15, 234);
+            this.cmbBusLength.Location = new System.Drawing.Point(7, 234);
             this.cmbBusLength.Name = "cmbBusLength";
             this.cmbBusLength.Size = new System.Drawing.Size(100, 21);
             this.cmbBusLength.TabIndex = 7;
             // 
-            // label13
+            // lblBus
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(10, 153);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(59, 25);
-            this.label13.TabIndex = 80;
-            this.label13.Text = "Bus:";
+            this.lblBus.AutoSize = true;
+            this.lblBus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBus.Location = new System.Drawing.Point(2, 153);
+            this.lblBus.Name = "lblBus";
+            this.lblBus.Size = new System.Drawing.Size(59, 25);
+            this.lblBus.TabIndex = 80;
+            this.lblBus.Text = "Bus:";
             // 
             // btnRoute
             // 
-            this.btnRoute.Location = new System.Drawing.Point(14, 493);
+            this.btnRoute.Location = new System.Drawing.Point(6, 459);
             this.btnRoute.Name = "btnRoute";
             this.btnRoute.Size = new System.Drawing.Size(105, 23);
-            this.btnRoute.TabIndex = 81;
+            this.btnRoute.TabIndex = 22;
             this.btnRoute.Text = "Route Destinations";
             this.btnRoute.UseVisualStyleBackColor = true;
             this.btnRoute.Click += new System.EventHandler(this.btnRoute_Click);
             // 
             // txtRoute
             // 
-            this.txtRoute.Location = new System.Drawing.Point(121, 495);
+            this.txtRoute.Location = new System.Drawing.Point(113, 461);
             this.txtRoute.MaxLength = 4;
             this.txtRoute.Name = "txtRoute";
             this.txtRoute.Size = new System.Drawing.Size(33, 20);
-            this.txtRoute.TabIndex = 82;
+            this.txtRoute.TabIndex = 21;
             this.txtRoute.Text = "10";
             this.txtRoute.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label14
+            // lblRtDest
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(156, 498);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(36, 13);
-            this.label14.TabIndex = 83;
-            this.label14.Text = "Route";
+            this.lblRtDest.AutoSize = true;
+            this.lblRtDest.Location = new System.Drawing.Point(146, 464);
+            this.lblRtDest.Name = "lblRtDest";
+            this.lblRtDest.Size = new System.Drawing.Size(36, 13);
+            this.lblRtDest.TabIndex = 83;
+            this.lblRtDest.Text = "Route";
             // 
             // txtBusLk
             // 
-            this.txtBusLk.Location = new System.Drawing.Point(121, 468);
+            this.txtBusLk.Location = new System.Drawing.Point(113, 434);
             this.txtBusLk.Name = "txtBusLk";
             this.txtBusLk.Size = new System.Drawing.Size(33, 20);
-            this.txtBusLk.TabIndex = 84;
+            this.txtBusLk.TabIndex = 19;
             this.txtBusLk.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnBus
             // 
-            this.btnBus.Location = new System.Drawing.Point(14, 466);
+            this.btnBus.Location = new System.Drawing.Point(6, 432);
             this.btnBus.Name = "btnBus";
             this.btnBus.Size = new System.Drawing.Size(105, 23);
-            this.btnBus.TabIndex = 85;
+            this.btnBus.TabIndex = 20;
             this.btnBus.Text = "Bus On The Go";
             this.btnBus.UseVisualStyleBackColor = true;
             this.btnBus.Click += new System.EventHandler(this.btnBus_Click);
             // 
-            // label15
+            // lblOTGBus
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(156, 471);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(25, 13);
-            this.label15.TabIndex = 86;
-            this.label15.Text = "Bus";
+            this.lblOTGBus.AutoSize = true;
+            this.lblOTGBus.Location = new System.Drawing.Point(146, 437);
+            this.lblOTGBus.Name = "lblOTGBus";
+            this.lblOTGBus.Size = new System.Drawing.Size(25, 13);
+            this.lblOTGBus.TabIndex = 86;
+            this.lblOTGBus.Text = "Bus";
             // 
-            // groupBox2
+            // grpCancelled
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox2.Controls.Add(this.rdoCancel);
-            this.groupBox2.Controls.Add(this.rdoEitherCancel);
-            this.groupBox2.Controls.Add(this.rdoNoCancel);
-            this.groupBox2.Location = new System.Drawing.Point(201, 267);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(106, 84);
-            this.groupBox2.TabIndex = 53;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Cancelled";
+            this.grpCancelled.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.grpCancelled.Controls.Add(this.rdoCancel);
+            this.grpCancelled.Controls.Add(this.rdoEitherCancel);
+            this.grpCancelled.Controls.Add(this.rdoNoCancel);
+            this.grpCancelled.Location = new System.Drawing.Point(221, 260);
+            this.grpCancelled.Name = "grpCancelled";
+            this.grpCancelled.Size = new System.Drawing.Size(71, 84);
+            this.grpCancelled.TabIndex = 53;
+            this.grpCancelled.TabStop = false;
+            this.grpCancelled.Text = "Cancelled";
             // 
             // rdoCancel
             // 
             this.rdoCancel.AutoSize = true;
             this.rdoCancel.Location = new System.Drawing.Point(6, 15);
             this.rdoCancel.Name = "rdoCancel";
-            this.rdoCancel.Size = new System.Drawing.Size(72, 17);
-            this.rdoCancel.TabIndex = 50;
-            this.rdoCancel.Text = "Cancelled";
+            this.rdoCancel.Size = new System.Drawing.Size(43, 17);
+            this.rdoCancel.TabIndex = 11;
+            this.rdoCancel.Text = "Yes";
             this.rdoCancel.UseVisualStyleBackColor = true;
             // 
             // rdoEitherCancel
@@ -616,7 +598,7 @@
             this.rdoEitherCancel.Location = new System.Drawing.Point(6, 61);
             this.rdoEitherCancel.Name = "rdoEitherCancel";
             this.rdoEitherCancel.Size = new System.Drawing.Size(52, 17);
-            this.rdoEitherCancel.TabIndex = 52;
+            this.rdoEitherCancel.TabIndex = 13;
             this.rdoEitherCancel.TabStop = true;
             this.rdoEitherCancel.Text = "Either";
             this.rdoEitherCancel.UseVisualStyleBackColor = true;
@@ -626,27 +608,29 @@
             this.rdoNoCancel.AutoSize = true;
             this.rdoNoCancel.Location = new System.Drawing.Point(6, 38);
             this.rdoNoCancel.Name = "rdoNoCancel";
-            this.rdoNoCancel.Size = new System.Drawing.Size(92, 17);
-            this.rdoNoCancel.TabIndex = 51;
-            this.rdoNoCancel.Text = "Not Cancelled";
+            this.rdoNoCancel.Size = new System.Drawing.Size(39, 17);
+            this.rdoNoCancel.TabIndex = 12;
+            this.rdoNoCancel.Text = "No";
             this.rdoNoCancel.UseVisualStyleBackColor = true;
             // 
             // chkShowMins
             // 
             this.chkShowMins.AutoSize = true;
-            this.chkShowMins.Location = new System.Drawing.Point(16, 311);
+            this.chkShowMins.Checked = true;
+            this.chkShowMins.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowMins.Location = new System.Drawing.Point(8, 311);
             this.chkShowMins.Name = "chkShowMins";
-            this.chkShowMins.Size = new System.Drawing.Size(122, 17);
-            this.chkShowMins.TabIndex = 87;
-            this.chkShowMins.Text = "Show Mins to Arrival";
+            this.chkShowMins.Size = new System.Drawing.Size(176, 17);
+            this.chkShowMins.TabIndex = 15;
+            this.chkShowMins.Text = "Relative Time Within          Mins";
             this.chkShowMins.UseVisualStyleBackColor = true;
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(260, 547);
+            this.btnAbout.Location = new System.Drawing.Point(252, 513);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(43, 23);
-            this.btnAbout.TabIndex = 88;
+            this.btnAbout.TabIndex = 29;
             this.btnAbout.Text = "About";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
@@ -658,78 +642,208 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(213, 547);
+            this.btnReset.Location = new System.Drawing.Point(205, 513);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(45, 23);
-            this.btnReset.TabIndex = 89;
+            this.btnReset.TabIndex = 27;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // rtxtList
+            // 
+            this.rtxtList.BackColor = System.Drawing.SystemColors.Window;
+            this.rtxtList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxtList.Location = new System.Drawing.Point(298, 3);
+            this.rtxtList.Name = "rtxtList";
+            this.rtxtList.ReadOnly = true;
+            this.rtxtList.Size = new System.Drawing.Size(645, 406);
+            this.rtxtList.TabIndex = 90;
+            this.rtxtList.Text = "";
+            this.rtxtList.WordWrap = false;
+            // 
+            // btnFullScreen
+            // 
+            this.btnFullScreen.Location = new System.Drawing.Point(85, 386);
+            this.btnFullScreen.Name = "btnFullScreen";
+            this.btnFullScreen.Size = new System.Drawing.Size(61, 23);
+            this.btnFullScreen.TabIndex = 28;
+            this.btnFullScreen.Text = "Go (FS)";
+            this.btnFullScreen.UseVisualStyleBackColor = true;
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
+            // 
+            // lblTime
+            // 
+            this.lblTime.BackColor = System.Drawing.Color.RoyalBlue;
+            this.lblTime.Font = new System.Drawing.Font("Calibri", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.ForeColor = System.Drawing.Color.White;
+            this.lblTime.Location = new System.Drawing.Point(754, 2);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(200, 68);
+            this.lblTime.TabIndex = 91;
+            this.lblTime.Text = "11:00";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblTime.UseMnemonic = false;
+            this.lblTime.Visible = false;
+            // 
+            // timUpdateTime
+            // 
+            this.timUpdateTime.Interval = 1000;
+            this.timUpdateTime.Tick += new System.EventHandler(this.timUpdateTime_Tick);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(109, 26);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(51, 23);
+            this.btnSearch.TabIndex = 92;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // timSetStop
+            // 
+            this.timSetStop.Enabled = true;
+            this.timSetStop.Interval = 125;
+            this.timSetStop.Tick += new System.EventHandler(this.timSetStop_Tick);
+            // 
+            // btnExitFullScr
+            // 
+            this.btnExitFullScr.BackColor = System.Drawing.Color.Red;
+            this.btnExitFullScr.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExitFullScr.ForeColor = System.Drawing.Color.White;
+            this.btnExitFullScr.Location = new System.Drawing.Point(906, 2);
+            this.btnExitFullScr.Name = "btnExitFullScr";
+            this.btnExitFullScr.Size = new System.Drawing.Size(48, 81);
+            this.btnExitFullScr.TabIndex = 93;
+            this.btnExitFullScr.Text = "X";
+            this.btnExitFullScr.UseVisualStyleBackColor = false;
+            this.btnExitFullScr.Visible = false;
+            this.btnExitFullScr.Click += new System.EventHandler(this.btnExitFullScr_Click);
+            // 
+            // txtETAMax
+            // 
+            this.txtETAMax.Location = new System.Drawing.Point(127, 309);
+            this.txtETAMax.MaxLength = 3;
+            this.txtETAMax.Name = "txtETAMax";
+            this.txtETAMax.Size = new System.Drawing.Size(25, 20);
+            this.txtETAMax.TabIndex = 94;
+            this.txtETAMax.Text = "60";
+            // 
+            // txtDate
+            // 
+            this.txtDate.Location = new System.Drawing.Point(113, 79);
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(100, 20);
+            this.txtDate.TabIndex = 96;
+            this.txtDate.Visible = false;
+            // 
+            // btnModeChange
+            // 
+            this.btnModeChange.Location = new System.Drawing.Point(205, 487);
+            this.btnModeChange.Name = "btnModeChange";
+            this.btnModeChange.Size = new System.Drawing.Size(90, 23);
+            this.btnModeChange.TabIndex = 98;
+            this.btnModeChange.Text = "Dark Mode";
+            this.btnModeChange.UseVisualStyleBackColor = true;
+            this.btnModeChange.Click += new System.EventHandler(this.btnModeChange_Click);
+            // 
+            // lblRtList
+            // 
+            this.lblRtList.AutoSize = true;
+            this.lblRtList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRtList.Location = new System.Drawing.Point(293, 410);
+            this.lblRtList.Name = "lblRtList";
+            this.lblRtList.Size = new System.Drawing.Size(86, 25);
+            this.lblRtList.TabIndex = 100;
+            this.lblRtList.Text = "Routes";
+            // 
+            // rtxtRtList
+            // 
+            this.rtxtRtList.BackColor = System.Drawing.SystemColors.Window;
+            this.rtxtRtList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.rtxtRtList.Location = new System.Drawing.Point(298, 437);
+            this.rtxtRtList.Name = "rtxtRtList";
+            this.rtxtRtList.ReadOnly = true;
+            this.rtxtRtList.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.rtxtRtList.Size = new System.Drawing.Size(413, 101);
+            this.rtxtRtList.TabIndex = 101;
+            this.rtxtRtList.Text = "";
+            this.rtxtRtList.WordWrap = false;
             // 
             // fmMain
             // 
             this.AcceptButton = this.btnGo;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 598);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(952, 542);
+            this.Controls.Add(this.rtxtRtList);
+            this.Controls.Add(this.lblRtList);
+            this.Controls.Add(this.btnExitFullScr);
+            this.Controls.Add(this.lblTime);
+            this.Controls.Add(this.lblStopName);
+            this.Controls.Add(this.txtDate);
+            this.Controls.Add(this.rtxtList);
+            this.Controls.Add(this.btnFullScreen);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.chkShowMins);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label15);
+            this.Controls.Add(this.grpCancelled);
+            this.Controls.Add(this.lblOTGBus);
             this.Controls.Add(this.btnBus);
             this.Controls.Add(this.txtBusLk);
-            this.Controls.Add(this.label14);
+            this.Controls.Add(this.lblRtDest);
             this.Controls.Add(this.txtRoute);
             this.Controls.Add(this.btnRoute);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.lblBus);
+            this.Controls.Add(this.lblBusLen);
             this.Controls.Add(this.cmbBusLength);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblBusType);
             this.Controls.Add(this.cmbBusType);
             this.Controls.Add(this.btnWebsite);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lblKm);
             this.Controls.Add(this.txtMaxDist);
             this.Controls.Add(this.btnNearby);
             this.Controls.Add(this.btnOpenAdv);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblStopFeat);
             this.Controls.Add(this.lbFeatures);
             this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblBusTo);
             this.Controls.Add(this.txtBus2);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblBusRange);
             this.Controls.Add(this.txtBus);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblDestCont);
+            this.Controls.Add(this.lblOther);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.lblStopName);
             this.Controls.Add(this.lblOnOff);
-            this.Controls.Add(this.lbList);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblRefresh);
             this.Controls.Add(this.txtInterval);
             this.Controls.Add(this.chkAuto);
             this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblRoutes);
             this.Controls.Add(this.txtRte);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblStart);
             this.Controls.Add(this.txtStart);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblStopNum);
             this.Controls.Add(this.txtStopNum);
             this.Controls.Add(this.btnGo);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.chkDate);
-            this.Controls.Add(this.calCalendar);
+            this.Controls.Add(this.grpBikeRack);
             this.Controls.Add(this.chkRev);
             this.Controls.Add(this.lblMessage);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtETAMax);
+            this.Controls.Add(this.chkShowMins);
+            this.Controls.Add(this.btnModeChange);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmMain";
-            this.Text = "Stop Schedule";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "WTLive";
+            this.Load += new System.EventHandler(this.fmMain_Load);
+            this.grpBikeRack.ResumeLayout(false);
+            this.grpBikeRack.PerformLayout();
+            this.grpCancelled.ResumeLayout(false);
+            this.grpCancelled.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -739,55 +853,52 @@
 
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.TextBox txtStopNum;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblStopNum;
+        private System.Windows.Forms.Label lblStart;
         private System.Windows.Forms.TextBox txtStart;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblRoutes;
         private System.Windows.Forms.TextBox txtRte;
         private System.Windows.Forms.Timer timAutoGet;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.CheckBox chkAuto;
         private System.Windows.Forms.TextBox txtInterval;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblRefresh;
         private System.Windows.Forms.Label lblOnOff;
         private System.Windows.Forms.Label lblStopName;
-        private System.Windows.Forms.MonthCalendar calCalendar;
-        private System.Windows.Forms.CheckBox chkDate;
         private System.Windows.Forms.CheckBox chkRev;
-        private System.Windows.Forms.ListBox lbList;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblOther;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblDestCont;
         private System.Windows.Forms.TextBox txtBus;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblBusRange;
         private System.Windows.Forms.RadioButton rdoBike;
         private System.Windows.Forms.RadioButton rdoNoBike;
         private System.Windows.Forms.RadioButton rdoBikeorNoBike;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpBikeRack;
         private System.Windows.Forms.TextBox txtBus2;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblBusTo;
         private System.Windows.Forms.Timer timCheckStat;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ListBox lbFeatures;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblStopFeat;
         private System.Windows.Forms.Button btnOpenAdv;
         private System.Windows.Forms.Button btnNearby;
         private System.Windows.Forms.TextBox txtMaxDist;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblKm;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Button btnWebsite;
         private System.Windows.Forms.ComboBox cmbBusType;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblBusType;
+        private System.Windows.Forms.Label lblBusLen;
         private System.Windows.Forms.ComboBox cmbBusLength;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblBus;
         private System.Windows.Forms.Button btnRoute;
         private System.Windows.Forms.TextBox txtRoute;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblRtDest;
         private System.Windows.Forms.TextBox txtBusLk;
         private System.Windows.Forms.Button btnBus;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblOTGBus;
+        private System.Windows.Forms.GroupBox grpCancelled;
         private System.Windows.Forms.RadioButton rdoCancel;
         private System.Windows.Forms.RadioButton rdoEitherCancel;
         private System.Windows.Forms.RadioButton rdoNoCancel;
@@ -795,6 +906,18 @@
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.Timer timGoBtn;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.RichTextBox rtxtList;
+        private System.Windows.Forms.Button btnFullScreen;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Timer timUpdateTime;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Timer timSetStop;
+        private System.Windows.Forms.Button btnExitFullScr;
+        private System.Windows.Forms.TextBox txtETAMax;
+        private System.Windows.Forms.TextBox txtDate;
+        private System.Windows.Forms.Button btnModeChange;
+        private System.Windows.Forms.Label lblRtList;
+        private System.Windows.Forms.RichTextBox rtxtRtList;
     }
 }
 
