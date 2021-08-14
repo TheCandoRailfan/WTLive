@@ -16,9 +16,10 @@ The list of departures shows several pieces of information about each departure.
  - ETA: This is the estimated time that the bus will arrive at. It can be shown as either "hh:mm" or "n Min(s)". If a bus is late or early, the ETA will take that into account.
  - Bus Number: This is the number of the bus. If it shows "Bus -----" insead of "Bus ###", then the bus number is unknown.
  - Bike Rack: This indicates if the bus has a bike rack. Similar to above, if it shows "---" instead of a bike-related symbol, then it is unknown.
- - Route Number: This is the route number (or word if it is Route BLUE) the bus is operating on.
+ - Route ID: This is the route the bus is operating on.
  - Destination: This the final destination the bus is operating to.
- - Late/Early: If a bus is running late or early, it will be shown on the right. For example, if a bus is 3 minutes late, it will show "(+3)" on the right, in red. 3 Minutes early would be "(-3)", in blue. 
+ - Late/Early: If a bus is running late or early, it will be shown on the right. For example, if a bus is 3 minutes late, it will show "(+3)" on the right, in red. 3 Minutes early would be "(-3)", in blue.
+ - Run Number: This is the run/block that the bus is running on. It is usually shown on a blue card, in the bottom right of the windshield. An example of a run number is "16-3".
 
 3. Extra Options:
 As you probably noticed, the Stop Number is not the only option that you can set. There are other optional settings you can set below it. They are as follows:
@@ -32,6 +33,7 @@ As you probably noticed, the Stop Number is not the only option that you can set
  - Relative Time: If checked, it will change how the ETA is shown. For example, if it is 9:24 and a bus is coming at 9:27, it'll show "3 Mins" instead of "09:27". It will only do this for future departures less than the number of minutes specified.
  - Auto Refresh: If checked, then periodically it will automatically get updated departure info. The refresh interval can be changed with the textbox below. The refresh interval must be 5 seconds or higher. You can the Auto Refresh feature by either clicking the "Stop Refresh" button, or unchecking "Auto Refresh", and clicking the "Go" button.
  - Full Screen: If you click the "Go (FS)" button, then the departure list will be shown in full screen. You can exit full screen by clicking the button in the top right.
+ - Bus List: This will open a new window, showing a list of the buses for the current stop, and for all stops you've looked at.
  - Reset: This will reset the program to how it was when it was opened.
  - Dark/Light Mode: This allows you to switch between Light and Dark mode.
 
