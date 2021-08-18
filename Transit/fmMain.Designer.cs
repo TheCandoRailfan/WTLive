@@ -50,10 +50,6 @@
             this.lblDestCont = new System.Windows.Forms.Label();
             this.txtBus = new System.Windows.Forms.TextBox();
             this.lblBusRange = new System.Windows.Forms.Label();
-            this.rdoBike = new System.Windows.Forms.RadioButton();
-            this.rdoNoBike = new System.Windows.Forms.RadioButton();
-            this.rdoBikeorNoBike = new System.Windows.Forms.RadioButton();
-            this.grpBikeRack = new System.Windows.Forms.GroupBox();
             this.txtBus2 = new System.Windows.Forms.TextBox();
             this.lblBusTo = new System.Windows.Forms.Label();
             this.timCheckStat = new System.Windows.Forms.Timer(this.components);
@@ -103,13 +99,16 @@
             this.lblStopNum = new System.Windows.Forms.Label();
             this.lblColour = new System.Windows.Forms.Label();
             this.cmbColour = new System.Windows.Forms.ComboBox();
-            this.grpBikeRack.SuspendLayout();
+            this.cmbBikeRack = new System.Windows.Forms.ComboBox();
+            this.lblBike = new System.Windows.Forms.Label();
+            this.btnGetAll = new System.Windows.Forms.Button();
+            this.timAllBuses = new System.Windows.Forms.Timer(this.components);
             this.grpCancelled.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGo
             // 
-            this.btnGo.Location = new System.Drawing.Point(43, 374);
+            this.btnGo.Location = new System.Drawing.Point(43, 326);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(29, 23);
             this.btnGo.TabIndex = 18;
@@ -178,7 +177,7 @@
             // btnStop
             // 
             this.btnStop.Enabled = false;
-            this.btnStop.Location = new System.Drawing.Point(125, 374);
+            this.btnStop.Location = new System.Drawing.Point(125, 326);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(77, 23);
             this.btnStop.TabIndex = 18;
@@ -189,7 +188,7 @@
             // chkAuto
             // 
             this.chkAuto.AutoSize = true;
-            this.chkAuto.Location = new System.Drawing.Point(4, 318);
+            this.chkAuto.Location = new System.Drawing.Point(4, 270);
             this.chkAuto.Name = "chkAuto";
             this.chkAuto.Size = new System.Drawing.Size(88, 17);
             this.chkAuto.TabIndex = 16;
@@ -198,7 +197,7 @@
             // 
             // txtInterval
             // 
-            this.txtInterval.Location = new System.Drawing.Point(4, 338);
+            this.txtInterval.Location = new System.Drawing.Point(4, 290);
             this.txtInterval.MaxLength = 3;
             this.txtInterval.Name = "txtInterval";
             this.txtInterval.Size = new System.Drawing.Size(34, 20);
@@ -208,7 +207,7 @@
             // lblRefresh
             // 
             this.lblRefresh.AutoSize = true;
-            this.lblRefresh.Location = new System.Drawing.Point(40, 341);
+            this.lblRefresh.Location = new System.Drawing.Point(40, 293);
             this.lblRefresh.Name = "lblRefresh";
             this.lblRefresh.Size = new System.Drawing.Size(152, 13);
             this.lblRefresh.TabIndex = 48;
@@ -217,7 +216,7 @@
             // lblOnOff
             // 
             this.lblOnOff.AutoSize = true;
-            this.lblOnOff.Location = new System.Drawing.Point(40, 358);
+            this.lblOnOff.Location = new System.Drawing.Point(40, 310);
             this.lblOnOff.Name = "lblOnOff";
             this.lblOnOff.Size = new System.Drawing.Size(88, 13);
             this.lblOnOff.TabIndex = 50;
@@ -239,7 +238,7 @@
             // chkRev
             // 
             this.chkRev.AutoSize = true;
-            this.chkRev.Location = new System.Drawing.Point(93, 318);
+            this.chkRev.Location = new System.Drawing.Point(93, 270);
             this.chkRev.Name = "chkRev";
             this.chkRev.Size = new System.Drawing.Size(95, 17);
             this.chkRev.TabIndex = 80;
@@ -251,7 +250,7 @@
             // 
             this.lblOther.AutoSize = true;
             this.lblOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOther.Location = new System.Drawing.Point(0, 256);
+            this.lblOther.Location = new System.Drawing.Point(0, 208);
             this.lblOther.Name = "lblOther";
             this.lblOther.Size = new System.Drawing.Size(59, 20);
             this.lblOther.TabIndex = 56;
@@ -259,7 +258,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(4, 276);
+            this.txtSearch.Location = new System.Drawing.Point(4, 228);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(100, 20);
             this.txtSearch.TabIndex = 14;
@@ -267,7 +266,7 @@
             // lblDestCont
             // 
             this.lblDestCont.AutoSize = true;
-            this.lblDestCont.Location = new System.Drawing.Point(104, 279);
+            this.lblDestCont.Location = new System.Drawing.Point(104, 231);
             this.lblDestCont.Name = "lblDestCont";
             this.lblDestCont.Size = new System.Drawing.Size(73, 13);
             this.lblDestCont.TabIndex = 57;
@@ -275,7 +274,7 @@
             // 
             // txtBus
             // 
-            this.txtBus.Location = new System.Drawing.Point(4, 126);
+            this.txtBus.Location = new System.Drawing.Point(4, 127);
             this.txtBus.MaxLength = 3;
             this.txtBus.Name = "txtBus";
             this.txtBus.Size = new System.Drawing.Size(36, 20);
@@ -284,60 +283,15 @@
             // lblBusRange
             // 
             this.lblBusRange.AutoSize = true;
-            this.lblBusRange.Location = new System.Drawing.Point(104, 129);
+            this.lblBusRange.Location = new System.Drawing.Point(104, 130);
             this.lblBusRange.Name = "lblBusRange";
-            this.lblBusRange.Size = new System.Drawing.Size(60, 13);
+            this.lblBusRange.Size = new System.Drawing.Size(44, 13);
             this.lblBusRange.TabIndex = 59;
-            this.lblBusRange.Text = "Bus Range";
-            // 
-            // rdoBike
-            // 
-            this.rdoBike.AutoSize = true;
-            this.rdoBike.Location = new System.Drawing.Point(6, 15);
-            this.rdoBike.Name = "rdoBike";
-            this.rdoBike.Size = new System.Drawing.Size(43, 17);
-            this.rdoBike.TabIndex = 8;
-            this.rdoBike.Text = "Yes";
-            this.rdoBike.UseVisualStyleBackColor = true;
-            // 
-            // rdoNoBike
-            // 
-            this.rdoNoBike.AutoSize = true;
-            this.rdoNoBike.Location = new System.Drawing.Point(6, 32);
-            this.rdoNoBike.Name = "rdoNoBike";
-            this.rdoNoBike.Size = new System.Drawing.Size(39, 17);
-            this.rdoNoBike.TabIndex = 9;
-            this.rdoNoBike.Text = "No";
-            this.rdoNoBike.UseVisualStyleBackColor = true;
-            // 
-            // rdoBikeorNoBike
-            // 
-            this.rdoBikeorNoBike.AutoSize = true;
-            this.rdoBikeorNoBike.Checked = true;
-            this.rdoBikeorNoBike.Location = new System.Drawing.Point(6, 49);
-            this.rdoBikeorNoBike.Name = "rdoBikeorNoBike";
-            this.rdoBikeorNoBike.Size = new System.Drawing.Size(52, 17);
-            this.rdoBikeorNoBike.TabIndex = 10;
-            this.rdoBikeorNoBike.TabStop = true;
-            this.rdoBikeorNoBike.Text = "Either";
-            this.rdoBikeorNoBike.UseVisualStyleBackColor = true;
-            // 
-            // grpBikeRack
-            // 
-            this.grpBikeRack.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.grpBikeRack.Controls.Add(this.rdoBike);
-            this.grpBikeRack.Controls.Add(this.rdoBikeorNoBike);
-            this.grpBikeRack.Controls.Add(this.rdoNoBike);
-            this.grpBikeRack.Location = new System.Drawing.Point(216, 126);
-            this.grpBikeRack.Name = "grpBikeRack";
-            this.grpBikeRack.Size = new System.Drawing.Size(71, 70);
-            this.grpBikeRack.TabIndex = 8;
-            this.grpBikeRack.TabStop = false;
-            this.grpBikeRack.Text = "Bike Rack";
+            this.lblBusRange.Text = "Number";
             // 
             // txtBus2
             // 
-            this.txtBus2.Location = new System.Drawing.Point(68, 126);
+            this.txtBus2.Location = new System.Drawing.Point(68, 127);
             this.txtBus2.MaxLength = 3;
             this.txtBus2.Name = "txtBus2";
             this.txtBus2.Size = new System.Drawing.Size(36, 20);
@@ -346,7 +300,7 @@
             // lblBusTo
             // 
             this.lblBusTo.AutoSize = true;
-            this.lblBusTo.Location = new System.Drawing.Point(46, 129);
+            this.lblBusTo.Location = new System.Drawing.Point(46, 130);
             this.lblBusTo.Name = "lblBusTo";
             this.lblBusTo.Size = new System.Drawing.Size(16, 13);
             this.lblBusTo.TabIndex = 65;
@@ -363,7 +317,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.Red;
-            this.lblStatus.Location = new System.Drawing.Point(453, 412);
+            this.lblStatus.Location = new System.Drawing.Point(453, 341);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(122, 20);
             this.lblStatus.TabIndex = 66;
@@ -376,7 +330,7 @@
             this.lbFeatures.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lbFeatures.FormattingEnabled = true;
             this.lbFeatures.ItemHeight = 24;
-            this.lbFeatures.Location = new System.Drawing.Point(707, 437);
+            this.lbFeatures.Location = new System.Drawing.Point(707, 366);
             this.lbFeatures.Name = "lbFeatures";
             this.lbFeatures.Size = new System.Drawing.Size(230, 100);
             this.lbFeatures.TabIndex = 67;
@@ -385,7 +339,7 @@
             // 
             this.lblStopFeat.AutoSize = true;
             this.lblStopFeat.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStopFeat.Location = new System.Drawing.Point(702, 410);
+            this.lblStopFeat.Location = new System.Drawing.Point(702, 339);
             this.lblStopFeat.Name = "lblStopFeat";
             this.lblStopFeat.Size = new System.Drawing.Size(160, 25);
             this.lblStopFeat.TabIndex = 68;
@@ -393,7 +347,7 @@
             // 
             // btnOpenAdv
             // 
-            this.btnOpenAdv.Location = new System.Drawing.Point(4, 514);
+            this.btnOpenAdv.Location = new System.Drawing.Point(4, 444);
             this.btnOpenAdv.Name = "btnOpenAdv";
             this.btnOpenAdv.Size = new System.Drawing.Size(105, 23);
             this.btnOpenAdv.TabIndex = 25;
@@ -404,7 +358,7 @@
             // btnNearby
             // 
             this.btnNearby.Enabled = false;
-            this.btnNearby.Location = new System.Drawing.Point(4, 490);
+            this.btnNearby.Location = new System.Drawing.Point(4, 420);
             this.btnNearby.Name = "btnNearby";
             this.btnNearby.Size = new System.Drawing.Size(105, 23);
             this.btnNearby.TabIndex = 24;
@@ -414,7 +368,7 @@
             // 
             // txtMaxDist
             // 
-            this.txtMaxDist.Location = new System.Drawing.Point(111, 491);
+            this.txtMaxDist.Location = new System.Drawing.Point(111, 421);
             this.txtMaxDist.MaxLength = 3;
             this.txtMaxDist.Name = "txtMaxDist";
             this.txtMaxDist.Size = new System.Drawing.Size(33, 20);
@@ -425,7 +379,7 @@
             // lblKm
             // 
             this.lblKm.AutoSize = true;
-            this.lblKm.Location = new System.Drawing.Point(146, 495);
+            this.lblKm.Location = new System.Drawing.Point(146, 425);
             this.lblKm.Name = "lblKm";
             this.lblKm.Size = new System.Drawing.Size(21, 13);
             this.lblKm.TabIndex = 72;
@@ -435,7 +389,7 @@
             // 
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(4, 539);
+            this.lblMessage.Location = new System.Drawing.Point(4, 466);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(935, 20);
             this.lblMessage.TabIndex = 73;
@@ -445,7 +399,7 @@
             // btnWebsite
             // 
             this.btnWebsite.Enabled = false;
-            this.btnWebsite.Location = new System.Drawing.Point(110, 514);
+            this.btnWebsite.Location = new System.Drawing.Point(110, 444);
             this.btnWebsite.Name = "btnWebsite";
             this.btnWebsite.Size = new System.Drawing.Size(89, 23);
             this.btnWebsite.TabIndex = 26;
@@ -470,7 +424,7 @@
             "-LF",
             "-LFR",
             "Xcelsior"});
-            this.cmbBusType.Location = new System.Drawing.Point(4, 149);
+            this.cmbBusType.Location = new System.Drawing.Point(4, 150);
             this.cmbBusType.Name = "cmbBusType";
             this.cmbBusType.Size = new System.Drawing.Size(100, 21);
             this.cmbBusType.TabIndex = 6;
@@ -478,20 +432,20 @@
             // lblBusType
             // 
             this.lblBusType.AutoSize = true;
-            this.lblBusType.Location = new System.Drawing.Point(104, 153);
+            this.lblBusType.Location = new System.Drawing.Point(104, 154);
             this.lblBusType.Name = "lblBusType";
-            this.lblBusType.Size = new System.Drawing.Size(52, 13);
+            this.lblBusType.Size = new System.Drawing.Size(36, 13);
             this.lblBusType.TabIndex = 77;
-            this.lblBusType.Text = "Bus Type";
+            this.lblBusType.Text = "Model";
             // 
             // lblBusLen
             // 
             this.lblBusLen.AutoSize = true;
-            this.lblBusLen.Location = new System.Drawing.Point(104, 177);
+            this.lblBusLen.Location = new System.Drawing.Point(104, 178);
             this.lblBusLen.Name = "lblBusLen";
-            this.lblBusLen.Size = new System.Drawing.Size(61, 13);
+            this.lblBusLen.Size = new System.Drawing.Size(40, 13);
             this.lblBusLen.TabIndex = 79;
-            this.lblBusLen.Text = "Bus Length";
+            this.lblBusLen.Text = "Length";
             // 
             // cmbBusLength
             // 
@@ -502,7 +456,7 @@
             "30 Feet",
             "40 Feet",
             "60 Feet"});
-            this.cmbBusLength.Location = new System.Drawing.Point(4, 173);
+            this.cmbBusLength.Location = new System.Drawing.Point(4, 174);
             this.cmbBusLength.Name = "cmbBusLength";
             this.cmbBusLength.Size = new System.Drawing.Size(100, 21);
             this.cmbBusLength.TabIndex = 7;
@@ -511,7 +465,7 @@
             // 
             this.lblBus.AutoSize = true;
             this.lblBus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBus.Location = new System.Drawing.Point(0, 103);
+            this.lblBus.Location = new System.Drawing.Point(0, 104);
             this.lblBus.Name = "lblBus";
             this.lblBus.Size = new System.Drawing.Size(45, 20);
             this.lblBus.TabIndex = 80;
@@ -519,7 +473,7 @@
             // 
             // btnRoute
             // 
-            this.btnRoute.Location = new System.Drawing.Point(4, 466);
+            this.btnRoute.Location = new System.Drawing.Point(4, 396);
             this.btnRoute.Name = "btnRoute";
             this.btnRoute.Size = new System.Drawing.Size(105, 23);
             this.btnRoute.TabIndex = 22;
@@ -529,7 +483,7 @@
             // 
             // txtRoute
             // 
-            this.txtRoute.Location = new System.Drawing.Point(111, 468);
+            this.txtRoute.Location = new System.Drawing.Point(111, 398);
             this.txtRoute.MaxLength = 4;
             this.txtRoute.Name = "txtRoute";
             this.txtRoute.Size = new System.Drawing.Size(33, 20);
@@ -540,7 +494,7 @@
             // lblRtDest
             // 
             this.lblRtDest.AutoSize = true;
-            this.lblRtDest.Location = new System.Drawing.Point(144, 471);
+            this.lblRtDest.Location = new System.Drawing.Point(144, 401);
             this.lblRtDest.Name = "lblRtDest";
             this.lblRtDest.Size = new System.Drawing.Size(36, 13);
             this.lblRtDest.TabIndex = 83;
@@ -548,7 +502,7 @@
             // 
             // txtBusLk
             // 
-            this.txtBusLk.Location = new System.Drawing.Point(111, 444);
+            this.txtBusLk.Location = new System.Drawing.Point(111, 374);
             this.txtBusLk.Name = "txtBusLk";
             this.txtBusLk.Size = new System.Drawing.Size(33, 20);
             this.txtBusLk.TabIndex = 19;
@@ -556,7 +510,7 @@
             // 
             // btnBus
             // 
-            this.btnBus.Location = new System.Drawing.Point(4, 442);
+            this.btnBus.Location = new System.Drawing.Point(4, 372);
             this.btnBus.Name = "btnBus";
             this.btnBus.Size = new System.Drawing.Size(105, 23);
             this.btnBus.TabIndex = 20;
@@ -567,7 +521,7 @@
             // lblOTGBus
             // 
             this.lblOTGBus.AutoSize = true;
-            this.lblOTGBus.Location = new System.Drawing.Point(144, 447);
+            this.lblOTGBus.Location = new System.Drawing.Point(144, 377);
             this.lblOTGBus.Name = "lblOTGBus";
             this.lblOTGBus.Size = new System.Drawing.Size(25, 13);
             this.lblOTGBus.TabIndex = 86;
@@ -579,7 +533,7 @@
             this.grpCancelled.Controls.Add(this.rdoCancel);
             this.grpCancelled.Controls.Add(this.rdoEitherCancel);
             this.grpCancelled.Controls.Add(this.rdoNoCancel);
-            this.grpCancelled.Location = new System.Drawing.Point(216, 276);
+            this.grpCancelled.Location = new System.Drawing.Point(215, 231);
             this.grpCancelled.Name = "grpCancelled";
             this.grpCancelled.Size = new System.Drawing.Size(71, 70);
             this.grpCancelled.TabIndex = 53;
@@ -623,16 +577,16 @@
             this.chkShowMins.AutoSize = true;
             this.chkShowMins.Checked = true;
             this.chkShowMins.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkShowMins.Location = new System.Drawing.Point(4, 299);
+            this.chkShowMins.Location = new System.Drawing.Point(4, 251);
             this.chkShowMins.Name = "chkShowMins";
-            this.chkShowMins.Size = new System.Drawing.Size(176, 17);
+            this.chkShowMins.Size = new System.Drawing.Size(170, 17);
             this.chkShowMins.TabIndex = 15;
-            this.chkShowMins.Text = "Relative Time Within          Mins";
+            this.chkShowMins.Text = "Relative Time Within        Mins";
             this.chkShowMins.UseVisualStyleBackColor = true;
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(245, 514);
+            this.btnAbout.Location = new System.Drawing.Point(245, 444);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(43, 23);
             this.btnAbout.TabIndex = 29;
@@ -647,7 +601,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(200, 514);
+            this.btnReset.Location = new System.Drawing.Point(200, 444);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(43, 23);
             this.btnReset.TabIndex = 27;
@@ -662,14 +616,14 @@
             this.rtxtList.Location = new System.Drawing.Point(292, 3);
             this.rtxtList.Name = "rtxtList";
             this.rtxtList.ReadOnly = true;
-            this.rtxtList.Size = new System.Drawing.Size(645, 406);
+            this.rtxtList.Size = new System.Drawing.Size(645, 335);
             this.rtxtList.TabIndex = 90;
             this.rtxtList.Text = "";
             this.rtxtList.WordWrap = false;
             // 
             // btnFullScreen
             // 
-            this.btnFullScreen.Location = new System.Drawing.Point(73, 374);
+            this.btnFullScreen.Location = new System.Drawing.Point(73, 326);
             this.btnFullScreen.Name = "btnFullScreen";
             this.btnFullScreen.Size = new System.Drawing.Size(51, 23);
             this.btnFullScreen.TabIndex = 28;
@@ -728,10 +682,10 @@
             // 
             // txtETAMax
             // 
-            this.txtETAMax.Location = new System.Drawing.Point(123, 297);
+            this.txtETAMax.Location = new System.Drawing.Point(122, 249);
             this.txtETAMax.MaxLength = 3;
             this.txtETAMax.Name = "txtETAMax";
-            this.txtETAMax.Size = new System.Drawing.Size(25, 20);
+            this.txtETAMax.Size = new System.Drawing.Size(22, 20);
             this.txtETAMax.TabIndex = 94;
             this.txtETAMax.Text = "60";
             // 
@@ -746,7 +700,7 @@
             // 
             // btnModeChange
             // 
-            this.btnModeChange.Location = new System.Drawing.Point(200, 491);
+            this.btnModeChange.Location = new System.Drawing.Point(200, 421);
             this.btnModeChange.Name = "btnModeChange";
             this.btnModeChange.Size = new System.Drawing.Size(88, 23);
             this.btnModeChange.TabIndex = 98;
@@ -758,7 +712,7 @@
             // 
             this.lblRtList.AutoSize = true;
             this.lblRtList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRtList.Location = new System.Drawing.Point(287, 410);
+            this.lblRtList.Location = new System.Drawing.Point(287, 339);
             this.lblRtList.Name = "lblRtList";
             this.lblRtList.Size = new System.Drawing.Size(86, 25);
             this.lblRtList.TabIndex = 100;
@@ -768,7 +722,7 @@
             // 
             this.rtxtRtList.BackColor = System.Drawing.SystemColors.Window;
             this.rtxtRtList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.rtxtRtList.Location = new System.Drawing.Point(292, 437);
+            this.rtxtRtList.Location = new System.Drawing.Point(292, 366);
             this.rtxtRtList.Name = "rtxtRtList";
             this.rtxtRtList.ReadOnly = true;
             this.rtxtRtList.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -779,7 +733,7 @@
             // 
             // btnOtherInfo
             // 
-            this.btnOtherInfo.Location = new System.Drawing.Point(203, 374);
+            this.btnOtherInfo.Location = new System.Drawing.Point(203, 326);
             this.btnOtherInfo.Name = "btnOtherInfo";
             this.btnOtherInfo.Size = new System.Drawing.Size(52, 23);
             this.btnOtherInfo.TabIndex = 102;
@@ -789,15 +743,15 @@
             // 
             // txtRun
             // 
-            this.txtRun.Location = new System.Drawing.Point(4, 221);
+            this.txtRun.Location = new System.Drawing.Point(157, 175);
             this.txtRun.Name = "txtRun";
-            this.txtRun.Size = new System.Drawing.Size(100, 20);
+            this.txtRun.Size = new System.Drawing.Size(76, 20);
             this.txtRun.TabIndex = 103;
             // 
             // lblRun
             // 
             this.lblRun.AutoSize = true;
-            this.lblRun.Location = new System.Drawing.Point(104, 225);
+            this.lblRun.Location = new System.Drawing.Point(233, 179);
             this.lblRun.Name = "lblRun";
             this.lblRun.Size = new System.Drawing.Size(27, 13);
             this.lblRun.TabIndex = 104;
@@ -815,7 +769,7 @@
             // lblColour
             // 
             this.lblColour.AutoSize = true;
-            this.lblColour.Location = new System.Drawing.Point(104, 200);
+            this.lblColour.Location = new System.Drawing.Point(233, 130);
             this.lblColour.Name = "lblColour";
             this.lblColour.Size = new System.Drawing.Size(61, 13);
             this.lblColour.TabIndex = 107;
@@ -829,10 +783,48 @@
             "Any",
             "Orange",
             "White"});
-            this.cmbColour.Location = new System.Drawing.Point(4, 197);
+            this.cmbColour.Location = new System.Drawing.Point(157, 127);
             this.cmbColour.Name = "cmbColour";
-            this.cmbColour.Size = new System.Drawing.Size(100, 21);
+            this.cmbColour.Size = new System.Drawing.Size(76, 21);
             this.cmbColour.TabIndex = 106;
+            // 
+            // cmbBikeRack
+            // 
+            this.cmbBikeRack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBikeRack.FormattingEnabled = true;
+            this.cmbBikeRack.Items.AddRange(new object[] {
+            "Either",
+            "Yes",
+            "No"});
+            this.cmbBikeRack.Location = new System.Drawing.Point(157, 151);
+            this.cmbBikeRack.Name = "cmbBikeRack";
+            this.cmbBikeRack.Size = new System.Drawing.Size(76, 21);
+            this.cmbBikeRack.TabIndex = 108;
+            // 
+            // lblBike
+            // 
+            this.lblBike.AutoSize = true;
+            this.lblBike.Location = new System.Drawing.Point(233, 156);
+            this.lblBike.Name = "lblBike";
+            this.lblBike.Size = new System.Drawing.Size(57, 13);
+            this.lblBike.TabIndex = 109;
+            this.lblBike.Text = "Bike Rack";
+            // 
+            // btnGetAll
+            // 
+            this.btnGetAll.Location = new System.Drawing.Point(200, 396);
+            this.btnGetAll.Name = "btnGetAll";
+            this.btnGetAll.Size = new System.Drawing.Size(88, 23);
+            this.btnGetAll.TabIndex = 110;
+            this.btnGetAll.Text = "Get All Buses";
+            this.btnGetAll.UseVisualStyleBackColor = true;
+            this.btnGetAll.Visible = false;
+            this.btnGetAll.Click += new System.EventHandler(this.btnGetAll_Click);
+            // 
+            // timAllBuses
+            // 
+            this.timAllBuses.Interval = 5000;
+            this.timAllBuses.Tick += new System.EventHandler(this.timAllBuses_Tick);
             // 
             // fmMain
             // 
@@ -840,7 +832,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(944, 542);
+            this.ClientSize = new System.Drawing.Size(944, 471);
             this.Controls.Add(this.btnExitFullScr);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.lblStopName);
@@ -888,29 +880,29 @@
             this.Controls.Add(this.lblStop);
             this.Controls.Add(this.txtStopNum);
             this.Controls.Add(this.btnGo);
-            this.Controls.Add(this.grpBikeRack);
             this.Controls.Add(this.chkRev);
-            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtETAMax);
             this.Controls.Add(this.chkShowMins);
             this.Controls.Add(this.btnModeChange);
             this.Controls.Add(this.rtxtRtList);
             this.Controls.Add(this.lblRtList);
-            this.Controls.Add(this.txtRun);
             this.Controls.Add(this.btnOtherInfo);
-            this.Controls.Add(this.lblRun);
             this.Controls.Add(this.lblStopNum);
+            this.Controls.Add(this.lblBike);
+            this.Controls.Add(this.cmbBikeRack);
+            this.Controls.Add(this.txtRun);
+            this.Controls.Add(this.lblRun);
             this.Controls.Add(this.lblColour);
             this.Controls.Add(this.cmbColour);
+            this.Controls.Add(this.lblMessage);
+            this.Controls.Add(this.btnGetAll);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WTLive";
             this.Load += new System.EventHandler(this.fmMain_Load);
-            this.grpBikeRack.ResumeLayout(false);
-            this.grpBikeRack.PerformLayout();
             this.grpCancelled.ResumeLayout(false);
             this.grpCancelled.PerformLayout();
             this.ResumeLayout(false);
@@ -940,10 +932,6 @@
         private System.Windows.Forms.Label lblDestCont;
         private System.Windows.Forms.TextBox txtBus;
         private System.Windows.Forms.Label lblBusRange;
-        private System.Windows.Forms.RadioButton rdoBike;
-        private System.Windows.Forms.RadioButton rdoNoBike;
-        private System.Windows.Forms.RadioButton rdoBikeorNoBike;
-        private System.Windows.Forms.GroupBox grpBikeRack;
         private System.Windows.Forms.TextBox txtBus2;
         private System.Windows.Forms.Label lblBusTo;
         private System.Windows.Forms.Timer timCheckStat;
@@ -993,6 +981,10 @@
         private System.Windows.Forms.Label lblStopNum;
         private System.Windows.Forms.Label lblColour;
         private System.Windows.Forms.ComboBox cmbColour;
+        private System.Windows.Forms.ComboBox cmbBikeRack;
+        private System.Windows.Forms.Label lblBike;
+        private System.Windows.Forms.Button btnGetAll;
+        private System.Windows.Forms.Timer timAllBuses;
     }
 }
 

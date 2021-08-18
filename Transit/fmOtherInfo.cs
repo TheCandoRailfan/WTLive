@@ -41,11 +41,14 @@ namespace Transit
 
                     BusList[Count] = "Bus " + i + ", ";
                     if (fmMain.BusListBkRack[i] == true) { BusList[Count] += "🚲"; } else { BusList[Count] += "🚳"; }
-                    if (fmMain.BusListRunNum[i] != "") { BusList[Count] += ", " + fmMain.BusListRunNum[i]; }
+                    for (int i2 = 1; i2 <= 4; i2++)
+                    {
+                        if (fmMain.BusListRunNum[i, i2] != "" && fmMain.BusListRunNum[i, i2] != null) { BusList[Count] += ", " + fmMain.BusListRunNum[i, i2]; }
+                    }
                     BusList[Count] += "" + (char)10;
 
                     BusListBus[Count] = i;
-                    BusListRun[Count] = fmMain.BusListRunNum[i];
+                    BusListRun[Count] = fmMain.BusListRunNum[i, 1];
                     rtxtBusList.AppendText(BusList[Count]);
                 }
                 if (fmMain.BusList2[i] == true)
@@ -54,11 +57,15 @@ namespace Transit
 
                     BusListAll[CountAll] = "Bus " + i + ", ";
                     if (fmMain.BusListBkRack2[i] == true) { BusListAll[CountAll] += "🚲"; } else { BusListAll[CountAll] += "🚳"; }
-                    if (fmMain.BusListRunNum2[i] != "") { BusListAll[CountAll] += ", " + fmMain.BusListRunNum2[i]; }
+                    for (int i2 = 1; i2 <= 4; i2++)
+                    {
+                        if (fmMain.BusListRunNum2[i, i2] != "" && fmMain.BusListRunNum2[i, i2] != null) { BusListAll[CountAll] += ", " + fmMain.BusListRunNum2[i, i2]; }
+                    }
+
                     BusListAll[CountAll] += "" + (char)10;
 
                     BusListBusAll[CountAll] = i;
-                    BusListRunAll[CountAll] = fmMain.BusListRunNum2[i];
+                    BusListRunAll[CountAll] = fmMain.BusListRunNum2[i, 1];
                     rtxtBusListAll.AppendText(BusListAll[CountAll]);
                 }
             }
@@ -314,7 +321,11 @@ namespace Transit
             {
                 fmMain.BusList2[i] = false;
                 fmMain.BusListBkRack2[i] = false;
-                fmMain.BusListRunNum2[i] = "";
+
+                for (int i2 = 1; i2 <= 4; i2++)
+                {
+                    fmMain.BusListRunNum2[i, i2] = "";
+                }
             }
             rtxtBusListAll.Text = "";
             CountAll = 0;

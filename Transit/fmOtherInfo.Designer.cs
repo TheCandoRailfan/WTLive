@@ -48,15 +48,16 @@ namespace Transit
             this.rtxtBusList.Location = new System.Drawing.Point(7, 31);
             this.rtxtBusList.Name = "rtxtBusList";
             this.rtxtBusList.ReadOnly = true;
-            this.rtxtBusList.Size = new System.Drawing.Size(223, 307);
+            this.rtxtBusList.Size = new System.Drawing.Size(272, 307);
             this.rtxtBusList.TabIndex = 0;
             this.rtxtBusList.Text = "";
+            this.rtxtBusList.WordWrap = false;
             // 
             // btnSortRuns
             // 
             this.btnSortRuns.Location = new System.Drawing.Point(6, 342);
             this.btnSortRuns.Name = "btnSortRuns";
-            this.btnSortRuns.Size = new System.Drawing.Size(224, 23);
+            this.btnSortRuns.Size = new System.Drawing.Size(270, 23);
             this.btnSortRuns.TabIndex = 1;
             this.btnSortRuns.Text = "Sort by Runs";
             this.btnSortRuns.UseVisualStyleBackColor = true;
@@ -64,9 +65,9 @@ namespace Transit
             // 
             // btnSortRunsAll
             // 
-            this.btnSortRunsAll.Location = new System.Drawing.Point(235, 342);
+            this.btnSortRunsAll.Location = new System.Drawing.Point(282, 342);
             this.btnSortRunsAll.Name = "btnSortRunsAll";
-            this.btnSortRunsAll.Size = new System.Drawing.Size(111, 23);
+            this.btnSortRunsAll.Size = new System.Drawing.Size(136, 23);
             this.btnSortRunsAll.TabIndex = 3;
             this.btnSortRunsAll.Text = "Sort by Runs";
             this.btnSortRunsAll.UseVisualStyleBackColor = true;
@@ -76,12 +77,13 @@ namespace Transit
             // 
             this.rtxtBusListAll.BackColor = System.Drawing.SystemColors.Window;
             this.rtxtBusListAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.rtxtBusListAll.Location = new System.Drawing.Point(236, 31);
+            this.rtxtBusListAll.Location = new System.Drawing.Point(283, 31);
             this.rtxtBusListAll.Name = "rtxtBusListAll";
             this.rtxtBusListAll.ReadOnly = true;
-            this.rtxtBusListAll.Size = new System.Drawing.Size(223, 307);
+            this.rtxtBusListAll.Size = new System.Drawing.Size(272, 307);
             this.rtxtBusListAll.TabIndex = 2;
             this.rtxtBusListAll.Text = "";
+            this.rtxtBusListAll.WordWrap = false;
             // 
             // lblCurStop
             // 
@@ -97,17 +99,17 @@ namespace Transit
             // 
             this.lblAll.AutoSize = true;
             this.lblAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lblAll.Location = new System.Drawing.Point(232, 2);
+            this.lblAll.Location = new System.Drawing.Point(279, 2);
             this.lblAll.Name = "lblAll";
-            this.lblAll.Size = new System.Drawing.Size(104, 26);
+            this.lblAll.Size = new System.Drawing.Size(171, 26);
             this.lblAll.TabIndex = 5;
-            this.lblAll.Text = "All Buses";
+            this.lblAll.Text = "All Buses Found";
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(348, 342);
+            this.btnReset.Location = new System.Drawing.Point(419, 342);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(111, 23);
+            this.btnReset.Size = new System.Drawing.Size(136, 23);
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -124,14 +126,14 @@ namespace Transit
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(465, 370);
+            this.ClientSize = new System.Drawing.Size(557, 370);
+            this.Controls.Add(this.rtxtBusList);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lblAll);
             this.Controls.Add(this.lblCurStop);
             this.Controls.Add(this.btnSortRunsAll);
             this.Controls.Add(this.rtxtBusListAll);
             this.Controls.Add(this.btnSortRuns);
-            this.Controls.Add(this.rtxtBusList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmOtherInfo";

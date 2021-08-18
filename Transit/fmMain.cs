@@ -60,11 +60,15 @@ namespace Transit
 
         public static bool[] BusList = new bool[1000];
         public static bool[] BusListBkRack = new bool[1000];
-        public static String[] BusListRunNum = new string[1000];
+        public static String[,] BusListRunNum = new string[1000,5];
 
         public static bool[] BusList2 = new bool[1000];
         public static bool[] BusListBkRack2 = new bool[1000];
-        public static String[] BusListRunNum2 = new string[1000];
+        public static String[,] BusListRunNum2 = new string[1000,5];
+        public static int[,] BusListRunNumAMPM = new int[1000, 5];
+        public static int[,] BusListRunNumAMPM2 = new int[1000, 5];
+
+        public static int GetAll = 0;
 
         public fmMain()
         {
@@ -105,10 +109,12 @@ namespace Transit
 
             SearchRun = txtRun.Text;
 
+            int StartHr = 0;
+
             ETAMax = 0;
             if (txtETAMax.Text == "" && MinsETA == true)
             {
-                MessageBox.Show("The max ETA in Mins times cannot be blank! 'ETA in Mins' will be disabled.", "Warning", MessageBoxButtons.OK);
+                MessageBox.Show("Relative time cannot be blank! 'Relative Time' will be disabled.", "Warning", MessageBoxButtons.OK);
                 MinsETA = false;
             }
             else if (MinsETA == true)
@@ -122,17 +128,17 @@ namespace Transit
             if (txtBus.Text != "") { SearchBus[0] = int.Parse(txtBus.Text); }
             if (txtBus2.Text != "") { SearchBus[1] = int.Parse(txtBus2.Text); }
 
-            if (rdoBike.Checked == true) { BikeType = "🚲"; }
-            if (rdoNoBike.Checked == true) { BikeType = "🚳"; }
-            if (rdoBikeorNoBike.Checked == true) { BikeType = ""; }
+            if (cmbBikeRack.Text == "Yes") { BikeType = "🚲"; }
+            else if (cmbBikeRack.Text == "No") { BikeType = "🚳"; }
+            else if (cmbBikeRack.Text == "Either") { BikeType = ""; }
 
-            if (txtStart.Text != "") { Start = txtStart.Text + ":00"; }
+            if (txtStart.Text != "") { Start = txtStart.Text + ":00"; } else { if (DateTime.Now.Minute < 10) { Start = DateTime.Now.Hour + ":0" + DateTime.Now.Minute + ":00"; } else { Start = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":00"; }  }
             if (Start.Length == 7) { Start = "0" + Start; }
-            //Console.WriteLine(Start);
+
+            StartHr = int.Parse(Start.Substring(0, 2));
 
             Route = txtRte.Text.ToUpper();
             if (txtDate.Text != "") { Start = txtDate.Text + "T" + Start; }
-            //Console.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
 
             if (txtDate.Text == "")
             {
@@ -147,15 +153,15 @@ namespace Transit
             {
                 DayOfWeek = 4;
             }
-            else if (dt.DayOfWeek == System.DayOfWeek.Sunday | (dt.Month == 12 && dt.Day == 25) | (dt.Month == 12 && dt.Day == 26) | (dt.Month == 1 && dt.Day == 1))
+            else if (((dt.DayOfWeek == System.DayOfWeek.Sunday && StartHr >= 3) | (dt.DayOfWeek == System.DayOfWeek.Monday && StartHr < 2)) | (dt.Month == 12 && dt.Day == 25) | (dt.Month == 12 && dt.Day == 26) | (dt.Month == 1 && dt.Day == 1))
             {
                 DayOfWeek = 3;
             }
-            else if (dt.DayOfWeek == System.DayOfWeek.Saturday)
+            else if ((dt.DayOfWeek == System.DayOfWeek.Saturday && StartHr >= 3) | (dt.DayOfWeek == System.DayOfWeek.Sunday && StartHr < 3))
             {
                 DayOfWeek = 2;
             }
-            else if (dt.DayOfWeek == System.DayOfWeek.Monday | dt.DayOfWeek == System.DayOfWeek.Tuesday | dt.DayOfWeek == System.DayOfWeek.Wednesday | dt.DayOfWeek == System.DayOfWeek.Thursday | dt.DayOfWeek == System.DayOfWeek.Friday)
+            else if ((dt.DayOfWeek == System.DayOfWeek.Monday && StartHr >= 2) | dt.DayOfWeek == System.DayOfWeek.Tuesday | dt.DayOfWeek == System.DayOfWeek.Wednesday | dt.DayOfWeek == System.DayOfWeek.Thursday | dt.DayOfWeek == System.DayOfWeek.Friday | (dt.DayOfWeek == System.DayOfWeek.Saturday && StartHr < 3))
             {
                 DayOfWeek = 1;
             }
@@ -163,8 +169,12 @@ namespace Transit
             try
             {
                 GetList();
-                GetFeatures();
-                GetRoutes(0);
+
+                if (GetAll == 0)
+                {
+                    GetFeatures();
+                    GetRoutes(0);
+                }
 
                 double X1;
 
@@ -194,6 +204,8 @@ namespace Transit
 
         public void GetList()
         {
+            int PutRun = 0;
+
             ToReplace[1] = "Downtown (City Hall)"; Replacement[1] = "City Hall";
             ToReplace[2] = "St. Vital Centre via River Road"; Replacement[2] = "St. Vital Centre";
             ToReplace[3] = "Centre Street via Bridgwater"; Replacement[3] = "Bridgwater Centre";
@@ -241,7 +253,11 @@ namespace Transit
             {
                 BusList[i] = false;
                 BusListBkRack[i] = false;
-                BusListRunNum[i] = "";
+
+                for (int i2 = 1; i2 <= 4; i2++)
+                {
+                    BusListRunNum[i, i2] = "";
+                }
             }
 
             String StartB = Start;
@@ -541,17 +557,29 @@ namespace Transit
                             Run = "";
                             if (RunStopFound == 1)
                             {
-                                //if (BusListRunNum[BusNum] != "" && BusNum != 0)
-                                //{
-                                //    Run = BusListRunNum[BusNum];
-                                //}
-                                //else
-                                //{
-                                    foreach (string line in RunList)
+                                foreach (string line in RunList)
+                                {
+                                    if (line.Contains(RunTime) && line.Contains("," + RouteNmRun + ","))
                                     {
-                                        if (line.Contains(RunTime) && line.Contains("," + RouteNmRun + ",")) { X1 = line.IndexOf(","); Run = line.Substring(0, X1); BusListRunNum[BusNum] = Run; BusListRunNum2[BusNum] = Run; break; }
+                                        X1 = line.IndexOf(",");
+                                        Run = line.Substring(0, X1);
+
+                                        PutRun = 0;
+                                        for (int i = 1; i <= 4; i++)
+                                        {
+                                            if (BusListRunNum[BusNum, i] == Run) { PutRun = 1; }
+                                            else if ((BusListRunNum[BusNum, i] == "" | BusListRunNum[BusNum, i] == null) && PutRun == 0) { BusListRunNum[BusNum, i] = Run; if (int.Parse(Time.Substring(0, 2)) <= 11 && int.Parse(Time.Substring(0, 2)) >= 4) { BusListRunNumAMPM[BusNum, i] = 1; } else { BusListRunNumAMPM[BusNum, i] = 2; } PutRun = 1; }
+                                        }
+
+                                        PutRun = 0;
+                                        for (int i = 1; i <= 4; i++)
+                                        {
+                                            if (BusListRunNum2[BusNum, i] == Run) { PutRun = 1; }
+                                            else if ((BusListRunNum2[BusNum, i] == "" | BusListRunNum2[BusNum, i] == null) && PutRun == 0) { BusListRunNum2[BusNum, i] = Run; if (int.Parse(Time.Substring(0, 2)) <= 11 && int.Parse(Time.Substring(0, 2)) >= 4) { BusListRunNumAMPM2[BusNum, i] = 1; } else { BusListRunNumAMPM2[BusNum, i] = 2; } PutRun = 1; }
+                                        }
+                                        break;
                                     }
-                                //}
+                                }
                             }
 
                             //Console.WriteLine(Bus);
@@ -636,6 +664,55 @@ namespace Transit
             }
 
             PrintResults();
+            SortBusRuns();
+        }
+
+        private void SortBusRuns()
+        {
+            String X; int X2;
+
+            for (int i = 1; i <= 999; i++)
+            {
+                if (BusListRunNum[i, 1] != "" && BusListRunNum[i, 1] != null)
+                {
+                    for (int i2 = 1; i2 <= 4; i2++)
+                    {
+                        for (int i3 = 2; i3 <= 4; i3++)
+                        {
+                            if (BusListRunNumAMPM[i, i3 - 1] > BusListRunNumAMPM[i, i3] && BusListRunNumAMPM[i, i3] != 0)
+                            {
+                                X = BusListRunNum[i, i3 - 1];
+                                BusListRunNum[i, i3 - 1] = BusListRunNum[i, i3];
+                                BusListRunNum[i, i3] = X;
+
+                                X2 = BusListRunNumAMPM[i, i3 - 1];
+                                BusListRunNumAMPM[i, i3 - 1] = BusListRunNumAMPM[i, i3];
+                                BusListRunNumAMPM[i, i3] = X2;
+                            }
+                        }
+                    }
+                }
+
+                if (BusListRunNum2[i, 1] != "" && BusListRunNum2[i, 1] != null)
+                {
+                    for (int i2 = 1; i2 <= 4; i2++)
+                    {
+                        for (int i3 = 2; i3 <= 4; i3++)
+                        {
+                            if (BusListRunNumAMPM2[i, i3 - 1] > BusListRunNumAMPM2[i, i3] && BusListRunNumAMPM2[i, i3] != 0)
+                            {
+                                X = BusListRunNum2[i, i3 - 1];
+                                BusListRunNum2[i, i3 - 1] = BusListRunNum2[i, i3];
+                                BusListRunNum2[i, i3] = X;
+
+                                X2 = BusListRunNumAMPM2[i, i3 - 1];
+                                BusListRunNumAMPM2[i, i3 - 1] = BusListRunNumAMPM2[i, i3];
+                                BusListRunNumAMPM2[i, i3] = X2;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void PrintResults()
@@ -758,6 +835,7 @@ namespace Transit
             cmbBusType.SelectedIndex = 0;
             cmbBusLength.SelectedIndex = 0;
             cmbColour.SelectedIndex = 0;
+            cmbBikeRack.SelectedIndex = 0;
         }
 
         private void timCheckStat_Tick(object sender, EventArgs e)
@@ -859,11 +937,11 @@ namespace Transit
 
             lblMessage.Text = Message;
             if (Message == "") { 
-                this.Size = new Size(960, 581);
+                this.Size = new Size(960, 510);
             } 
             else 
             {
-                this.Size = new Size(960, 601);
+                this.Size = new Size(960, 525);
             }
         }
 
@@ -1057,7 +1135,7 @@ namespace Transit
 
         private void btnAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("WTLive V1.5 (2021-08-14)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
+            MessageBox.Show("WTLive V1.6 (2021-08-18)" + (char)10 + (char)10 + "This program is made by Taylor Woolston. It is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About WTLive", MessageBoxButtons.OK);
             //MessageBox.Show("This program is not produced by, affiliated with or endorsed by Winnipeg Transit.", "About", MessageBoxButtons.OK);
         }
 
@@ -1105,7 +1183,7 @@ namespace Transit
             lblOnOff.Text = "Refresh Disabled";
             btnStop.Enabled = false;
 
-            rdoBikeorNoBike.Checked = true;
+            cmbBikeRack.SelectedIndex = 0;
             rdoEitherCancel.Checked = true;
 
             txtBusLk.Text = "";
@@ -1128,6 +1206,12 @@ namespace Transit
 
                 BusList2[i] = false;
                 BusListBkRack2[i] = false;
+
+                for (int i2 = 1; i2 <= 4; i2++)
+                {
+                    BusListRunNum[i, i2] = "";
+                    BusListRunNum2[i, i2] = "";
+                }
             }
 
             this.Text = "WTLive";
@@ -1175,8 +1259,8 @@ namespace Transit
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.WindowState = FormWindowState.Normal;
-            rtxtList.Size = new Size(645, 406);
-            rtxtList.Location = new Point(298, 3);
+            rtxtList.Size = new Size(645, 335);
+            rtxtList.Location = new Point(292, 3);
             FontSize = 16;
             lblStopName.Visible = false;
             lblTime.Visible = false;
@@ -1245,7 +1329,6 @@ namespace Transit
         private void SetLightMode()
         {
             this.BackColor = Color.WhiteSmoke;
-            grpBikeRack.BackColor = Color.WhiteSmoke;
             grpCancelled.BackColor = Color.WhiteSmoke;
 
             lblStop.ForeColor = Color.Black;
@@ -1270,10 +1353,7 @@ namespace Transit
             lblRefresh.ForeColor = Color.Black;
             lblOnOff.ForeColor = Color.Black;
 
-            grpBikeRack.ForeColor = Color.Black;
-            rdoBike.ForeColor = Color.Black;
-            rdoNoBike.ForeColor = Color.Black;
-            rdoBikeorNoBike.ForeColor = Color.Black;
+            lblBike.ForeColor = Color.Black;
 
             grpCancelled.ForeColor = Color.Black;
             rdoCancel.ForeColor = Color.Black;
@@ -1310,7 +1390,6 @@ namespace Transit
         private void SetDarkMode()
         {
             this.BackColor = Color.Black;
-            grpBikeRack.BackColor = Color.Black;
             grpCancelled.BackColor = Color.Black;
 
             lblStop.ForeColor = Color.DarkGray;
@@ -1335,10 +1414,7 @@ namespace Transit
             lblRefresh.ForeColor = Color.DarkGray;
             lblOnOff.ForeColor = Color.DarkGray;
 
-            grpBikeRack.ForeColor = Color.DarkGray;
-            rdoBike.ForeColor = Color.DarkGray;
-            rdoNoBike.ForeColor = Color.DarkGray;
-            rdoBikeorNoBike.ForeColor = Color.DarkGray;
+            lblBike.ForeColor = Color.DarkGray;
 
             grpCancelled.ForeColor = Color.DarkGray;
             rdoCancel.ForeColor = Color.DarkGray;
@@ -1390,6 +1466,59 @@ namespace Transit
         {
             fmOtherInfo Other = new fmOtherInfo();
             Other.Show();
+        }
+
+        private void btnGetAll_Click(object sender, EventArgs e)
+        {
+            String[] StopsList = new string[23]; int Time = 0;
+            GetAll = 1;
+
+            StopsList[1] = "10157";
+            StopsList[2] = "10159";
+            StopsList[3] = "10271";
+            StopsList[4] = "10426";
+            StopsList[5] = "10436";
+            StopsList[6] = "10541";
+            StopsList[7] = "10562";
+            StopsList[8] = "10583";
+            StopsList[9] = "10611";
+            StopsList[10] = "10614";
+            StopsList[11] = "11046";
+            StopsList[12] = "20468";
+            StopsList[13] = "30521";
+            StopsList[14] = "40186";
+            StopsList[15] = "40189";
+            StopsList[16] = "50617";
+            StopsList[17] = "60064";
+            StopsList[18] = "60105";
+            StopsList[19] = "60182";
+            StopsList[20] = "60655";
+            StopsList[21] = "61205";
+            StopsList[22] = "62015";
+
+            for (int i = 1; i <= 22; i++)
+            {
+                if (StopsList[i] != "" && StopsList[i] != null)
+                {
+                    Time = DateTime.Now.Second;
+                    do
+                    {
+                        if (DateTime.Now.Second < Time) { Time -= 60; }
+                    } while (DateTime.Now.Second - Time < 5);
+
+                    //Console.WriteLine(StopsList[i]);
+                    StopNum = StopsList[i];
+                    GoPress();
+                }
+            }
+
+            GetAll = 0;
+        }
+
+        private void timAllBuses_Tick(object sender, EventArgs e)
+        {
+            timAllBuses.Enabled = false;
+            //Console.WriteLine(timAllBuses.Enabled);
         }
     }
 }
